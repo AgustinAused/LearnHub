@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from "react";
 import {
   Navbar,
@@ -30,7 +30,7 @@ import {
   PuzzlePieceIcon,
   GiftIcon,
 } from "@heroicons/react/24/outline";
- 
+
 const colors = {
   blue: "bg-blue-50 text-blue-500",
   orange: "bg-orange-50 text-orange-500",
