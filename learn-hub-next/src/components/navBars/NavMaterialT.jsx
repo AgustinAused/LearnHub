@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import {
   Navbar,
@@ -17,7 +17,6 @@ import {
 import {
   ChevronDownIcon,
   UserCircleIcon,
-  CubeTransparentIcon,
   Bars3Icon,
   XMarkIcon,
   FlagIcon,
@@ -29,6 +28,7 @@ import {
   FaceSmileIcon,
   PuzzlePieceIcon,
   GiftIcon,
+  BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 
 const colors = {
@@ -41,7 +41,7 @@ const colors = {
   cyan: "bg-cyan-50 text-cyan-500",
   pink: "bg-pink-50 text-pink-500",
 };
- 
+
 const navListMenuItems = [
   {
     color: "blue",
@@ -103,11 +103,11 @@ const navListMenuItems = [
     description: "List of all our open-source projects, it's all free.",
   },
 ];
- 
+
 function NavListMenu() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
- 
+
   const renderItems = navListMenuItems.map(
     ({ icon, title, description, color }, key) => (
       <a href="#" key={key}>
@@ -134,7 +134,7 @@ function NavListMenu() {
       </a>
     )
   );
- 
+
   return (
     <React.Fragment>
       <Menu
@@ -147,11 +147,11 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-normal">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4"
+              className="flex items-center gap-2 py-2 pr-4 text-white text-base"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
-              <Square3Stack3DIcon className="h-[18px] w-[18px]" />
+              <Square3Stack3DIcon className="h-[2rem] w-[2rem]" />
               Resources
               <ChevronDownIcon
                 strokeWidth={2.5}
@@ -178,7 +178,7 @@ function NavListMenu() {
     </React.Fragment>
   );
 }
- 
+
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
@@ -186,12 +186,12 @@ function NavList() {
         as="a"
         href="#"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <CubeTransparentIcon className="h-[18px] w-[18px]" />
-          Blocks
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+          <BuildingStorefrontIcon className="h-[2rem] w-[2rem] " />
+          Servicios
         </ListItem>
       </Typography>
       <NavListMenu />
@@ -199,53 +199,53 @@ function NavList() {
         as="a"
         href="#"
         variant="small"
-        color="blue-gray"
+        color="white"
         className="font-normal"
       >
-        <ListItem className="flex items-center gap-2 py-2 pr-4">
-          <UserCircleIcon className="h-[18px] w-[18px]" />
+        <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+          <UserCircleIcon className="h-[2rem] w-[2rem]" />
           Account
         </ListItem>
       </Typography>
     </List>
   );
 }
- 
+
 export function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
- 
+
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-2">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <Navbar color=""  className="mx-auto my-4 w-11/12 px-4 py-2 bg-[#003f5c] text-white" >
+      <div className="flex items-center justify-between text-white">
         <Typography
           as="a"
           href="#"
-          variant="h6"
-          className="mr-4 cursor-pointer py-1.5 lg:ml-2"
+          variant="h4"
+          className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6 text-white "
         >
-          Material Tailwind
+          LearnHub
         </Typography>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="text" size="sm" color="blue-gray">
+          <Button variant="outlined" size="md" color="white" className="text-sm">
             Sign In
           </Button>
-          <Button variant="gradient" size="sm">
+          <Button variant="gradient" size="sm" color="white" className="text-sm">
             Sign Up
           </Button>
         </div>
         <IconButton
           variant="text"
-          color="blue-gray"
+          color="white"
           className="lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
@@ -259,7 +259,7 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="blue-gray" fullWidth>
+          <Button variant="outlined" size="sm" color="white" fullWidth>
             Sign In
           </Button>
           <Button variant="gradient" size="sm" fullWidth>
