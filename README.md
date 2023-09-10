@@ -27,7 +27,7 @@ El proyecto consiste en un marketplace de servicios de todo tipo, en el cual los
 - [x] 4. Express
 
 ### Paleta de colores
-- https://coolors.co/5c9ead-ffffff-326273-eeeeee-e39774
+- https://coolors.co/070c0d-5c9ead-ffffff-326273-90a8b1-eeeeee-e39774
 
 ### Requisitos
 - [x] 1. Node.js
