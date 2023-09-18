@@ -16,12 +16,11 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
+
+body {
+  
+  background-image: url('./../layered-steps-haikei.svg');
+  background-size: cover; /* Ajusta el tamaño del fondo según el elemento */
+  background-repeat: no-repeat; /* Evita que el fondo se repita */
+}
+  

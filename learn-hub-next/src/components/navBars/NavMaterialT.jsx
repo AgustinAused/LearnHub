@@ -222,7 +222,7 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar color=""  className="mx-auto my-4 w-11/12 px-4 py-2 bg-[#003f5c] text-white" >
+    <Navbar color="transparent"  className="mx-auto my-4 w-11/12 px-4 py-2 bg-[#003f5c] text-white" >
       <div className="flex items-center justify-between text-white">
         <Typography
           as="a"
