@@ -181,21 +181,23 @@ function NavListMenu() {
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Typography
-        as="a"
-        href="#"
-        variant="small"
-        color="black"
-        className="font-normal"
-      >
-        <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-          <BuildingStorefrontIcon className="h-[2rem] w-[2rem] " />
-          Servicios
-        </ListItem>
-      </Typography>
+      <Link href="/servicios">
+        <Typography
+          as="div"
+          href="/servicios"
+          variant="small"
+          color="black"
+          className="font-normal"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+            <BuildingStorefrontIcon className="h-[2rem] w-[2rem] " />
+            Servicios
+          </ListItem>
+        </Typography>
+      </Link>
       <NavListMenu />
       <Typography
-        as="a"
+        as="div"
         href="#"
         variant="small"
         color="black"
@@ -221,16 +223,17 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2 " fullWidth >
+    <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2  " fullWidth >
       <div className="flex items-center justify-between text-black">
-        <Typography
-          as="a"
-          href="#"
-          variant="h4"
-          className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
-        >
-          LearnHub
-        </Typography>
+        <Link href="/">
+          <Typography
+            as="div"
+            variant="h4"
+            className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
+          >
+            LearnHub
+          </Typography>
+        </Link>
         <div className="hidden lg:block">
           <NavList />
         </div>
@@ -262,12 +265,16 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="black" fullWidth>
-            Sign In
-          </Button>
-          <Button variant="gradient" size="sm" fullWidth>
-            Sign Up
-          </Button>
+          <Link href="/sign-in">
+            <Button variant="outlined" size="sm" color="black" fullWidth>
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button variant="gradient" size="sm" fullWidth>
+              Sign Up
+            </Button>
+          </Link>
         </div>
       </Collapse>
     </Navbar>
