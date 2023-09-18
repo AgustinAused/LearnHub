@@ -30,6 +30,7 @@ import {
   GiftIcon,
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const colors = {
   blue: "bg-blue-50 text-blue-500",
@@ -147,23 +148,21 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-normal">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4  text-base"
+              className="flex items-center gap-2 py-2 pr-4 text-black  text-base"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
-              <Square3Stack3DIcon className="h-[2rem] w-[2rem]" />
+              <Square3Stack3DIcon className="h-[2rem] w-[2rem] text-black" />
               Resources
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`hidden h-3 w-3 transition-transform lg:block ${
-                  isMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`hidden h-3 w-3 transition-transform lg:block ${isMenuOpen ? "rotate-180" : ""
+                  }`}
               />
               <ChevronDownIcon
                 strokeWidth={2.5}
-                className={`block h-3 w-3 transition-transform lg:hidden ${
-                  isMobileMenuOpen ? "rotate-180" : ""
-                }`}
+                className={`block h-3 w-3 transition-transform lg:hidden ${isMobileMenuOpen ? "rotate-180" : ""
+                  }`}
               />
             </ListItem>
           </Typography>
@@ -222,7 +221,7 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar color="transparent"  className="mx-auto my-4 w-full px-4 py-2 "fullWidth >
+    <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2 " fullWidth >
       <div className="flex items-center justify-between text-black">
         <Typography
           as="a"
@@ -236,12 +235,16 @@ export function NavbarWithMegaMenu() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="outlined" size="md" color="black" className="text-sm">
-            Sign In
-          </Button>
-          <Button variant="gradient" size="sm" color="black" className="text-sm">
-            Sign Up
-          </Button>
+          <Link href="/sign-in">
+            <Button variant="outlined" size="md" color="black" className="text-sm">
+              Sign In
+            </Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button variant="gradient" size="md" color="black" className="text-sm">
+              Sign Up
+            </Button>
+          </Link>
         </div>
         <IconButton
           variant="text"

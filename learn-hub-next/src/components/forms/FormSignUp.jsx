@@ -25,7 +25,7 @@ export function FormSignUp() {
 
     return (
         <div className="flex justify-center items-center min-h-screen">
-            <div className="w-1/3 p-6 border rounded-lg shadow-md">
+            <div className=" bg-white w-1/3 p-6 border rounded-lg shadow-md">
                 <h2 className="text-2xl font-semibold mb-4">Registro</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
