@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="p-12">
         <div class=" h-screen flex items-center justify-center">
-          <div class="text-center text-white">
+          <div class="text-center text-black">
             <h1 class="text-6xl font-extrabold mb-6">Publica tus servicios</h1>
             <h2 class="text-3xl font-semibold mb-8">en nuestra página web</h2>
             <a
