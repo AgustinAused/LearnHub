@@ -6,6 +6,18 @@ import { HorizontalCardinvert } from "@/components/cards/HorizontalCardInvert";
 export default function Home() {
   return (
     <main className="p-12">
+        <div class=" h-screen flex items-center justify-center">
+          <div class="text-center text-white">
+            <h1 class="text-6xl font-extrabold mb-6">Publica tus servicios</h1>
+            <h2 class="text-3xl font-semibold mb-8">en nuestra página web</h2>
+            <a
+              href="#"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              ¡Empieza Ahora!
+            </a>
+          </div>
+        </div>
       <section className=" flex justify-center content-center">
         <div>
           <CarouselCustomNavigation />
@@ -18,7 +30,7 @@ export default function Home() {
       </section>
 
       <section className="my-8 flex flex-col items-center space-y-4">
-        <HorizontalCard variant='gradient' />
+        <HorizontalCard variant="gradient" />
         <HorizontalCardinvert />
         <HorizontalCard />
       </section>

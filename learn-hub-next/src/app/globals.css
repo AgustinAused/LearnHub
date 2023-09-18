@@ -19,8 +19,9 @@
 
 body {
   
-  background-image: url('./../layered-steps-haikei.svg');
+  background-image: url('./../blurry-gradient-haikei.svg');
   background-size: cover; /* Ajusta el tamaño del fondo según el elemento */
   background-repeat: no-repeat; /* Evita que el fondo se repita */
+
 }
   

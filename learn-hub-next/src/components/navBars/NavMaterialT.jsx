@@ -147,7 +147,7 @@ function NavListMenu() {
         <MenuHandler>
           <Typography as="div" variant="small" className="font-normal">
             <ListItem
-              className="flex items-center gap-2 py-2 pr-4 text-white text-base"
+              className="flex items-center gap-2 py-2 pr-4  text-base"
               selected={isMenuOpen || isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((cur) => !cur)}
             >
@@ -186,7 +186,7 @@ function NavList() {
         as="a"
         href="#"
         variant="small"
-        color="white"
+        color="black"
         className="font-normal"
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
@@ -199,7 +199,7 @@ function NavList() {
         as="a"
         href="#"
         variant="small"
-        color="white"
+        color="black"
         className="font-normal"
       >
         <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
@@ -222,13 +222,13 @@ export function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar color="transparent"  className="mx-auto my-4 w-11/12 px-4 py-2 bg-[#003f5c] text-white" >
-      <div className="flex items-center justify-between text-white">
+    <Navbar color="transparent"  className="mx-auto my-4 w-full px-4 py-2 "fullWidth >
+      <div className="flex items-center justify-between text-black">
         <Typography
           as="a"
           href="#"
           variant="h4"
-          className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6 text-white "
+          className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
         >
           LearnHub
         </Typography>
@@ -236,16 +236,16 @@ export function NavbarWithMegaMenu() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Button variant="outlined" size="md" color="white" className="text-sm">
+          <Button variant="outlined" size="md" color="black" className="text-sm">
             Sign In
           </Button>
-          <Button variant="gradient" size="sm" color="white" className="text-sm">
+          <Button variant="gradient" size="sm" color="black" className="text-sm">
             Sign Up
           </Button>
         </div>
         <IconButton
           variant="text"
-          color="white"
+          color="black"
           className="lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
@@ -259,7 +259,7 @@ export function NavbarWithMegaMenu() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Button variant="outlined" size="sm" color="white" fullWidth>
+          <Button variant="outlined" size="sm" color="black" fullWidth>
             Sign In
           </Button>
           <Button variant="gradient" size="sm" fullWidth>
