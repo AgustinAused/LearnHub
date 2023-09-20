@@ -55,7 +55,7 @@ export function FooterWithSocialLinks() {
       </div>
       <hr className="my-8 border-black-50" />
       <Typography color="black" className="text-center font-normal">
-        &copy; {currentYear} Material Tailwind
+        &copy; {currentYear} LearnHub. inc
       </Typography>
     </footer>
     );
