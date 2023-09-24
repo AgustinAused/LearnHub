@@ -1,4 +1,4 @@
-import { CarouselCustomNavigation } from "@/components/carrousel/Carousel";
+import { CarouselCustomNavigation } from "@/components/carrousel/CarouselCustomNavigation";
 import { HorizontalCard } from "@/components/cards/HorizontalCard";
 import { BackgroundBlogCard } from "@/components/cards/BackgroundBlogCard";
 import { HorizontalCardinvert } from "@/components/cards/HorizontalCardInvert";
