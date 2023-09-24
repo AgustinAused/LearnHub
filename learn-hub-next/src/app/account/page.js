@@ -27,14 +27,33 @@ export default function page(params) {
         setUser(userData);
         setServices(userServices);
     }, []);
-
+        
     return (
-        <div>
-            <h1>Perfil de {user.name}</h1>
-            <p>Email: {user.email}</p>
-            {/* Otros campos de información del usuario */}
+        <div className='flex flex-col justify-center'>
+            {/* hacemos una presentatacion de pagina aesthetic */}
+            <div className='flex justify-center items-center space-x-10 bg-[#f1f1f1] p-12 m-12 rounded-2xl' >
+                {/* Aquí va la imagen de perfil del usuario */} 
+                <img src='https://picsum.photos/200' alt='Imagen de perfil' className='rounded-full w-1/5' />
+                {/* informacion del usuario */}
+                <div className='w-1/2'>
+                    <h1 className='text-4xl font-bold'>{user.name}</h1>
+                    <h2 className='text-2xl'>{user.email}</h2>
+                </div>
+                {/* boton de agregar nuevo servicio */}
+                <div className='flex justify-center items-center'>
+                    <button className='bg-[#ff8a00] text-white rounded-lg px-4 py-2'>Agregar Servicio</button>
+                </div>
+                
 
-            <h2>Servicios Ofrecidos</h2>
+
+            </div>
+            {/* div del titulo de la lsita de servicios */}
+            <div className='flex justify-center'>
+                <h1 className='text-4xl font-bold'>Servicios Ofrecidos </h1>
+            </div>
+
+
+
             <div className='flex justify-end'>
 
             {/* Lista de servicios ofrecidos por la cuenta que los da*/}
