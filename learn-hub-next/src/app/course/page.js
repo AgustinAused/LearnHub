@@ -40,7 +40,7 @@ export default function page() {
     }, []);
 
     return (
-        <div>
+        <div className='my-28'>
             <ArticulCourse course={course}/>
         </div>
     );
