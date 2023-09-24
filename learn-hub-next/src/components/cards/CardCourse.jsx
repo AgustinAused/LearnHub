@@ -23,6 +23,12 @@ export default function CardCourse({ course }) {
                 <Typography>
                     ${course.price}
                 </Typography>
+                <Typography>
+                    {course.responsable.nombre}
+                </Typography>
+                <Typography>
+                    {course.frecuencia}
+                </Typography>
             </CardBody>
             <CardFooter className="pt-0">
                 <Link href= {`/pageCourse/${course.id}`}>

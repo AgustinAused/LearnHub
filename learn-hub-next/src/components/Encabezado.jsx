@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function Encabezado({titulo='Ofrece tu servicio con nosotros', subtitulo='no seas gil'}) {
+export default function Encabezado({titulo='Ofrece tu servicio con nosotros', subtitulo='Descubre el Poder de Aprender a Tu Manera en LearnHub'}) {
   return (
     <div class=" h-screen flex items-center justify-center">
           <div class="text-center text-black">

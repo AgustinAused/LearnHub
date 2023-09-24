@@ -16,6 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body >
+        {/* para utilizar dos tipos de navbar dependiendo de si esta o no autenticado */}
+        {/* {isAuthenticated ? <NavbarAutenticado /> : <NavbarNoAutenticado />} */}
         <NavbarWithMegaMenu />
         <div className={inter.className}>{children}</div>
         <FooterWithSocialLinks />
