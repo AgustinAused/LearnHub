@@ -12,7 +12,7 @@ export default function CardCourse({ course }) {
         return null; // Manejo de casos en que course sea undefined
       }
     return (
-        <Card className="mt-6 w-96">
+        <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-2">
                     {course.title}
