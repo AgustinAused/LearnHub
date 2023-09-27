@@ -21,7 +21,7 @@ export default function FormsComments() {
     }
     // Revisar (Espera)
     return(
-        <div className="w-1/2 mx-auto p-4 bg-white">
+        <div className="w-1/2 mx-auto p-4 bg-white rounded-lg">
             <h2 className="text-2xl font-bold mb-4">Leave a comment</h2>
             <form className="flex flex-col space-y-4">
                 <label className="block">

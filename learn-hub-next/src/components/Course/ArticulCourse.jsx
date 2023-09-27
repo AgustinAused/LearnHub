@@ -29,19 +29,20 @@ export default function ArticulCourse({ course }) {
                     </div>
                 </div>
             </div>
-    <FormsComments />
+            <FormsComments />
+            <div className="m-4 md:m-10">
             <div className="mt-4 p-4 bg-white rounded-lg">
-    {/* Aquí irían los comentarios */}
-    <h2 className="text-xl font-bold mb-4">Comentarios</h2>
-    <ul className="space-y-4">
-        {course.comentarios?.map((comentario) => (
-            <li>
-                <CustomComment com={comentario} />
-            </li>
-        ))}
-    </ul>
-</div>
-
+                {/* Aquí irían los comentarios */}
+                <h2 className="text-xl font-bold mb-4">Comentarios</h2>
+                <ul className="space-y-4">
+                    {course.comentarios?.map((comentario) => (
+                        <li>
+                            <CustomComment com={comentario} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            </div>
         </div>
     );
 }
