@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
 import { CarouselCustomNavigation } from '@/components/carrousel/CarouselCustomNavigation';
+import FormsComments from "../forms/FormsComments";
 
+import CustomComment from "../comment/CustomComment";
 
 export default function ArticulCourse({ course }) {
     return (
@@ -15,6 +17,8 @@ export default function ArticulCourse({ course }) {
                         <div className="font-bold text-xl mb-2">{course.title}</div>
                         <p className="text-gray-700 text-base">${course.price}</p>
                         <p className="text-gray-700 text-base">{course.description}</p>
+                        <p className="text-gray-700 text-base">Impartido por: {course.responsable?.nombre}</p>
+                        <p className="text-gray-700 text-base">{course.responsable?.experiencia}</p>
                     </div>
                     <div className="px-6 pb-4">
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
@@ -23,9 +27,12 @@ export default function ArticulCourse({ course }) {
                     </div>
                 </div>
             </div>
-            <h3>Comentarios</h3>
             <div>
+                <FormsComments/>
                 {/* Aca irian las los comentarios */}
+                {course.comentarios?.map((comentario) => (
+                    <CustomComment com={comentario} />
+                ))}
             </div>
         </div>
     );

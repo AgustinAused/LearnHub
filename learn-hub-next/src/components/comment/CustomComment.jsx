@@ -9,7 +9,7 @@ export default function CustomComment({com}) {
               {/* <div className="font-semibold text-lg">{com.author}</div> */}
             </div>
           </div>
-          <p className="text-gray-800">{com.content}</p>
+          <p className="text-gray-800">{com.comentario}</p>
         </div>
       );
 };
