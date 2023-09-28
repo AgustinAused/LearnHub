@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function CardCourse({ course }) {
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
-      }
+    }
     return (
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
@@ -31,7 +31,8 @@ export default function CardCourse({ course }) {
                 </Typography>
             </CardBody>
             <CardFooter className="pt-0">
-                <Link href= {'/course'}>
+                {/* <Link href= {`/course`}> */}
+                <Link href= {`/course/${course.id}`}>
                     <Button>Read More</Button>
                 </Link>
             </CardFooter>
