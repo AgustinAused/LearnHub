@@ -27,7 +27,7 @@ import Link from "next/link";
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Link href="/servicios">
+      <Link href="/genericUser/services">
         <Typography
           as="div"
           href="/servicios"
@@ -41,7 +41,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <Link href="/account">
+      {/* <Link href="/genericUser/account">
 
         <Typography
           as="div"
@@ -55,8 +55,8 @@ function NavList() {
             Account
           </ListItem>
         </Typography>
-      </Link>
-      <Link href='/about'>
+      </Link> */}
+      <Link href='/genericUser/about'>
         <Typography
           as="div"
           href="/about"
@@ -87,7 +87,7 @@ export function NavbarWithMegaMenu() {
   return (
     <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2  " fullWidth >
       <div className="flex items-center justify-between text-black">
-        <Link href="/">
+        <Link href="/genericUser">
           <Typography
             as="div"
             variant="h4"
@@ -100,12 +100,12 @@ export function NavbarWithMegaMenu() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Link href="/sign-in">
+          <Link href="/genericUser/sign-in">
             <Button variant="outlined" size="md" color="black" className="text-sm">
               Sign In
             </Button>
           </Link>
-          <Link href="/sign-up">
+          <Link href="/genericUser/sign-up">
             <Button variant="gradient" size="md" color="black" className="text-sm">
               Sign Up
             </Button>
