@@ -4,6 +4,7 @@ import { CarouselCustomNavigation } from '@/components/carrousel/CarouselCustomN
 import FormsComments from "../forms/FormsComments";
 
 import CustomComment from "../comment/CustomComment";
+import FormsInscrip from "../forms/FormsInscrip";
 
 export default function ArticulCourse({ course }) {
     return (
@@ -21,10 +22,8 @@ export default function ArticulCourse({ course }) {
                             <p className="text-gray-700 text-base">Impartido por: {course.responsable?.nombre}</p>
                             <p className="text-gray-700 text-base">{course.responsable?.experiencia}</p>
                         </div>
-                        <div className="px-6 pb-4">
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Comprar
-                            </button>
+                        <div className="px-6 py-4 ">
+                            <FormsInscrip />
                         </div>
                     </div>
                 </div>
