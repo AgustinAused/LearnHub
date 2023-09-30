@@ -11,7 +11,6 @@ import Link from "next/link";
 export default function CourseAccount({ course }) {
   const deleteCourse = () =>{
     //aqui va la funcion para eliminar un curso
-
   };
 
   return (

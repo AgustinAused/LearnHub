@@ -2,6 +2,7 @@ const coursesData = [
     {
         id: 1,
         title: "Curso de Desarrollo Web",
+        categoria: "Desarrollo Web",
         responsable: {
             nombre: "Juan Pérez",
             experiencia: "Experto en desarrollo web con más de 10 años de experiencia."
@@ -26,6 +27,7 @@ const coursesData = [
     {
         id: 2,
         title: "Curso de Marketing Digital",
+        categoria: "Marketing Digital",
         responsable: {
             nombre: "Ana García",
             experiencia: "Especialista en marketing digital con amplia trayectoria en publicidad en línea."
@@ -50,6 +52,7 @@ const coursesData = [
     {
         id: 3,
         title: "Curso de Programación en Python",
+        categoria: "Desarrollo de Software",
         responsable: {
             nombre: "Laura Fernández",
             experiencia: "Desarrolladora Python con 8 años de experiencia."
@@ -74,6 +77,7 @@ const coursesData = [
     {
         id: 4,
         title: "Curso de Diseño Gráfico",
+        categoria: "Diseño Gráfico",
         responsable: {
             nombre: "David Ruiz",
             experiencia: "Diseñador gráfico profesional con amplia experiencia en diseño creativo."
@@ -98,6 +102,7 @@ const coursesData = [
     {
         id: 5,
         title: "Curso de Marketing de Redes Sociales",
+        categoria: "Marketing Digital",
         responsable: {
             nombre: "María Rodríguez",
             experiencia: "Especialista en redes sociales y estrategias de marketing en línea."
@@ -122,6 +127,7 @@ const coursesData = [
     {
         id: 6,
         title: "Curso de Desarrollo de Aplicaciones Móviles",
+        categoria: "Desarrollo de Software",
         responsable: {
             nombre: "Alejandro Torres",
             experiencia: "Desarrollador de aplicaciones móviles con 7 años de experiencia."
@@ -146,6 +152,7 @@ const coursesData = [
     {
         id: 7,
         title: "Curso de Fotografía Digital",
+        categoria: "Fotografía",
         responsable: {
             nombre: "Isabel García",
             experiencia: "Fotógrafa profesional con experiencia en retratos y paisajes."
@@ -170,6 +177,7 @@ const coursesData = [
     {
         id: 8,
         title: "Curso de Marketing de Contenidos",
+        categoria: "Marketing Digital",
         responsable: {
             nombre: "Andrés Martínez",
             experiencia: "Experto en marketing de contenidos con experiencia en estrategias digitales."
@@ -194,6 +202,7 @@ const coursesData = [
     {
         id: 9,
         title: "Curso de Diseño de Interfaz de Usuario (UI)",
+        categoria: "Diseño Gráfico",
         responsable: {
             nombre: "Ana López",
             experiencia: "Diseñadora de UI/UX con experiencia en diseño de interfaces atractivas."
@@ -218,6 +227,7 @@ const coursesData = [
     {
         id: 10,
         title: "Curso de Inteligencia Artificial",
+        categoria: "Inteligencia Artificial",
         responsable: {
             nombre: "Luis Rodríguez",
             experiencia: "Científico de datos con experiencia en IA y aprendizaje automático."

@@ -21,17 +21,20 @@ export default function CardCourse({ course }) {
                     {course.description}
                 </Typography>
                 <Typography>
-                    ${course.price}
-                </Typography>
-                <Typography>
                     {course.responsable.nombre}
                 </Typography>
                 <Typography>
                     {course.frecuencia}
                 </Typography>
+                <Typography>
+                    {course.duracion}
+                </Typography>
+                <Typography>
+                    {course.categoria}
+                </Typography>
             </CardBody>
             <CardFooter className="pt-0">
-                <Link href= {`/course`}>
+                <Link href= {`/genericUser/course`}>
                 {/* <Link href= {`/course/${course.id}`}> */}
                     <Button>Read More</Button>
                 </Link>
