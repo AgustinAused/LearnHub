@@ -3,7 +3,7 @@ import CourseListAccount from '@/components/Course/CourseListAccount';
 
 import React, { useState, useEffect } from 'react';
 
-export default function page(params) {
+export default function page() {
 
     const [user, setUser] = useState({}); // Información del usuario
     const [services, setServices] = useState([]); // Lista de servicios que ofrece el usuario
@@ -48,8 +48,6 @@ export default function page(params) {
             <div className='flex justify-center'>
                 <h1 className='text-4xl font-bold'>Servicios Ofrecidos </h1>
             </div>
-
-
 
             <div className='flex justify-end'>
 

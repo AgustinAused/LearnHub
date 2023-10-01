@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+
 import { Input, Button, Checkbox,Typography } from "@material-tailwind/react";
 
 
@@ -53,7 +54,10 @@ export function FormSignIn() {
                     </Button>
                 </form>
                 <p className="mt-4 text-center text-gray-600">
-                    ¿No tienes una cuenta? <a href="#" className="font-medium text-gray-900">Registrase</a>
+                    ¿No tienes una cuenta? <a href="/genericUser/sing-up" className="font-medium text-gray-900">Registrase</a>
+                </p>
+                <p className="mt-4 text-center text-gray-600">
+                    <a href="/genericUser/recuperar" className="font-medium text-gray-900">Recuperar contraseña</a>
                 </p>
             </div>
         </div>
