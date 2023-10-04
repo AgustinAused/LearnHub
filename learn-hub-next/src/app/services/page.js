@@ -1,7 +1,6 @@
 'use client';
 import CourseList from '@/components/Course/CourseList'
-import CourseFilter from '@/components/filter/Filter';
-import FilterModal from '@/components/modal/FilterModal';
+
 import React,{useState} from 'react'
 
 export default function page() {

@@ -1,4 +1,3 @@
-'use client'
 import React from "react";
 import CardCourse from "@/components/cards/CardCourse";
 import ListCourse from "@/data/coursesData"
