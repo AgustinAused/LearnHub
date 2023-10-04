@@ -11,6 +11,8 @@ const coursesData = [
         duracion: "8 semanas",
         frecuencia: "2 clases por semana",
         price: "199",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -36,6 +38,8 @@ const coursesData = [
         duracion: "6 semanas",
         frecuencia: "3 clases por semana",
         price: "149",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -61,6 +65,8 @@ const coursesData = [
         duracion: "10 semanas",
         frecuencia: "1 clase por semana",
         price: "249",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -86,6 +92,8 @@ const coursesData = [
         duracion: "12 semanas",
         frecuencia: "2 clases por semana",
         price: "299",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -111,6 +119,8 @@ const coursesData = [
         duracion: "8 semanas",
         frecuencia: "3 clases por semana",
         price: "199",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -136,6 +146,8 @@ const coursesData = [
         duracion: "10 semanas",
         frecuencia: "2 clases por semana",
         price: "249",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -161,6 +173,8 @@ const coursesData = [
         duracion: "6 semanas",
         frecuencia: "1 clase por semana",
         price: "149",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -186,6 +200,8 @@ const coursesData = [
         duracion: "8 semanas",
         frecuencia: "2 clases por semana",
         price: "199",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -211,6 +227,8 @@ const coursesData = [
         duracion: "10 semanas",
         frecuencia: "3 clases por semana",
         price: "249",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,
@@ -236,6 +254,8 @@ const coursesData = [
         duracion: "12 semanas",
         frecuencia: "2 clases por semana",
         price: "299",
+        calificacion: 4.5,
+        type: "",
         comentarios: [
             {
                 id: 1,

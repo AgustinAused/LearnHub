@@ -26,7 +26,7 @@ const PasswordRecoveryForm = () => {
     return (
       <Card color="transparent" shadow={false}>
         <Typography variant="h4" color="blue-gray">
-          Sign Up
+        account recovery
         </Typography>
         <Typography color="gray" className="mt-1 font-normal">
           ingresar su correo electrónico y nombre 
@@ -37,7 +37,7 @@ const PasswordRecoveryForm = () => {
             <Input size="lg" label="Email" />
           </div>
           <Button className="mt-6" fullWidth>
-            Register
+            Recovery
           </Button>
           
         </form>
