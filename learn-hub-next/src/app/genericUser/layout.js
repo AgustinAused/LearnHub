@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         {/* {isAuthenticated ? <NavbarAutenticado /> : <NavbarNoAutenticado />} */}
         <NavbarWithMegaMenu />
         <div className={inter.className}>{children}</div>
-        <FooterWithSocialLinks />
+        
         
       </body>
     </html>
