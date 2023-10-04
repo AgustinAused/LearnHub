@@ -1,7 +1,7 @@
 import React from "react";
 import { Rating, Typography } from "@material-tailwind/react";
 
-export function Rating() {
+export function RatingWithItem() {
     const [rated, setRated] = React.useState(5);
 
     return (

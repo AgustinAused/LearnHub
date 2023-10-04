@@ -1,11 +1,14 @@
 'use client';
 import React,{useState} from "react";
+import { RatingWithItem } from "../rating/Rating";
+
 
 export default function FormsComments() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         comment: "",
+        rating: 4,
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,6 +39,7 @@ export default function FormsComments() {
                     <span className="text-gray-700 font-semibold">Comment:</span>
                     <textarea placeholder="Your comment" className="w-full rounded-lg border border-gray-300 p-2"></textarea>
                 </label>
+                <RatingWithItem/>
                 <button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg" onClick={handleSubmit}>
                     Submit
                 </button>
