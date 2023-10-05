@@ -36,7 +36,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <Link href='provider/contraction'>
+      <Link href='/provider/contraction'>
         <Typography
           as="div"
           href=""
@@ -81,10 +81,10 @@ export default function NavbarAutenticado() {
         </div>
         <div className="hidden gap-2 lg:flex">
           
-          <Link href="provider/account">
+          <Link href="/provider/account">
         <Typography
           as="div"
-          href="provider/account"
+          href="/provider/account"
           variant="small"
           color="black"
           className="font-normal"
@@ -116,10 +116,10 @@ export default function NavbarAutenticado() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Link href="provider/account">
+          <Link href="/provider/account">
         <Typography
           as="div"
-          href="provider/account"
+          href="/provider/account"
           variant="small"
           color="black"
           className="font-normal"
