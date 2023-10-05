@@ -41,22 +41,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <Link href="/account">
-
-        <Typography
-          as="div"
-          href="/account"
-          variant="small"
-          color="black"
-          className="font-normal"
-        >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-            <UserCircleIcon className="h-[2rem] w-[2rem]" />
-            Account
-          </ListItem>
-        </Typography>
-      </Link>
-      <Link href='/about'>
+      <Link href='/contraction'>
         <Typography
           as="div"
           href="/about"
@@ -66,7 +51,7 @@ function NavList() {
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <FlagIcon className="h-[2rem] w-[2rem]" />
-            About Us
+            contrataciones
           </ListItem>
         </Typography>
       </Link>
@@ -74,7 +59,7 @@ function NavList() {
   );
 }
 
-export function NavbarAutenticado() {
+export default function NavbarAutenticado() {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -100,16 +85,25 @@ export function NavbarAutenticado() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          <Link href="/sign-in">
+          
+          <Link href="/account">
+        <Typography
+          as="div"
+          href="/account"
+          variant="small"
+          color="black"
+          className="font-normal"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+            <UserCircleIcon className="h-[2rem] w-[2rem]" />
+            Account
+          </ListItem>
+        </Typography>
+      </Link>
             <Button variant="outlined" size="md" color="black" className="text-sm">
-              Sign In
+              Sign Out
             </Button>
-          </Link>
-          <Link href="/sign-up">
-            <Button variant="gradient" size="md" color="black" className="text-sm">
-              Sign Up
-            </Button>
-          </Link>
+          
         </div>
         <IconButton
           variant="text"
@@ -127,16 +121,23 @@ export function NavbarAutenticado() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Link href="/sign-in">
+          <Link href="/account">
+        <Typography
+          as="div"
+          href="/account"
+          variant="small"
+          color="black"
+          className="font-normal"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+            <UserCircleIcon className="h-[2rem] w-[2rem]" />
+            Account
+          </ListItem>
+        </Typography>
+      </Link>
             <Button variant="outlined" size="sm" color="black" fullWidth>
-              Sign In
+              Sing Out
             </Button>
-          </Link>
-          <Link href="/sign-up">
-            <Button variant="gradient" size="sm" fullWidth>
-              Sign Up
-            </Button>
-          </Link>
         </div>
       </Collapse>
     </Navbar>
