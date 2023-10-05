@@ -74,7 +74,7 @@ function NavList() {
   );
 }
 
-export function NavbarAutenticado() {
+export default function NavbarAutenticado() {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-
+import useAuth from "@/customHooks/useAuth";
 import { Input, Button, Checkbox,Typography } from "@material-tailwind/react";
 
 
@@ -24,6 +24,7 @@ export function FormSignIn() {
         // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor o realizar la validación necesaria.
         console.log(formData);
     };
+    const [isAuthenticated, setIsAuthenticated] = useAuth('auth', 'false');    
 
     return (
         <div className="flex justify-center items-center min-h-screen">
@@ -49,15 +50,15 @@ export function FormSignIn() {
                         />
                     </div>
                     
-                    <Button className="mt-6" fullWidth>
+                    <Button onClick={()=>setIsAuthenticated()} className="mt-6" fullWidth>
                         Ingresar
                     </Button>
                 </form>
                 <p className="mt-4 text-center text-gray-600">
-                    ¿No tienes una cuenta? <a href="/genericUser/sing-up" className="font-medium text-gray-900">Registrase</a>
+                    ¿No tienes una cuenta? <a href="/sing-up" className="font-medium text-gray-900">Registrase</a>
                 </p>
                 <p className="mt-4 text-center text-gray-600">
-                    <a href="/genericUser/recuperar" className="font-medium text-gray-900">Recuperar contraseña</a>
+                    <a href="/recuperar" className="font-medium text-gray-900">Recuperar contraseña</a>
                 </p>
             </div>
         </div>

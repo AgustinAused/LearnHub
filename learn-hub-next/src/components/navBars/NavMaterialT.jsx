@@ -74,7 +74,7 @@ function NavList() {
   );
 }
 
-export function NavbarWithMegaMenu() {
+export default function NavbarWithMegaMenu() {
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
