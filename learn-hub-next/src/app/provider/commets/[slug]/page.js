@@ -24,7 +24,7 @@ export default function page({ params }) {
     return (
         <div>
             {/* aca irian los todos los comentarios de todos los cursos  */}
-            <h2>Sistema de gestion de Comentario</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mt-8 mb-4 text-gray-800">Sistema de gestion de Comentario</h2>
             {commentsArr.map((comment) => (
                     <div key={comment.id}>
                         <CommentGest com={comment} />
