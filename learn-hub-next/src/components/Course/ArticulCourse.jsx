@@ -1,12 +1,20 @@
-"use client";
-import React from "react";
+'use client';
+import React, {useState, useEffect } from "react";
 import { CarouselCustomNavigation } from '@/components/carrousel/CarouselCustomNavigation';
 import FormsComments from "../forms/FormsComments";
-
 import CustomComment from "../comment/CustomComment";
 import FormsInscrip from "../forms/FormsInscrip";
+import coursesData from "@/data/coursesData";
 
 export default function ArticulCourse({ course }) {
+    const [courseDat, setCourseDat] = useState({});
+    useEffect(() => {
+            console.log(course);
+            let arrcourseDat = coursesData.filter(item => item.id == course);
+            let courseDat = arrcourseDat[0];
+            setCourseDat(courseDat);
+            console.log(courseDat);
+        }, [course]);
     return (
         <div>
             <div className="flex justify-center m-10">
@@ -16,11 +24,11 @@ export default function ArticulCourse({ course }) {
                     </section>
                     <div className="w-full h-full rounded bg-white overflow-hidden shadow-lg ">
                         <div className="px-6 py-4 ">
-                            <div className="font-bold text-xl mb-2">{course.title}</div>
-                            <p className="text-gray-700 text-base">${course.price}</p>
-                            <p className="text-gray-700 text-base">{course.description}</p>
-                            <p className="text-gray-700 text-base">Impartido por: {course.responsable?.nombre}</p>
-                            <p className="text-gray-700 text-base">{course.responsable?.experiencia}</p>
+                            <div className="font-bold text-xl mb-2">{courseDat.title}</div>
+                            <p className="text-gray-700 text-base">${courseDat.price}</p>
+                            <p className="text-gray-700 text-base">{courseDat.description}</p>
+                            <p className="text-gray-700 text-base">Impartido por: {courseDat.responsable?.nombre}</p>
+                            <p className="text-gray-700 text-base">{courseDat.responsable?.experiencia}</p>
                         </div>
                         <div className="px-6 py-4 ">
                             <FormsInscrip />
@@ -34,7 +42,7 @@ export default function ArticulCourse({ course }) {
                 {/* Aquí irían los comentarios */}
                 <h2 className="text-xl font-bold mb-4">Comentarios</h2>
                 <ul className="space-y-4">
-                    {course.comentarios?.map((comentario) => (
+                    {courseDat.comentarios?.map((comentario) => (
                         <li>
                             <CustomComment com={comentario} />
                         </li>
