@@ -1,4 +1,5 @@
 import React from "react";
+import { RatingRead } from "../rating/RatingRead";
 
 export default function CustomComment({com}) {
     return (
@@ -10,6 +11,7 @@ export default function CustomComment({com}) {
             </div>
           </div>
           <p className="text-gray-800">{com.comentario}</p>
+          <RatingRead num={com.rating} />
         </div>
       );
 };
