@@ -12,7 +12,7 @@ export function HorizontalCardinvert({title,parah}) {
     <Card className="w-full max-w-[98rem] flex-row">
       <CardBody>
         <Typography variant="h6" color="gray" className="mb-4 uppercase">
-          Beneficios
+          Beneficio
         </Typography>
         <Typography variant="h4" color="blue-gray" className="mb-2">
           {title}

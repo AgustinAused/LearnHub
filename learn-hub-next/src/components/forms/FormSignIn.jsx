@@ -65,7 +65,7 @@ export function FormSignIn() {
       </form>
       <p className="mt-4 text-center text-gray-600">
         ¿No tienes una cuenta?{" "}
-        <a href="/sing-up" className="font-medium text-gray-900">
+        <a href="/sign-up" className="font-medium text-gray-900">
           Registrase
         </a>
       </p>
