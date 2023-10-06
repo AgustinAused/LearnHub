@@ -35,7 +35,7 @@ export default function CardCourse({ course }) {
             </CardBody>
             <CardFooter className="pt-0">
                 <Link href= {`/course/${course.id}`}>
-                    <Button>Read More</Button>
+                    <Button>Leer mas</Button>
                 </Link>
             </CardFooter>
         </Card>
