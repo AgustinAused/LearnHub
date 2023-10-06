@@ -55,6 +55,15 @@ export function FormSignUp() {
                             label="Contraseña"
                         />
                     </div>
+                    <div className="mb-4">
+                        <Input
+                            type="celular"
+                            name="celular"
+                            value={formData.celular}
+                            onChange={handleChange}
+                            label="Celular"
+                        />
+                    </div>
                     <Checkbox
                         label={
                             <Typography
