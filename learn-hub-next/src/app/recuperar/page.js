@@ -3,7 +3,10 @@ import PasswordRecoveryForm from '@/components/forms/PasswordRecoveryFrom';
 export default function page() {
 
     return(
-        <PasswordRecoveryForm />
+        <div className=''>
+
+            <PasswordRecoveryForm />
+        </div>
     )
 
 }

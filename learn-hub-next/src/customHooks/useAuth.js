@@ -13,9 +13,15 @@ function useAuth(key, initialValue) {
     }});
 
   // Utiliza useEffect para guardar el valor en localStorage cada vez que cambie
-  const login=()=>{
-    setValue(true);
-    localStorage.setItem(key, JSON.stringify(true));
+  const login=(state)=>{
+    if (state=="true"){
+      setValue(true);
+      localStorage.setItem(key, JSON.stringify(true));
+
+    }else{
+      setValue(false);
+      localStorage.setItem(key, JSON.stringify(false));
+    }
   }
 
   return [value, login];

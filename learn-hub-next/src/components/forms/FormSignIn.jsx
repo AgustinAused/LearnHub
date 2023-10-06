@@ -50,7 +50,7 @@ export function FormSignIn() {
                         />
                     </div>
                     
-                    <Button onClick={()=>setIsAuthenticated()} className="mt-6" fullWidth>
+                    <Button onClick={()=>setIsAuthenticated("true")} className="mt-6" fullWidth>
                         <a href='/'>
                         Ingresar
                         </a>

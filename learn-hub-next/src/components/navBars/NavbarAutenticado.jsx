@@ -14,10 +14,10 @@ import {
   Bars3Icon,
   XMarkIcon,
   FlagIcon,
-
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import useAuth from "@/customHooks/useAuth";
 
 function NavList() {
   return (
@@ -36,7 +36,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <Link href='/provider/contraction'>
+      <Link href="/provider/contraction">
         <Typography
           as="div"
           href=""
@@ -56,6 +56,7 @@ function NavList() {
 
 export default function NavbarAutenticado() {
   const [openNav, setOpenNav] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useAuth("auth", "false");
 
   React.useEffect(() => {
     window.addEventListener(
@@ -65,7 +66,11 @@ export default function NavbarAutenticado() {
   }, []);
 
   return (
-    <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2  " fullWidth >
+    <Navbar
+      color="transparent"
+      className="mx-auto my-4 w-full px-4 py-2  "
+      fullWidth
+    >
       <div className="flex items-center justify-between text-black">
         <Link href="/">
           <Typography
@@ -80,25 +85,31 @@ export default function NavbarAutenticado() {
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
-          
           <Link href="/provider/account">
-        <Typography
-          as="div"
-          href="/provider/account"
-          variant="small"
-          color="black"
-          className="font-normal"
-        >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-            <UserCircleIcon className="h-[2rem] w-[2rem]" />
-            Account
-          </ListItem>
-        </Typography>
-      </Link>
-            <Button variant="outlined" size="md" color="black" className="text-sm">
-              Sign Out
-            </Button>
-          
+            <Typography
+              as="div"
+              href="/provider/account"
+              variant="small"
+              color="black"
+              className="font-normal"
+            >
+              <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+                <UserCircleIcon className="h-[2rem] w-[2rem]" />
+                Account
+              </ListItem>
+            </Typography>
+          </Link>
+          <Button
+            onClick={() => {
+              setIsAuthenticated("false");
+            }}
+            variant="outlined"
+            size="sm"
+            color="black"
+            fullWidth
+          >
+            <a>Sing Out</a>
+          </Button>
         </div>
         <IconButton
           variant="text"
@@ -117,22 +128,30 @@ export default function NavbarAutenticado() {
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
           <Link href="/provider/account">
-        <Typography
-          as="div"
-          href="/provider/account"
-          variant="small"
-          color="black"
-          className="font-normal"
-        >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-            <UserCircleIcon className="h-[2rem] w-[2rem]" />
-            Account
-          </ListItem>
-        </Typography>
-      </Link>
-            <Button variant="outlined" size="sm" color="black" fullWidth>
-              Sing Out
-            </Button>
+            <Typography
+              as="div"
+              href="/provider/account"
+              variant="small"
+              color="black"
+              className="font-normal"
+            >
+              <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+                <UserCircleIcon className="h-[2rem] w-[2rem]" />
+                Account
+              </ListItem>
+            </Typography>
+          </Link>
+          <Button
+            onClick={() => {
+              setIsAuthenticated("false");
+            }}
+            variant="outlined"
+            size="sm"
+            color="black"
+            fullWidth
+          >
+            <a href="/">Sing Out</a>
+          </Button>
         </div>
       </Collapse>
     </Navbar>

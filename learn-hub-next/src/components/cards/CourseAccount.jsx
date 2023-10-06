@@ -25,7 +25,7 @@ export default function CourseAccount({ course }) {
         <Link href={`commets/${course.id}`}>
           <Button className="">Commets</Button>{/*pagina de gestion de comentarios*/}
         </Link>
-        <Link href={`/modifyCourse/${course.id}`}>
+        <Link href={`/course/edit/${course.id}`}>
           <Button className="">Modify</Button>{/*abre el formulario y modifica los campos necesarios */}
         </Link>
         <Button className="" onClick={deleteCourse}>Delete</Button>{/*tinee que eliminar el conmentario */}
