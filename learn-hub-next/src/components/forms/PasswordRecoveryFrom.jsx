@@ -24,7 +24,7 @@ const PasswordRecoveryForm = () => {
     setMessage(`Se ha enviado un correo electrónico de recuperación a ${email}`);
   };
     return (
-      <Card color="transparent" shadow={false}>
+      <Card color="white" className='p-6 my-36' shadow={true}>
         <Typography variant="h4" color="blue-gray">
         account recovery
         </Typography>

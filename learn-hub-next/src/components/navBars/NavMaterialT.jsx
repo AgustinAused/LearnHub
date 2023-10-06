@@ -26,7 +26,7 @@ import Link from "next/link";
 
 function NavList() {
   return (
-    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
+    <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row justify-center lg:p-1">
       <Link href="/services">
         <Typography
           as="div"
@@ -126,7 +126,7 @@ export default function NavbarWithMegaMenu() {
       </div>
       <Collapse open={openNav}>
         <NavList />
-        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+        <div className="flex justify-center w-full flex-nowrap items-center gap-2 lg:hidden">
           <Link href="/sign-in">
             <Button variant="outlined" size="sm" color="black" fullWidth>
               Sign In

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button, Checkbox,Typography } from "@material-tailwind/react";
+import { Input, Button, Checkbox,Typography,Card } from "@material-tailwind/react";
 
 
 
@@ -24,10 +24,10 @@ export function FormSignUp() {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
-            <div className=" bg-white w-1/3 p-6 border rounded-lg shadow-md">
+        
+        <Card color="white" className="p-6 my-36 max-w-screen-lg sm:w-96" shadow={true}>
                 <h2 className="text-2xl font-semibold mb-4">Registro</h2>
-                <form onSubmit={handleSubmit}>
+                <form className="mt-8 mb-2 w-80 ">
                     <div className="mb-4">
                         <Input
                             type="text"
@@ -80,7 +80,7 @@ export function FormSignUp() {
                 <p className="mt-4 text-center text-gray-600">
                     ¿Ya tienes una cuenta? <a href="#" className="font-medium text-gray-900">Ingresar</a>
                 </p>
-            </div>
-        </div>
+            </Card>
+        
     );
 }
