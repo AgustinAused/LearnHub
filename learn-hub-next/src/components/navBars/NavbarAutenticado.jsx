@@ -17,7 +17,7 @@ import {
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-
+import useAuth from "@/customHooks/useAuth";
 
 function NavList() {
   return (
@@ -56,6 +56,7 @@ function NavList() {
 
 export default function NavbarAutenticado() {
   const [openNav, setOpenNav] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useAuth("auth", "false");
 
   React.useEffect(() => {
     window.addEventListener(
