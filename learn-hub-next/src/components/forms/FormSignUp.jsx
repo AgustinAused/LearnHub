@@ -82,14 +82,14 @@ export function FormSignUp() {
                         }
                         containerProps={{ className: "-ml-2.5" }}
                     />
-                    <Link href="/sign-in">
+                    <Link href="/sing-in">
                     <Button className="mt-6" fullWidth>
                         Register
                     </Button>
                     </Link>
                 </form>
                 <p className="mt-4 text-center text-gray-600">
-                    ¿Ya tienes una cuenta? <a href="#" className="font-medium text-gray-900">Ingresar</a>
+                    ¿Ya tienes una cuenta? <a href="/sign-in" className="font-medium text-gray-900">Ingresar</a>
                 </p>
             </Card>
         
