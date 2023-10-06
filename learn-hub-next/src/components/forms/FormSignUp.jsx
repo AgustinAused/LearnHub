@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input, Button, Checkbox,Typography,Card } from "@material-tailwind/react";
-
+import Link from "next/link";
 
 
 
@@ -82,9 +82,11 @@ export function FormSignUp() {
                         }
                         containerProps={{ className: "-ml-2.5" }}
                     />
+                    <Link href="/sign-in">
                     <Button className="mt-6" fullWidth>
                         Register
                     </Button>
+                    </Link>
                 </form>
                 <p className="mt-4 text-center text-gray-600">
                     ¿Ya tienes una cuenta? <a href="#" className="font-medium text-gray-900">Ingresar</a>

@@ -53,7 +53,7 @@ export function FormSignIn() {
           />
         </div>
 
-        <a href="/">
+        <a href="/provider/account">
         <Button
           onClick={() => setIsAuthenticated("true")}
           className="mt-6"

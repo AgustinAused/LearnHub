@@ -106,7 +106,6 @@ export default function NavbarAutenticado() {
               }}
               variant="outlined"
               size="sm"
-              color="black"
               fullWidth
             >
               Sing Out
@@ -115,7 +114,6 @@ export default function NavbarAutenticado() {
         </div>
         <IconButton
           variant="text"
-          color="black"
           className="lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
@@ -150,7 +148,6 @@ export default function NavbarAutenticado() {
               }}
               variant="outlined"
               size="sm"
-              color="black"
               fullWidth
             >
               Sing Out

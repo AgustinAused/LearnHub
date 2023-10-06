@@ -101,19 +101,18 @@ export default function NavbarWithMegaMenu() {
         </div>
         <div className="hidden gap-2 lg:flex">
           <Link href="/sign-in">
-            <Button variant="outlined" size="md" color="black" className="text-sm">
+            <Button variant="outlined" size="md"  className="text-sm">
               Sign In
             </Button>
           </Link>
           <Link href="/sign-up">
-            <Button variant="gradient" size="md" color="black" className="text-sm">
+            <Button variant="gradient" size="md"  className="text-sm">
               Sign Up
             </Button>
           </Link>
         </div>
         <IconButton
           variant="text"
-          color="black"
           className="lg:hidden"
           onClick={() => setOpenNav(!openNav)}
         >
@@ -128,7 +127,7 @@ export default function NavbarWithMegaMenu() {
         <NavList />
         <div className="flex justify-center w-full flex-nowrap items-center gap-2 lg:hidden">
           <Link href="/sign-in">
-            <Button variant="outlined" size="sm" color="black" fullWidth>
+            <Button variant="outlined" size="sm"  fullWidth>
               Sign In
             </Button>
           </Link>
