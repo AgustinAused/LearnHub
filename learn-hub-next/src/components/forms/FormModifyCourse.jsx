@@ -17,7 +17,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
         // Aquí puedes enviar los datos modificados a tu backend o hacer lo que necesites con ellos
         onGuardarCambios(cursoModificado);
     };
-
+    console.log(cursoModificado);
     return (
         <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md mt-10">
       <h2 className="text-2xl font-semibold mb-4">Modificar Curso</h2>
@@ -29,8 +29,8 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <input
             type="text"
             id="titulo"
-            name="titulo"
-            value={cursoModificado.titulo}
+            name="title"
+            value={cursoModificado.title}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -42,8 +42,8 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           </label>
           <textarea
             id="descripcion"
-            name="descripcion"
-            value={cursoModificado.descripcion}
+            name="description"
+            value={cursoModificado.description}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             rows="4"
@@ -102,8 +102,8 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           </label>
           <select
             id="tipoClase"
-            name="tipoClase"
-            value={cursoModificado.tipoClase}
+            name="type"
+            value={cursoModificado.type}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -119,8 +119,8 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <input
             type="text"
             id="costo"
-            name="costo"
-            value={cursoModificado.costo}
+            name="price"
+            value={cursoModificado.price}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
