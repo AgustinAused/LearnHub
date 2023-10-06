@@ -1,43 +1,45 @@
 export default function page() {
-    return (
-        <div className="min-h-screen flex flex-col">
-        
-            <h1 className="text-4xl font-semibold text-center">About Us</h1>
-        
+  return (
+    <div className=" bg-gray-100 rounded-2xl p-6 min-h-screen flex flex-col">
+      <h1 className="text-4xl font-semibold text-center">Sobre Nosotros</h1>
 
-        <main className="container mx-auto my-8 p-8 bg-white shadow rounded-lg">
-            <section className="mb-8">
-                <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
-                <p className="text-gray-800 leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed varius massa at tellus fermentum,
-                    quis dapibus justo ultricies. Sed consectetur, elit at pulvinar vulputate, arcu felis
-                    bibendum mauris, nec ullamcorper arcu ex sit amet odio.
-                </p>
-            </section>
+      <section className=" py-16">
+        <div className="container mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full md:w-1/2 md:pr-8">
+            <h2 className="text-3xl font-semibold mb-4">Nuestra Historia</h2>
+            <p className="text-gray-700 mb-8">
+              Somos una empresa comprometida con la excelencia en la búsqueda y
+              publicación de servicios de profesionales. Fundada en [Año de
+              Fundación], nuestra misión es conectar a personas con expertos en
+              diversas áreas para satisfacer sus necesidades.
+            </p>
 
-            <section className="mb-8">
-                <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
-                <p className="text-gray-800 leading-relaxed">
-                    Nunc auctor risus nec tellus eleifend, vel tincidunt lorem facilisis. Ut sit amet gravida
-                    mauris, vel fringilla velit. Fusce sit amet arcu vitae dolor scelerisque tristique.
-                </p>
-            </section>
+            <h2 className="text-3xl font-semibold mb-4">Nuestro Equipo</h2>
+            <p className="text-gray-700 mb-8">
+              Nuestro equipo está formado por apasionados y experimentados
+              profesionales dedicados a brindar el mejor servicio a nuestros
+              clientes. Juntos, trabajamos arduamente para garantizar que los
+              servicios que ofrecemos sean de la más alta calidad.
+            </p>
 
-            <section>
-                <h2 className="text-3xl font-semibold mb-4">Meet the Team</h2>
-                <div className="flex flex-wrap">
-                    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4">
-                        <div className="bg-gray-300 h-48 rounded-lg"></div>
-                        <p className="text-gray-800 text-center mt-2">John Doe</p>
-                    </div>
-                    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 mb-4">
-                        <div className="bg-gray-300 h-48 rounded-lg"></div>
-                        <p className="text-gray-800 text-center mt-2">Jane Smith</p>
-                    </div>
-                    {/* Agrega más miembros del equipo según sea necesario */}
-                </div>
-            </section>
-        </main>
+            <h2 className="text-3xl font-semibold mb-4">Nuestra Visión</h2>
+            <p className="text-gray-700">
+              Queremos ser la plataforma de referencia para encontrar
+              profesionales confiables y expertos en todas las áreas. Nos
+              esforzamos por simplificar la búsqueda de servicios y promover el
+              crecimiento de profesionales talentosos.
+            </p>
+          </div>
+
+          <div className="w-full md:w-1/2">
+            <img
+              src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+              alt="Nuestra Oficina"
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </section>
     </div>
-    )
+  );
 }

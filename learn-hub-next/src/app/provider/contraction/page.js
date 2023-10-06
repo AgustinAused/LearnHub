@@ -14,7 +14,7 @@ export default function page({ params }) {
         }
     )
     return(
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center ">
             <h1 className=" text-3xl font-semibold mb-6">Contract Management{/*{userData.name}*/}</h1>
             {/* aca irian todas las contrataciones */}
             {data && data.map((item) => (

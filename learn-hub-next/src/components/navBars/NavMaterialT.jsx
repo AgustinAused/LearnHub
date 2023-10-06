@@ -18,8 +18,9 @@ import {
   UserCircleIcon,
   Bars3Icon,
   XMarkIcon,
-  FlagIcon,
+  ChatBubbleLeftRightIcon,
   BuildingStorefrontIcon,
+  MegaphoneIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -55,6 +56,20 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link> */}
+      <Link href="/contact">
+        <Typography
+          as="div"
+          href="/contact"
+          variant="small"
+          color="black"
+          className="font-normal"
+        >
+          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
+            <MegaphoneIcon className="h-[2rem] w-[2rem]" />
+            Contáctanos
+          </ListItem>
+        </Typography>
+      </Link>
       <Link href="/about">
         <Typography
           as="div"
@@ -64,8 +79,8 @@ function NavList() {
           className="font-normal"
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-            <FlagIcon className="h-[2rem] w-[2rem]" />
-            About Us
+            <ChatBubbleLeftRightIcon className="h-[2rem] w-[2rem]" />
+            Sobre Nosotros
           </ListItem>
         </Typography>
       </Link>

@@ -9,11 +9,11 @@ export default function CardContraction({ contract }) {
   };
 
   return (
-    <Card className=" max-w-screen-lg  p-6 rounded-lg shadow-lg m-4">
-      <h6 className="text-2xl bg-gray-300 p-2 rounded-xl mb-4">Nuevo Servicio Solicitado </h6>
+    <Card className="p-6 rounded-lg shadow-lg m-4">
+      <h6 className="text-2xl text-red-600 font-bold bg-gray-300 p-2 rounded-xl mb-4">Nuevo Servicio Solicitado </h6>
       {/* texto grande */}
         <h3 className="text-3xl font-semibold  text-black-200 mb-4">{contract.serviceType}</h3>
-      <div className="grid grid-cols-2 gap-4 flex md:flex-row">
+      <div className="grid grid-cols-2 gap-4 flex md:flex-row w-[72rem]">
         <div>
           <h2 className="text-xl font-semibold mb-2">Client Information</h2>
           <p className="text-black-200">
