@@ -17,9 +17,9 @@ import {
           floated={false}
           shadow={false}
           color="transparent"
-          className="absolute inset-0 m-0 h-full w-full rounded-none bg-white bg-cover bg-center"
+          className="absolute inset-0 m-0 h-full w-full rounded-none bg-[url(https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80)] bg-cover bg-center"
         >
-          <div className="to-bg-white absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
+          <div className="to-bg-[url(https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80)] absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50" />
         </CardHeader>
         <CardBody className="relative py-14 px-6 md:px-12">
           <Typography
