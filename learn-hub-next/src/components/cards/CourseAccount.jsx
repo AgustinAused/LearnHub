@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function CourseAccount({ course }) {
   const deleteCourse = () =>{
-    //aqui va la funcion para eliminar un curso
+    
   };
 
   return (
@@ -22,6 +22,7 @@ export default function CourseAccount({ course }) {
         <Typography>{course.description}</Typography>
       </CardBody>
       <CardFooter className="space-x-4 flex-row">
+      <Button className="" onClick={deleteCourse}>unpublish</Button>{/*tinee que eliminar el conmentario */}
         <Link href={`commets/${course.id}`}>
           <Button className="">Commets</Button>{/*pagina de gestion de comentarios*/}
         </Link>

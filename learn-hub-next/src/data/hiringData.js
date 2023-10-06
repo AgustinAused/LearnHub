@@ -7,7 +7,7 @@ const hiringData = [
             Telephone: 1111111111,
             Horario: "14 a 20"
         },
-        serviceType: "Servicio de limpieza",
+        serviceType: "Curso de Matemáticas",
         serviceProvider: "Proveedor Uno",
         totalCost: 800,
         status: "Requested",
@@ -21,7 +21,7 @@ const hiringData = [
             Telephone: 2222222222,
             Horario: "9 a 17"
         },
-        serviceType: "Servicio de jardinería",
+        serviceType:  "Curso de Historia",
         serviceProvider: "Proveedor Dos",
         totalCost: 1200,
         status: "Accepted",
@@ -35,7 +35,7 @@ const hiringData = [
             Telephone: 3333333333,
             Horario: "10 a 18"
         },
-        serviceType: "Servicio de plomería",
+        serviceType: "Curso de Ciencias de la Computación",
         serviceProvider: "Proveedor Tres",
         totalCost: 600,
         status: "Finalized",
@@ -49,7 +49,7 @@ const hiringData = [
             Telephone: 4444444444,
             Horario: "8 a 16"
         },
-        serviceType: "Servicio de electricidad",
+        serviceType: "Curso de Literatura",
         serviceProvider: "Proveedor Cuatro",
         totalCost: 950,
         status: "Canceled",
@@ -63,7 +63,7 @@ const hiringData = [
             Telephone: 5555555555,
             Horario: "12 a 18"
         },
-        serviceType: "Servicio de pintura",
+        serviceType: "Curso de Arte",
         serviceProvider: "Proveedor Cinco",
         totalCost: 700,
         status: "Requested",
@@ -77,7 +77,7 @@ const hiringData = [
             Telephone: 6666666666,
             Horario: "9 a 15"
         },
-        serviceType: "Servicio de reparación de techos",
+        serviceType: "Curso de Desarrollo Web",
         serviceProvider: "Proveedor Seis",
         totalCost: 1100,
         status: "Accepted",
@@ -91,7 +91,7 @@ const hiringData = [
             Telephone: 7777777777,
             Horario: "11 a 17"
         },
-        serviceType: "Servicio de carpintería",
+        serviceType: "Curso de Marketing Digital",
         serviceProvider: "Proveedor Siete",
         totalCost: 850,
         status: "Finalized",
@@ -105,7 +105,7 @@ const hiringData = [
             Telephone: 8888888888,
             Horario: "10 a 16"
         },
-        serviceType: "Servicio de instalación de aire acondicionado",
+        serviceType: "Curso de Programación en Python",
         serviceProvider: "Proveedor Ocho",
         totalCost: 950,
         status: "Canceled",
@@ -119,7 +119,7 @@ const hiringData = [
             Telephone: 9999999999,
             Horario: "13 a 19"
         },
-        serviceType: "Servicio de fontanería",
+        serviceType: "Curso de Diseño Gráfico",
         serviceProvider: "Proveedor Nueve",
         totalCost: 750,
         status: "Requested",
@@ -133,7 +133,7 @@ const hiringData = [
             Telephone: 1010101010,
             Horario: "8 a 14"
         },
-        serviceType: "Servicio de limpieza de alfombras",
+        serviceType: "Curso de Marketing de Redes Sociales",
         serviceProvider: "Proveedor Diez",
         totalCost: 600,
         status: "Accepted",
