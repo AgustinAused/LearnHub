@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import useAuth from "@/customHooks/useAuth";
 import { Input, Button, Checkbox,Typography } from "@material-tailwind/react";
-
+import Link from "next/link";
 
 
 
@@ -51,7 +51,9 @@ export function FormSignIn() {
                     </div>
                     
                     <Button onClick={()=>setIsAuthenticated()} className="mt-6" fullWidth>
+                        <a href='/'>
                         Ingresar
+                        </a>
                     </Button>
                 </form>
                 <p className="mt-4 text-center text-gray-600">
