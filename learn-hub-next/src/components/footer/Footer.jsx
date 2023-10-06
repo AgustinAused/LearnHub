@@ -9,7 +9,11 @@ export function FooterWithSocialLinks() {
     return (
         <footer className="w-full bg-white p-8">
       <div className="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
-        <img src="/img/logo-ct-dark.png" alt="logo-ct" className="w-10" />
+      <img
+            src="/logoPaginaPNG.png"
+            alt="Logo de la pagina"
+            className="max-h-[10rem] "
+          />
         <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
           <li>
             <Typography

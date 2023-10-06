@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Encabezado({titulo='Ofrece tu servicio con nosotros', subtitulo='Descubre el Poder de Aprender a Tu Manera en LearnHub'}) {
   return (
-    <div className=" h-screen flex items-center justify-center">
+    <div className=" h-[42rem] flex items-center justify-center">
           <div className="text-center text-black">
             <h1 className="text-6xl font-extrabold mb-6">{titulo}</h1>
             <h2 className="text-3xl font-semibold mb-8">{subtitulo}</h2>

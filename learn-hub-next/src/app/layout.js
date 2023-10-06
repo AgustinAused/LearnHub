@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Learn Hub",
   description: "This is a page focused on courses for students",
+  favicon: "/logoPaginaPNG.png",
 };
 
 
