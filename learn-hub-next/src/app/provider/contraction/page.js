@@ -14,8 +14,8 @@ export default function page({ params }) {
         }
     )
     return(
-        <div>
-            <h1 className="text-3xl font-semibold mb-6">Contract Management{/*{userData.name}*/}</h1>
+        <div className="flex flex-col items-center justify-center">
+            <h1 className=" text-3xl font-semibold mb-6">Contract Management{/*{userData.name}*/}</h1>
             {/* aca irian todas las contrataciones */}
             {data && data.map((item) => (
                 <CardContraction contract={item}/>
