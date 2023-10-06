@@ -24,9 +24,9 @@ export default function FormsComments() {
     }
     // Revisar (Espera)
     return(
-        <div className="w-1/2 mx-auto p-4 bg-white rounded-lg">
+        <div className=" mx-auto p-4 bg-white rounded-2xl m-12">
             <h2 className="text-2xl font-bold mb-4">Leave a comment</h2>
-            <form className="flex flex-col space-y-4">
+            <form className="flex ] flex-col space-y-4">
                 <label className="block">
                     <span className="text-gray-700 font-semibold">Name:</span>
                     <input type="text" placeholder="Your Name" className="w-full rounded-lg border border-gray-300 p-2" />
