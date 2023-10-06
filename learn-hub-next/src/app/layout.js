@@ -1,7 +1,6 @@
-
 import "./globals.css";
 import { Inter } from "next/font/google";
-import SwitchNavbar from '@/components/navBars/NavbarSwitch'
+import SwitchNavbar from "@/components/navBars/NavbarSwitch";
 
 import { FooterWithSocialLinks } from "@/components/footer/Footer";
 
@@ -13,17 +12,14 @@ export const metadata = {
   favicon: "/logoPaginaPNG.png",
 };
 
-
-
 export default function RootLayout({ children }) {
-    
   return (
     <html lang="en">
-      <body >
+      <link rel="icon" href="/logoPaginaPNG.png" sizes="xl" />
+      <body>
         <SwitchNavbar></SwitchNavbar>
         <div className={inter.className}>{children}</div>
         <FooterWithSocialLinks />
-        
       </body>
     </html>
   );
