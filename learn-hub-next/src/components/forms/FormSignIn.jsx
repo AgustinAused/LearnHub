@@ -53,13 +53,15 @@ export function FormSignIn() {
           />
         </div>
 
+        <a href="/">
         <Button
           onClick={() => setIsAuthenticated("true")}
           className="mt-6"
           fullWidth
         >
-          <a href="/">Ingresar</a>
+        Ingresar
         </Button>
+        </a>
       </form>
       <p className="mt-4 text-center text-gray-600">
         ¿No tienes una cuenta?{" "}

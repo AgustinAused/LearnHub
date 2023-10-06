@@ -84,7 +84,7 @@ export default function NavbarAutenticado() {
         <div className="hidden lg:block">
           <NavList />
         </div>
-        <div className="hidden gap-2 lg:flex">
+        <div className="hidden gap-2 lg:flex flex items-center">
           <Link href="/provider/account">
             <Typography
               as="div"
@@ -99,17 +99,19 @@ export default function NavbarAutenticado() {
               </ListItem>
             </Typography>
           </Link>
-          <Button
-            onClick={() => {
-              setIsAuthenticated("false");
-            }}
-            variant="outlined"
-            size="sm"
-            color="black"
-            fullWidth
-          >
-            <a>Sing Out</a>
-          </Button>
+          <a href="/" className="p-0 m-0">
+            <Button
+              onClick={() => {
+                setIsAuthenticated("false");
+              }}
+              variant="outlined"
+              size="sm"
+              color="black"
+              fullWidth
+            >
+              Sing Out
+            </Button>
+          </a>
         </div>
         <IconButton
           variant="text"
@@ -141,17 +143,19 @@ export default function NavbarAutenticado() {
               </ListItem>
             </Typography>
           </Link>
-          <Button
-            onClick={() => {
-              setIsAuthenticated("false");
-            }}
-            variant="outlined"
-            size="sm"
-            color="black"
-            fullWidth
-          >
-            <a href="/">Sing Out</a>
-          </Button>
+          <a className="p-0 m-0" href="/">
+            <Button
+              onClick={() => {
+                setIsAuthenticated("false");
+              }}
+              variant="outlined"
+              size="sm"
+              color="black"
+              fullWidth
+            >
+              Sing Out
+            </Button>
+          </a>
         </div>
       </Collapse>
     </Navbar>
