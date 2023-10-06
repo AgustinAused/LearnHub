@@ -8,11 +8,6 @@ import {
   IconButton,
   List,
   ListItem,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Chip,
 } from "@material-tailwind/react";
 import {
   UserCircleIcon,
@@ -27,10 +22,10 @@ import Link from "next/link";
 function NavList() {
   return (
     <List className="mt-4 mb-6 p-0 lg:mt-0 lg:mb-0 lg:flex-row lg:p-1">
-      <Link href="/servicios">
+      <Link href="/services">
         <Typography
           as="div"
-          href="/servicios"
+          href="/services"
           variant="small"
           color="black"
           className="font-normal"
@@ -41,10 +36,10 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      <Link href='/contraction'>
+      <Link href='/provider/contraction'>
         <Typography
           as="div"
-          href="/about"
+          href=""
           variant="small"
           color="black"
           className="font-normal"
@@ -86,10 +81,10 @@ export default function NavbarAutenticado() {
         </div>
         <div className="hidden gap-2 lg:flex">
           
-          <Link href="/account">
+          <Link href="/provider/account">
         <Typography
           as="div"
-          href="/account"
+          href="/provider/account"
           variant="small"
           color="black"
           className="font-normal"
@@ -121,10 +116,10 @@ export default function NavbarAutenticado() {
       <Collapse open={openNav}>
         <NavList />
         <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-          <Link href="/account">
+          <Link href="/provider/account">
         <Typography
           as="div"
-          href="/account"
+          href="/provider/account"
           variant="small"
           color="black"
           className="font-normal"

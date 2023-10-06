@@ -14,7 +14,7 @@ export function FooterWithSocialLinks() {
           <li>
             <Typography
               as="a"
-              href="#"
+              href="/about"
               color="black"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
@@ -24,7 +24,7 @@ export function FooterWithSocialLinks() {
           <li>
             <Typography
               as="a"
-              href="#"
+              href="/license"
               color="black"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
@@ -34,7 +34,7 @@ export function FooterWithSocialLinks() {
           <li>
             <Typography
               as="a"
-              href="#"
+              href=""
               color="black"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
@@ -44,7 +44,7 @@ export function FooterWithSocialLinks() {
           <li>
             <Typography
               as="a"
-              href="#"
+              href="/contact"
               color="black"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >
@@ -55,7 +55,7 @@ export function FooterWithSocialLinks() {
       </div>
       <hr className="my-8 border-black-50" />
       <Typography color="black" className="text-center font-normal">
-        &copy; {currentYear} LearnHub. inc
+        &copy; {currentYear} LearnHub. All rights reserved
       </Typography>
     </footer>
     );
