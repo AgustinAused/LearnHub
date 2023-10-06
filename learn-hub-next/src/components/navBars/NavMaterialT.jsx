@@ -19,7 +19,6 @@ import {
   Bars3Icon,
   XMarkIcon,
   FlagIcon,
-
   BuildingStorefrontIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -56,7 +55,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link> */}
-      <Link href='/about'>
+      <Link href="/about">
         <Typography
           as="div"
           href="/about"
@@ -85,28 +84,40 @@ export default function NavbarWithMegaMenu() {
   }, []);
 
   return (
-    <Navbar color="transparent" className="mx-auto my-4 w-full px-4 py-2  " fullWidth >
+    <Navbar
+      color="transparent"
+      className="mx-auto my-4 w-full px-4 py-2  "
+      fullWidth
+    >
       <div className="flex items-center justify-between text-black">
-        <Link href="/">
-          <Typography
-            as="div"
-            variant="h4"
-            className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
-          >
-            LearnHub
-          </Typography>
-        </Link>
+        <div className="flex flex-row items-center ">
+          <Link href="/">
+            <Typography
+              as="div"
+              variant="h3"
+              className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
+            >
+              LearnHub
+            </Typography>
+          </Link>
+
+          <img
+            src="/logoPaginaPNG.png"
+            alt="Logo de la pagina"
+            className="max-h-[4rem] "
+          />
+        </div>
         <div className="hidden lg:block">
           <NavList />
         </div>
         <div className="hidden gap-2 lg:flex">
           <Link href="/sign-in">
-            <Button variant="outlined" size="md"  className="text-sm">
+            <Button variant="outlined" size="md" className="text-sm">
               Sign In
             </Button>
           </Link>
           <Link href="/sign-up">
-            <Button variant="gradient" size="md"  className="text-sm">
+            <Button variant="gradient" size="md" className="text-sm">
               Sign Up
             </Button>
           </Link>
@@ -127,7 +138,7 @@ export default function NavbarWithMegaMenu() {
         <NavList />
         <div className="flex justify-center w-full flex-nowrap items-center gap-2 lg:hidden">
           <Link href="/sign-in">
-            <Button variant="outlined" size="sm"  fullWidth>
+            <Button variant="outlined" size="sm" fullWidth>
               Sign In
             </Button>
           </Link>

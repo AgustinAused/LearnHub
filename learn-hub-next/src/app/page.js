@@ -6,7 +6,7 @@ import Encabezado from "@/components/Encabezado";
 
 export default function Home() {
   return (
-    <main className="p-12">
+    <main className="p-8">
       <Encabezado />
       <section className=" flex justify-center content-center">
 
@@ -14,7 +14,7 @@ export default function Home() {
 
       </section>
       
-      <section className="flex  flex-col my-8 justify-center items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+      <section className="flex  flex-col my-4 justify-center items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <BackgroundBlogCard parrafo={"LearnHub es brillante. Clases variadas, profesores apasionados y una experiencia fácil. Mi opción para aprender."} persona={"Elena García"} />
         <BackgroundBlogCard parrafo={"¡Impresionante plataforma! Clases de alta calidad, profesores expertos y fácil de usar. Aprendizaje sin complicaciones."} persona={"Daniel Martínez"} />
         <BackgroundBlogCard parrafo={"LearnHub es genial. Clases increíbles, profesionales dedicados y una interfaz sencilla. Recomiendo encarecidamente."} persona={"Laura Sánchez"} />

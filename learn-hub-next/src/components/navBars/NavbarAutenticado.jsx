@@ -72,15 +72,23 @@ export default function NavbarAutenticado() {
       fullWidth
     >
       <div className="flex items-center justify-between text-black">
-        <Link href="/">
-          <Typography
-            as="div"
-            variant="h4"
-            className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
-          >
-            LearnHub
-          </Typography>
-        </Link>
+        <div className="flex flex-row items-center ">
+          <Link href="/">
+            <Typography
+              as="div"
+              variant="h3"
+              className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
+            >
+              LearnHub
+            </Typography>
+          </Link>
+          
+          <img
+            src="/logoPaginaPNG.png"
+            alt="Logo de la pagina"
+            className="max-h-[4rem] "
+          />
+        </div>
         <div className="hidden lg:block">
           <NavList />
         </div>
