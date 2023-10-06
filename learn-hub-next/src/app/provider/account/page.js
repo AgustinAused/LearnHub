@@ -1,5 +1,6 @@
 'use client';
 import CourseListAccount from '@/components/Course/CourseListAccount';
+import Link from 'next/link';
 
 import React, { useState, useEffect } from 'react';
 
@@ -41,7 +42,9 @@ export default function page() {
                 </div>
                 {/* boton de agregar nuevo servicio */}
                 <div className='flex justify-center items-center'>
-                    <button className='bg-[#ff8a00] text-white rounded-lg px-4 py-2'>Agregar Servicio</button>
+                    <Link href={'/provider/addCourse'}>
+                    <button className='bg-[#ff8a00] text-white rounded-lg px-4 py-2' href={'/provider/addCourse'}>Agregar Servicio</button>
+                    </Link>
                 </div>
             </div>
             {/* div del titulo de la lsita de servicios */}
