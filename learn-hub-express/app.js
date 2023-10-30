@@ -9,3 +9,10 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
+
+
+
+
+// Obtener una conexión MongoDB 
+const DBConnectionFactory = require('./dbConnectionFactory');
+const mongoConnection = DBConnectionFactory.createConnection('mongodb');
