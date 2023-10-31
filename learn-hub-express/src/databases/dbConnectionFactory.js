@@ -11,7 +11,7 @@ class DBConnectionFactory {
   }
   static closeConnection(type) {
     if (type === 'mongodb') {
-      return new MongoDBConnection().connect();
+      return new MongoDBConnection().disconnect();
     } else {
       throw new Error('Tipo de conexión no válido');
     }
