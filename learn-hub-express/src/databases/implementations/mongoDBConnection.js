@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { DBConnection } = require('../interfaces/DBConnection');
 
 // URL de conexión a la base de datos (puedes obtenerla de una variable de entorno)
-const dbUrl = process.env.MONGODB_URI || 'mongodb+srv://agusaused:agustin@cluster0.plu3naj.mongodb.net/';
+const dbUrl = process.env.MONGODB_URI || 'mongodb+srv://'+ process.env.DB_USER +':'+process.env.DB_PASSWORD+'@cluster0.plu3naj.mongodb.net/';
 
 // Opciones de conexión a la base de datos
 const options = {
