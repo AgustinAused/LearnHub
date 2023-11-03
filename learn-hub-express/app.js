@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-var cookieParser = require('cookie-parser');
-var bluebird = require('bluebird');
+let cookieParser = require('cookie-parser');
+let bluebird = require('bluebird');
 
 //incorporo cors
-var cors = require('cors');
+let cors = require('cors');
 
-//onsole.log("processENV",process.env);
-require('./config').config();
+//configuro el .env mas facil con ese modulo;
+require('dotenv').config();
 
 
 
@@ -21,11 +21,9 @@ app.use(function (req, res, next) {
 });
 
 //Database connection --
-var mongoose = require('mongoose')
+let mongoose = require('mongoose')
 mongoose.Promise = bluebird;
 let url = `${process.env.DATABASE1}${process.env.DATABASE2}=${process.env.DATABASE3}=${process.env.DATABASE4}`
-console.log(url)
-let url1='mongodb+srv://learnhub:HfAWJssC7cjUAcMS@learnhub.x0r4mvm.mongodb.net/?retryWrites=true&w=majority'
 console.log("BD",url);
 let opts = {
   useNewUrlParser : true, 
@@ -38,11 +36,11 @@ mongoose.connect(url,opts)
     console.log(`Succesfully Connected to theMongodb Database..`)
   })
   .catch((e) => {
-    console.log(`Error Connecting to the Mongodb Database...`),
-    console.log(e)
+    console.log(`Error Connecting to the Mongodb Database...`);
+    console.log(e);
   })
 
-var port = process.env.PORT || 8080;
+let port = process.env.PORT || 8080;
 
 
 app.get('/', (req, res) => {
@@ -50,12 +48,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}  🍕🥰`);
 });
 
 
-
-
-// Obtener una conexión MongoDB 
-// const DBConnectionFactory = require('./dbConnectionFactory');
-// const mongoConnection = DBConnectionFactory.createConnection('mongodb');
