@@ -1,18 +1,12 @@
 let mongoose = require('mongoose')
 let mongoosePaginate = require('mongoose-paginate')
-let ServicioSchema = new mongoose.Schema({
-    name: String,
-    descripcion: String,
-    precio: String,
-    imagen: String,
+let ComentarioSchema = new mongoose.Schema({
+    contenido: String,
+    email: String,
+    calificacion: String,
     date: Date,
-    state: String,
-    frecuencia: String,
-    duracion: String,
-    categoria: String,
-    comentarios: {id:mongoose.ObjectId,ref: 'Comentario'},
-    contrataciones: {id:mongoose.ObjectId,ref: 'Contratacion'},
-}) 
-ServicioSchema.plugin(mongoosePaginate)
-const Servicio = mongoose.model('Servicio', ServicioSchema)
-module.exports = Servicio;
+    state: String
+})
+ComentarioSchema.plugin(mongoosePaginate)
+const Comentario = mongoose.model('Comentario', ComentarioSchema)
+module.exports = Comentario;
