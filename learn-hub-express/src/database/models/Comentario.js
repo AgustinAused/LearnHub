@@ -3,10 +3,11 @@ let mongoosePaginate = require('mongoose-paginate')
 
 
 let ComentarioSchema = new mongoose.Schema({
-    name: String,
+    contenido: String,
     email: String,
-    password: String,
-    date: Date
+    calificacion: String,
+    date: Date,
+    state: String
 })
 
 ComentarioSchema.plugin(mongoosePaginate)

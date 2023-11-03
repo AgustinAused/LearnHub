@@ -4,9 +4,12 @@ let mongoosePaginate = require('mongoose-paginate')
 
 let ContratacionSchema = new mongoose.Schema({
     name: String,
+    apellido: String,
     email: String,
-    password: String,
-    date: Date
+    telefono: String,
+    horario: String,
+    mensaje: String,
+    estado: String,
 })
 
 ContratacionSchema.plugin(mongoosePaginate)
