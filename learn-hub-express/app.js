@@ -1,10 +1,16 @@
 const express = require('express');
 const app = express();
-//incorporo cors
-const cors = require('cors');
-const port = 3000;
+var cookieParser = require('cookie-parser');
+var bluebird = require('bluebird');
 
-app.use(cors());
+//incorporo cors
+var cors = require('cors');
+
+//onsole.log("processENV",process.env);
+require('./config').config();
+
+
+
 //aplico cors
 app.use(cors());
 app.use(cookieParser());
@@ -14,6 +20,29 @@ app.use(function (req, res, next) {
     next();
 });
 
+//Database connection --
+var mongoose = require('mongoose')
+mongoose.Promise = bluebird;
+let url = `${process.env.DATABASE1}${process.env.DATABASE2}=${process.env.DATABASE3}=${process.env.DATABASE4}`
+console.log(url)
+let url1='mongodb+srv://learnhub:HfAWJssC7cjUAcMS@learnhub.x0r4mvm.mongodb.net/?retryWrites=true&w=majority'
+console.log("BD",url);
+let opts = {
+  useNewUrlParser : true, 
+  connectTimeoutMS:20000, 
+  useUnifiedTopology: true
+  };
+
+mongoose.connect(url,opts)
+  .then(() => {
+    console.log(`Succesfully Connected to theMongodb Database..`)
+  })
+  .catch((e) => {
+    console.log(`Error Connecting to the Mongodb Database...`),
+    console.log(e)
+  })
+
+var port = process.env.PORT || 8080;
 
 
 app.get('/', (req, res) => {
@@ -28,5 +57,5 @@ app.listen(port, () => {
 
 
 // Obtener una conexión MongoDB 
-const DBConnectionFactory = require('./dbConnectionFactory');
-const mongoConnection = DBConnectionFactory.createConnection('mongodb');
+// const DBConnectionFactory = require('./dbConnectionFactory');
+// const mongoConnection = DBConnectionFactory.createConnection('mongodb');
