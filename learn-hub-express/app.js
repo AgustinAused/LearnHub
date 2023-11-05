@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 let cookieParser = require('cookie-parser');
 let bluebird = require('bluebird');
-// const DBConnectionFactory = require('../learn-hub-express/src/databases/dbConnectionFactory');
-const { MongoDB } = require('./db');
+
+
+//Rutas
+const indexRouter = require('./src/routes/index');
+const apiRouter = require('./src/routes/api');
 
 //incorporo cors
 let cors = require('cors');
@@ -39,8 +42,16 @@ mongoose.connect(url, opts)
     .catch((e) => {
         console.log(`Error Connecting to the Mongodb Database...`);
         console.log(e);
-    })
-// const mongoConnection = MongoDB;
+    });
+
+//Database connection --
+// let dbConnection = new DBConnectionFactory().getDBConnection();
+
+
+//Indico las rutas de los endpoint
+app.use('/api', apiRouter);
+app.use('/', indexRouter);
+
 
 
 let port = process.env.PORT || 8080;
