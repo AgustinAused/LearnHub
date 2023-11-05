@@ -9,7 +9,7 @@ let UsuarioSchema = new mongoose.Schema({
     titulo: String,
     telefono: String,
     nacimiento: Date,
-    servicios: {id:mongoose.ObjectId,ref: 'Servicio'},
+    servicios: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Servicio' }],
 })
 UsuarioSchema.plugin(mongoosePaginate)
 const Usuario = mongoose.model('Usuario', UsuarioSchema)
