@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 let cookieParser = require('cookie-parser');
 let bluebird = require('bluebird');
-
+app.use(express.json());
 
 //Rutas
 const indexRouter = require('./src/routes/index');
