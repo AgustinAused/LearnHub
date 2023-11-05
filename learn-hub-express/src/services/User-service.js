@@ -1,5 +1,5 @@
 // Gettign the Newly created Mongoose Model we just created 
-var User = require('..Database/models/User.model');
+var User = require('../database/models/Usuario');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
@@ -20,6 +20,25 @@ exports.getUsers = async function (query, page, limit) {
         var Users = await User.paginate(query, options)
         // Return the Userd list that was retured by the mongoose promise
         return Users;
+
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log("error services",e)
+        throw Error('Error while Paginating Users');
+    }
+}
+exports.getUsersByMail = async function (email) {
+    // Try Catch the awaited promise to handle the error 
+    try {
+        console.log("Email:", email);
+        // Utiliza el método findOne de Mongoose para buscar un usuario por su dirección de correo electrónico
+        var user = await User.findOne({ email: email });
+        // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
+        if (!user) {
+            return null; // O puedes lanzar un error si lo prefieres: throw Error('Usuario no encontrado');
+        }
+        // Return the Userd list that was retured by the mongoose promise
+        return user;
 
     } catch (e) {
         // return a Error message describing the reason 
