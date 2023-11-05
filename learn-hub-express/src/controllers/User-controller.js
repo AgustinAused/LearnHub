@@ -4,6 +4,7 @@ const UserService = require("../services/User-service");
 // Create a new user
 exports.createUser = async (req, res) => {
     try {
+        console.log(req.body)
         const user = await UserService.createUser(req.body);
         res.status(201).json(user);
     } catch (err) {
@@ -50,3 +51,23 @@ exports.deleteUserById = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+exports.loginUser = async function (req, res, next) {
+    // Req.Body contains the form submit values.
+    console.log("body",req.body)
+    var User = {
+        email: req.body.email,
+        password: req.body.password
+    }
+    try {
+        // Calling the Service function with the new object from the Request Body
+        var loginUser = await UserService.loginUser(User);
+        if (loginUser===0)
+            return res.status(400).json({message: "Error en la contraseña"})
+        else
+            return res.status(201).json({loginUser, message: "Succesfully login"})
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json({status: 400, message: "Invalid username or password"})
+    }
+}
+
