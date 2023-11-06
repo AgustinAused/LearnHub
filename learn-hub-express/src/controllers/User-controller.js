@@ -15,7 +15,7 @@ exports.createUser = async (req, res) => {
 // Get all users
 exports.getUsers = async (req, res) => {
     try {
-        const users = await UserService.getUsers();
+        const users = await UserService.getUsers(req);
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: err.message });

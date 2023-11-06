@@ -13,7 +13,7 @@ const users = require('./User-router');
 // const contractions = require('./Contraction-router');
 
 //Use User router for api/users
-router.use('/user', users);
+router.use('/users', users);
 // //Use Service router for api/services
 // router.use('/services', services);
 // //Use Comment router for api/comments

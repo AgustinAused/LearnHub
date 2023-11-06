@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 });
 router.post('/registration', UserController.createUser); 
 router.post('/login/', UserController.loginUser);
-router.get('/users',Authorization, UserController.getUsers); //Get all the user
+router.get('/users', UserController.getUsers); //Get all the user
 router.post('/userByMail', Authorization, UserController.getUsersByMail); //Get user by mail
 router.put('/update', Authorization, UserController.updateUser); //Update user 
 router.delete('/delete/:id', Authorization, UserController.deleteUserById); //Delete User

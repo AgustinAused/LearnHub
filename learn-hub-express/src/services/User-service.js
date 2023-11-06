@@ -8,17 +8,24 @@ require('dotenv').config();
 _this = this
 
 // Async function to get the User List
-exports.getUsers = async function (query, page, limit) {
+exports.getUsers = async function (req) {
 
     // Options setup for the mongoose paginate
-    var options = {
-        page,
-        limit
-    }
+    const options = {
+        page: req.query.page || 1,   // Número de página desde la solicitud
+        limit: req.query.limit || 10, // Cantidad de documentos por página desde la solicitud
+      };
+    
+      const filtros = {};
+    
+      // Agregar filtros adicionales basados en parámetros de solicitud
+      if (req.query.tipo) {
+        filtros.tipo = req.query.tipo;
+      }
     // Try Catch the awaited promise to handle the error 
     try {
-        console.log("Query",query)
-        var Users = await User.paginate(query, options)
+        console.log("Query",filtros)
+        var Users = await User.paginate(filtros, options)
         // Return the Userd list that was retured by the mongoose promise
         return Users;
 
