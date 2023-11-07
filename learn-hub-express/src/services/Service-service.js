@@ -12,6 +12,8 @@ exports.getService = async function(){
         // Return the serviced list that was retured by the mongoose promise
         return service;
     } catch (e) {
+        // return a Error message describing the reason
+        console.log(e)
         throw Error('Error while getting service')
     }  
 }
@@ -29,7 +31,8 @@ exports.getServiceByUser = async function(user){
         // Return the service list that was retured by the mongoose promise
         return services;
     } catch(e){
-        // return a Error message describing the reason     
+        // return a Error message describing the reason
+        console.log(e)     
         throw Error('Error while getting service');
     }
 };
@@ -55,7 +58,8 @@ exports.createService = async function(service){
         var savedService = await newService.save();
         return savedService;
     }catch(e){
-        // return a Error message describing the reason     
+        // return a Error message describing the reason   
+        console.log(e)  
         throw Error("Error while Creating service")
     }
 };
@@ -88,6 +92,7 @@ exports.updateService = async function(service){
         var savedService = await oldService.save()
         return savedService;
     }catch(e){
+        console.log(e);
         throw Error("And Error occured while updating the service");
     }
 };
@@ -103,6 +108,7 @@ exports.deleteService = async function(id){
         }
         return deleted
     }catch(e){
+        console.log(e)
         throw Error("Error Occured while Deleting the service")
     }
 }
