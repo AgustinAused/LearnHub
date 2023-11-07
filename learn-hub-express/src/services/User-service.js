@@ -1,5 +1,7 @@
 // Gettign the Newly created Mongoose Model we just created 
 var User = require('../database/models/Usuario');
+let bcrypt = require('bcryptjs');
+let jwt = require('jsonwebtoken');
 
 
 
@@ -59,10 +61,11 @@ exports.createUser = async function (user) {
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     
     var newUser = new User({
-        name: user.name,
+        noombre: user.nombre,
         email: user.email,
-        date: new Date(),
-        password: hashedPassword
+        fechaCreacion: new Date(),
+        password: hashedPassword,
+        telefono: user.telefono
     })
 
     try {
@@ -81,30 +84,37 @@ exports.createUser = async function (user) {
     }
 }
 
-exports.updateUser = async function (user) {
+exports.updateUser = async function (user) { 
     
-    var id = {name :user.name}
-    console.log(id)
     try {
         //Find the old User Object by the Id
-        var oldUser = await User.findOne(id);
+        console.log(user._id)
+        var oldUser = await User.findOne(user._id);
         console.log (oldUser)
     } catch (e) {
+        // return a Error message describing the reason
+        console.log(e)
         throw Error("Error occured while Finding the User")
     }
     // If no old User Object exists return false
     if (!oldUser) {
         return false;
     }
+    //rehacer logica
     //Edit the User Object
     var hashedPassword = bcrypt.hashSync(user.password, 8);
-    oldUser.name = user.name
-    oldUser.email = user.email
-    oldUser.password = hashedPassword
+    oldUser.nombre = user.nombre ? user.nombre : oldUser.nombre;
+    oldUser.email = user.email ? user.email : oldUser.email;
+    oldUser.password = hashedPassword ? hashedPassword : oldUser.password;
+    oldUser.titulo = user.titulo ? user.titulo : oldUser.titulo;
+    oldUser.telefono = user.telefono ? user.telefono : oldUser.telefono;
+    oldUser.nacimiento = user.nacimiento ? user.nacimiento : oldUser.nacimiento;
     try {
         var savedUser = await oldUser.save()
         return savedUser;
     } catch (e) {
+        // return a Error message describing the reason
+        console.log(e);
         throw Error("And Error occured while updating the User");
     }
 }
@@ -121,6 +131,7 @@ exports.deleteUser = async function (id) {
         }
         return deleted;
     } catch (e) {
+        console.log(e)
         throw Error("Error Occured while Deleting the User")
     }
 }
@@ -145,7 +156,8 @@ exports.loginUser = async function (user) {
         });
         return {token:token, user:_details};
     } catch (e) {
-        // return a Error message describing the reason     
+        // return a Error message describing the reason   
+        console.log(e) 
         throw Error("Error while Login User")
     }
 
