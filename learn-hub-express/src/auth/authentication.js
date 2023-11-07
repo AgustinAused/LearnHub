@@ -1,13 +1,14 @@
 let jwt = require('jsonwebtoken');
-const config = require('dotenv').config();
+require('dotenv').config();
 
 let authorization = function (req, res, next) {
 
-    let token = req.headers['x-access-token'];
+    const token = req.headers.authorization?.split(" ")[1];;
     console.log("token",token);
     let msg = {auth: false, message: 'No token provided.'};
-    if (!token)
-        res.status(500).send(msg);
+    if (!token){
+        return res.status(403).send(msg);
+    }
 
     let sec = process.env.SECRET;
     console.log("secret",sec)
