@@ -1,4 +1,4 @@
-let service = require('../database/models/Servicio');
+let Service = require('../database/models/Servicio');
 let usuario = require('../database/models/Usuario');
 
 
@@ -8,7 +8,7 @@ _this = this
 // Async function to get the service list
 exports.getService = async function(){
     try {
-        var service = await service.find({});
+        var service = await Service.find({});
         // Return the serviced list that was retured by the mongoose promise
         return service;
     } catch (e) {
@@ -69,7 +69,7 @@ exports.updateService = async function(service){
     var id = service.id
     try{
         //Find the old service Object by the Id
-        var oldService = await service.findById(id);
+        var oldService = await Service.findById(id);
     }catch(e){
         throw Error("Error occured while Finding the service")
     }
@@ -79,14 +79,14 @@ exports.updateService = async function(service){
     }
     console.log(oldService)
     //Edit the service Object
-    oldService.name = service.name
-    oldService.description = service.description
-    oldService.price = service.price
-    oldService.image = service.image
-    oldService.state = service.state
-    oldService.frecuency = service.frecuency
-    oldService.duration = service.duration
-    oldService.category = service.category
+    oldService.name = service.name;
+    oldService.description = service.description;
+    oldService.price = service.price;
+    oldService.image = service.image;
+    oldService.state = service.state;
+    oldService.frecuency = service.frecuency;
+    oldService.duration = service.duration;
+    oldService.category = service.category;
     console.log(oldService)
     try{
         var savedService = await oldService.save()
@@ -102,7 +102,7 @@ exports.updateService = async function(service){
 exports.deleteService = async function(id){
     // Delete the service
     try{
-        var deleted = await service.remove({_id: id})
+        var deleted = await Service.remove({_id: id})
         if(deleted.result.n === 0){
             throw Error("service Could not be deleted")
         }
