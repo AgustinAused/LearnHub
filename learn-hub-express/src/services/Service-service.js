@@ -3,19 +3,19 @@ let usuario = require('../database/models/Usuario');
 
 
 // Saving the context of this module inside the _the variable
-_this = this
+let _this = this
 
 // Async function to get the service list
 exports.getService = async function(){
     try {
-        var service = await Service.find({});
+        let service = await Service.find({});
         // Return the serviced list that was retured by the mongoose promise
         return service;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)
         throw Error('Error while getting service')
-    }  
+    }
 }
 
 // Async function to get the service by user
@@ -40,7 +40,7 @@ exports.getServiceByUser = async function(user){
 // Async function to add a new service
 exports.createService = async function(service){
     // Creating a new Mongoose Object by using the new keyword
-    var newService = new service({
+    var newService = new Service({
         name: service.name,
         description: service.description,
         date: new Date(),
