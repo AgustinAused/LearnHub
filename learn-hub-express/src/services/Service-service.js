@@ -8,7 +8,7 @@ let _this = this
 // Async function to get the service list
 exports.getService = async function(){
     try {
-        // let service = await Service.find();
+        let service = await Service.find({});
         // Return the serviced list that was retured by the mongoose promise
         return service;
     } catch (e) {
