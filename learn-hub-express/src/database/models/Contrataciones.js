@@ -8,6 +8,7 @@ let ContratacionSchema = new mongoose.Schema({
     telephone : String,
     hour : String,
     message : String,
+    totalCost : String,
     state : String,
 })
 ContratacionSchema.plugin(mongoosePaginate)
