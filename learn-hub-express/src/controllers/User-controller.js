@@ -1,4 +1,4 @@
-const User = require("../database/models/Usuario");
+// Import User service
 const UserService = require("../services/User-service");
 
 // Create a new user

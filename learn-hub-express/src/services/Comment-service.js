@@ -56,10 +56,6 @@ exports.createComment = async function(comment){
         let _service = await Service.findOne({_id : comment.service});
         _service.comments.push(savedComment);
         await _service.save();
-        // Update the user comments
-        let _user = await User.findOne({_id : comment.user});
-        _user.comments.push(savedComment);
-        await _user.save();
         return savedComment;
     }catch(e){
         // return a Error message describing the reason 
