@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
     res.send('Llegaste a la ruta de  api/user-routes');
 });
 router.post('/registration', UserController.createUser); 
-router.post('/login/', UserController.loginUser);
+router.post('/login/',Authorization , UserController.loginUser);
 router.get('/users', UserController.getUsers); //Get all the user
 router.post('/userByMail', Authorization, UserController.getUsersByMail); //Get user by mail
 router.put('/update', Authorization, UserController.updateUser); //Update user 

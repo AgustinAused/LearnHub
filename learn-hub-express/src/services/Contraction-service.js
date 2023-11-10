@@ -57,13 +57,23 @@ exports.createContraction = async function (contract) {
 // Async function to change status 
 exports.changeStatus = async function (body) {
     try {
+        // Find the contract by ID
         var contract = await contracts.findById(body.id);
+        // Check if the contract exists
+        if (!contract) {
+            throw Error('Contract not found');
+        }
+        // Update the state of the contract
         contract.state = body.status;
+        // Save the updated contract
         var savedContract = await contract.save();
+
+        // Return the saved contract
         return savedContract;
     } catch (e) {
-        // return a Error message describing the reason     
-        throw Error("Error while Changing Status")
+        // Handle errors and throw an error message
+        console.error(e);
+        throw Error("Error while changing status");
     }
 }
 

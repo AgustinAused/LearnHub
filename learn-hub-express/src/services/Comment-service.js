@@ -91,14 +91,22 @@ exports.deleteComment = async function(id){
 
 // Async function change state
 exports.changeState = async function(id){
-    // Delete the comment
-    try{
-        var _comment = await Comment.findById(id);
-        _comment.state = 'true';
-        var savedComment = await _comment.save();
+    try {
+        // Find the comment by ID
+        const comment = await Comment.findById(id);
+        // Check if the comment exists
+        if (!comment) {
+            throw Error('Comment not found');
+        }
+        // Update the state of the comment
+        comment.state = true; // Assuming 'true' is a boolean value
+        // Save the updated comment
+        const savedComment = await comment.save();
+        // Return the saved comment
         return savedComment;
-    }catch(e){
-        console.log(e)
-        throw Error("Error Occured while changing the comment state")
+    } catch (e) {
+        // Handle errors and throw an error message
+        console.error(e);
+        throw Error("Error occurred while changing the comment state");
     }
 }

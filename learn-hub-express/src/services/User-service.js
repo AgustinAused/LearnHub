@@ -6,7 +6,7 @@ let jwt = require('jsonwebtoken');
 
 
 // Saving the context of this module inside the _the variable
-let _this = this
+_this = this
 
 // Async function to get the User List
 exports.getUsers = async function (req) {
@@ -61,11 +61,11 @@ exports.createUser = async function (user) {
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     
     var newUser = new User({
-        noombre: user.nombre,
+        name: user.name,
         email: user.email,
-        fechaCreacion: new Date(),
+        creationDate: new Date(),
         password: hashedPassword,
-        telefono: user.telefono
+        phono: user.phono
     })
 
     try {
