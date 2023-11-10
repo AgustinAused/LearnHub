@@ -6,7 +6,7 @@ let jwt = require('jsonwebtoken');
 
 
 // Saving the context of this module inside the _the variable
-_this = this
+let _this = this
 
 // Async function to get the User List
 exports.getUsers = async function (req) {
@@ -20,13 +20,13 @@ exports.getUsers = async function (req) {
       const filtros = {};
     
       // Agregar filtros adicionales basados en parámetros de solicitud
-      if (req.query.tipo) {
-        filtros.tipo = req.query.tipo;
+      if (req.query.email) {
+        filtros.email = req.query.email;
       }
     // Try Catch the awaited promise to handle the error 
     try {
         console.log("Query",filtros)
-        var Users = await User.paginate(filtros, options)
+        let Users = await User.paginate(filtros, options)
         // Return the Userd list that was retured by the mongoose promise
         return Users;
 
