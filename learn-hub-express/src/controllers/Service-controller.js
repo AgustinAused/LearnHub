@@ -62,3 +62,13 @@ exports.deleteService = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// Unpublish service
+exports.unpublishService = async (req, res) => {
+  try {
+    const service = await Service.unpublishService(req.body)// deberia ser un id
+    res.status(200).json({ message: 'Service unpublished successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

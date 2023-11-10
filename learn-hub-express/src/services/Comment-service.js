@@ -7,9 +7,9 @@ const User = require('../database/models/Usuario');
 _this = this
 
 // Async function to get the comment list
-exports.getComments = async function(){
+exports.getComments = async function(service_id){
     try {
-        var comment = await Comment.find({state : "true"});
+        var comment = await Comment.find({_id : service_id, state : "true"});
         // Return the comment list that was retured by the mongoose promise
         return comment;
     } catch (e) {

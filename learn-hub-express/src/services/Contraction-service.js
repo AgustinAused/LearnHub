@@ -9,10 +9,19 @@ _this = this
 // Async function to get the contract list by user 
 exports.getContractsByUser = async function (id) {
     try {
-        var contractsByUser = await contracts.find({ usuario: id });
-        return contractsByUser;
+        var userContract = await user.findById(id);
+        var contractsList = [];
+        for (let i = 0; i < userContract.services.length; i++) {
+            var serviceContract = await service.findById(userContract.services[i]);
+            for (let j = 0; j < serviceContract.hiring.length; j++) {
+                var contract = await contracts.findById(serviceContract.hiring[j]);
+                contractsList.push(contract);
+            }
+        }
+        return contractsList;
     } catch (e) {
-        throw Error('Error while Paginating Contracts by User');
+        // return a Error message describing the reason     
+        throw Error("Error while Paginating Contracts")
     }
 }
 

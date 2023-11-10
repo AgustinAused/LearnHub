@@ -114,5 +114,18 @@ exports.deleteService = async function(id){
 }
 
 
+// Async function to Unpublish Service
+exports.unpublishService = async function(id){
+    try{
+        let sevedService = await Service.updateOne({_id: id})
+        savedService.state = "Unpublish";
+        // saving service 
+        let savedService = await savedService.save();
+        return savedService;
+    }catch(e){
+        console.log(e)
+        throw Error("Error Occured while unpublishing the service")
+    }
+}
 
 
