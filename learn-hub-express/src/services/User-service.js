@@ -1,5 +1,6 @@
 // Gettign the Newly created Mongoose Model we just created 
 var User = require('../database/models/Usuario');
+const nodemailer = require('nodemailer');
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 
@@ -161,4 +162,54 @@ exports.loginUser = async function (user) {
         throw Error("Error while Login User")
     }
 
+}
+
+
+
+
+exports.sendResetEmail = async function (email, resetToken) {
+    // Configurar el transporte de correo
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASSWORD,
+        },
+    });
+
+    // Construir el enlace de restablecimiento
+    const resetLink = `http://localhost:4050/api/user/resetPassword?token=${resetToken}`;
+
+    // Configurar el correo electrónico
+    const mailOptions = {
+        from: 'tuaplicacion@gmail.com',
+        to: email,
+        subject: 'Restablecimiento de Contraseña',
+        text: `Para restablecer tu contraseña, haz clic en el siguiente enlace: ${resetLink}`,
+    };
+
+    // Enviar el correo electrónico
+    await transporter.sendMail(mailOptions);
+}
+
+
+// Reset Password
+exports.resetPassword = async ({email, newPassword}) =>{
+    try {
+        // Obtener el usuario basado en el token de restablecimiento de contraseña
+        const user = await User.findOne({ email: email });
+        // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
+        if (!user) {
+            throw Error('Usuario no encontrado');
+        }
+        // Actualizar la contraseña del usuario
+        user.password = newPassword;
+        // Guardar el usuario en la base de datos
+        await user.save();
+        // Retornar el usuario
+        return user;
+    } catch (error){
+        console.log(error)
+        throw error
+    }
 }

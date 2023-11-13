@@ -9,12 +9,15 @@ const Authorization = require('../auth/authentication');
 router.get('/', function(req, res) {
     res.send('Llegaste a la ruta de  api/user-routes');
 });
-router.post('/registration', UserController.createUser); 
-router.post('/login/',Authorization , UserController.loginUser);
+
+router.post('/registration', UserController.createUser); //Create user
+router.post('/login', UserController.loginUser); //Login user
 router.get('/users', UserController.getUsers); //Get all the user
 router.post('/userByMail', Authorization, UserController.getUsersByMail); //Get user by mail
 router.put('/update', Authorization, UserController.updateUser); //Update user 
 router.delete('/delete/:id', Authorization, UserController.deleteUserById); //Delete User
+router.post('/resetPassword',Authorization , UserController.resetPassword); //Reset password
+router.post('/sendResetEmail', UserController.sendEmail); //Send reset email
 
 
 module.exports = router;

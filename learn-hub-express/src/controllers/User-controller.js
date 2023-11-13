@@ -1,4 +1,5 @@
 // Import User service
+const generateResetToken = require("../auth/AccountReset");
 const UserService = require("../services/User-service");
 
 // Create a new user
@@ -25,7 +26,7 @@ exports.getUsers = async (req, res) => {
 // Get a single user 
 exports.getUsersByMail = async (req, res) => {
     try {
-        const user = await UserService.getUserById(req.params.id);
+        const user = await UserService.getUserById({email: req.body.email});
         res.json(user);
     } catch (err) {
         res.status(404).json({ message: err.message });
@@ -71,3 +72,49 @@ exports.loginUser = async function (req, res, next) {
     }
 }
 
+
+// send emial for recovery account
+exports.sendEmail = async function (req, res, next) {
+    // Req.Body contains the form submit values.
+    console.log("body",req.body)
+    var User = {
+        email: req.body.email,
+        password: req.body.password
+    }
+    try {
+        let oldUser = UserService.getUsersByMail(User.email);
+        console.log(oldUser);
+
+        let newToken = generateResetToken(oldUser.id);
+        console.log(newToken);
+        await UserService.sendResetEmail(User.email,newToken);
+        return res.status(200).json({status: 200, message: "Recovery email sent successfully"})
+
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json({status: 400, message: "User not found"})
+    }
+} 
+
+//send email recovery account
+
+exports.resetPassword = async function (req, res, next) {
+    // Req.Body contains the form submit values.
+    console.log("body",req.body)
+    var User = {
+        email: req.body.email,
+        password: req.body.password,
+        newToken: req.body.token
+    }
+    try {
+        // Calling the Service function with the new object from the Request Body
+        var resetPassword = await UserService.resetPassword(User);
+        if (resetPassword===0)
+            return res.status(400).json({message: "Error en la contraseña"})
+        else
+            return res.status(200).json({resetPassword, message: "Succesfully reset password"})
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json({status: 400, message: "Invalid username or password"})
+    }
+}
