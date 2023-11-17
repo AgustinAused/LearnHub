@@ -25,7 +25,9 @@ export default function AgregarCursoForm() {
     const token = localStorage.getItem("token");
     const handleSubmit = (e) => {
         e.preventDefault();
+        // Aquí puedes acceder a los datos del formulario
         console.log(curso);
+        // Aqui se envian aca se hace la req
         fetch(url,
             {
                 method: 'POST',
