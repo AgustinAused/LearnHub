@@ -1,24 +1,39 @@
 'use client';
 import FormModifyCourse from "@/components/forms/FormModifyCourse";
-import coursesData from "@/data/coursesData";
+// import coursesData from "@/data/coursesData";
 import { useEffect, useState } from "react";
 
 export default function page({ params }) {
-    const handleGuardarCambios = (cursoModificado) => {
-        // Aquí puedes manejar los datos modificados del curso, por ejemplo, enviarlos a tu backend para actualizar la información en la base de datos.
-        console.log("Datos modificados del curso:", cursoModificado);
-        // Puedes también actualizar el estado del curso en tu componente principal si es necesario.
-        
-    };
     const [course,setCourse] = useState({});
+    
     useEffect(
         () => {
-            console.log("Curso:", params.slug);
-            let courseDat = coursesData.find((item) => item.id ==  params.slug);
-            console.log("Curso:", courseDat);
-            setCourse(courseDat);
-        },
-    []);
+            fetch(`http//localhost:4050/api/service/serviceById/${params.slug}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Curso:", data);
+                setCourse(data);
+            })
+            .catch((err) => console.error(err));
+            console.log("Curso:", course);
+        },[params.slug]);
+
+    const handleGuardarCambios = (cursoModificado) => {
+        // aqui se hacen los cambios/ update de los datos del curso 
+        console.log("Datos modificados del curso:", cursoModificado);
+        fetch('http://localhost:4050/api/service/updateService', {
+        method: 'PUT',
+        body: JSON.stringify(cursoModificado),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+        console.log("Curso actualizado:", data);
+        })
+        .catch((err) => console.error(err));;        
+    };
     return(
         <div>
             <FormModifyCourse curso={course} onGuardarCambios={handleGuardarCambios}/>

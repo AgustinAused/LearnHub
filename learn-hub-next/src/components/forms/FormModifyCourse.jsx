@@ -14,10 +14,10 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes enviar los datos modificados a tu backend o hacer lo que necesites con ellos
+        console.log(cursoModificado);
         onGuardarCambios(cursoModificado);
     };
-    console.log(cursoModificado);
+    
     return (
         <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md mt-10">
       <h2 className="text-2xl font-semibold mb-4">Modificar Curso</h2>
