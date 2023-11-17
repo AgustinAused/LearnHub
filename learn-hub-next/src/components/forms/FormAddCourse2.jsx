@@ -19,11 +19,25 @@ export default function AgregarCursoForm() {
             [name]: value
         });
     };
-
+    //url endpoint
+    const url = 'http//localhost:4050/api/service/createService';
+    //token 
+    const token = localStorage.getItem("token");
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes enviar los datos a tu backend o hacer lo que necesites con ellos
         console.log(curso);
+        fetch(url,
+            {
+                method: 'POST',
+                body: JSON.stringify(curso),
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.log(err))
     };
 
     return (
