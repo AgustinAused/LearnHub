@@ -4,17 +4,19 @@ import { CarouselCustomNavigation } from "@/components/carrousel/CarouselCustomN
 import FormsComments from "../forms/FormsComments";
 import CustomComment from "../comment/CustomComment";
 import FormsInscrip from "../forms/FormsInscrip";
-import coursesData from "@/data/coursesData";
+// import coursesData from "@/data/coursesData";
 
 export default function ArticulCourse({ course }) {
   const [courseDat, setCourseDat] = useState({});
   useEffect(() => {
-    console.log(course);
-    let arrcourseDat = coursesData.filter((item) => item.id == course);
-    let courseDat = arrcourseDat[0];
-    setCourseDat(courseDat);
-    console.log(courseDat);
-  }, [course]);
+    fetch(`http//localhost:4050/api/service/serviceById/${course}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      setCourseDat(data);
+    })
+    .catch(err => console.log(err));
+  }, []);
   return (
     <div>
       <div className="flex justify-center m-10">
