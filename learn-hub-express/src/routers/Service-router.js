@@ -7,7 +7,7 @@ const Authentication = require('../auth/authentication')
 //Service Router
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.send('Llegaste a la ruta de  api/service-router');
+    res.send('Llegaste a la ruta de  api/service/');
 });
 router.get('/allServices',  Service_controller.getAllServices); //Get all the services
 router.get('/serviceUser',  Service_controller.getServiceByUser); //Get a single service
