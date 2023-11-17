@@ -9,6 +9,43 @@ import {
 import Link from "next/link";
 
 export default function FormDataTea() {
+
+  const [formulario, setFormulario] = useState({
+    titulo: '',
+    experiencia: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormulario({
+      ...formulario,
+      [name]: value
+    });
+  };
+
+  //url endpoint
+  const url = 'http//localhost:4050/api/users/update';
+  //token 
+  const token = localStorage.getItem("token");
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    // Aquí puedes acceder a los datos del formulario
+    console.log('Datos del formulario:', formulario);
+    // Aqui se envian aca se hace la req
+    fetch(url,
+      {
+        method: 'PUT',
+        body: JSON.stringify(formulario),
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+  };
+
   return (
     <Card
       color="white"
@@ -16,12 +53,13 @@ export default function FormDataTea() {
       shadow={true}
     >
       <h2 className="text-2xl font-semibold mb-4">Experiencia del Proveedor</h2>
-      <form className="mt-8 mb-2 w-80 ">
+      <form className="mt-8 mb-2 w-80 " onClick={handlerSubmit}>
         <div className="mb-4">
-          <Input type="text" name="Titulo" label="Título" />
+          <Input type="text" name="Titulo" label="Título" value={formulario.titulo}
+            onChange={handleChange} />
         </div>
         <div class="relative w-full min-w-[200px]">
-    <textarea
+    <textarea  name="experiencia" value={formulario.experiencia} onChange={handleChange}
       class="peer h-full min-h-[100px] w-full resize-none rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
       placeholder=" "
     ></textarea>
@@ -32,7 +70,7 @@ export default function FormDataTea() {
 
 
         <Link href="/provider/account">
-          <Button className="mt-6" fullWidth>
+          <Button className="mt-6" fullWidth type="submit">
             Guardar Información
           </Button>
         </Link>
