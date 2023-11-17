@@ -36,6 +36,7 @@ exports.getUsersByMail = async (req, res) => {
 // Update a user 
 exports.updateUser = async (req, res) => {
     try {
+        
         const user = await UserService.updateUser(req.body);
         res.json(user);
     } catch (err) {
@@ -78,8 +79,7 @@ exports.sendEmail = async function (req, res, next) {
     // Req.Body contains the form submit values.
     console.log("body",req.body)
     var User = {
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email
     }
     try {
         let oldUser = UserService.getUsersByMail(User.email);
