@@ -1,8 +1,8 @@
 
 const express = require('express');
+const router = express.Router();
 const contractionController = require('../controllers/Contraction-controller');
 const Authentication = require('../auth/authentication');
-const router = express.Router();
 
 //lisenig
 router.get('/', function(req, res, next) {
@@ -15,3 +15,5 @@ router.get('/all',Authentication, contractionController.getAllContractions);
 router.post('/new', contractionController.createContraction);
 // Change status
 router.put('/changeStatus', Authentication, contractionController.changeStatus);
+
+module.exports = router;

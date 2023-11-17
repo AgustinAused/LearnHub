@@ -8,7 +8,7 @@ const users = require('./User-router');
 //Service Router 
 const services = require('./Service-router');
 //commets Router
-const comments = require('./Comment-router');
+const comments = require('./Comments-router');
 //Contraction Router
 const contractions = require('./Contraction-router');
 
@@ -16,9 +16,9 @@ const contractions = require('./Contraction-router');
 router.use('/users', users);
 //Use Service router for api/services
 router.use('/services', services);
-//Use Comment router for api/comments
+// //Use Comment router for api/comments
 router.use('/comments', comments);
-//Use Contraction router for api/contractions
+// //Use Contraction router for api/contractions
 router.use('/contractions', contractions);
 
 
