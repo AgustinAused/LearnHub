@@ -22,7 +22,9 @@ export default function CourseList() {
             // Actualizamos el estado con el array de cursos
             setListCourse(courses);
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error)
+        });
     },[]); 
 
     return (
