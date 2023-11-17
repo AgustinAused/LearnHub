@@ -82,7 +82,7 @@ exports.sendEmail = async function (req, res, next) {
         email: req.body.email
     }
     try {
-        let oldUser = UserService.getUsersByMail(User.email);
+        let oldUser = await UserService.getUsersByMail(User.email);
         console.log(oldUser);
 
         let newToken = generateResetToken(oldUser.id);
@@ -104,11 +104,10 @@ exports.resetPassword = async function (req, res, next) {
     var User = {
         email: req.body.email,
         password: req.body.password,
-        newToken: req.body.token
     }
     try {
         // Calling the Service function with the new object from the Request Body
-        var resetPassword = await UserService.resetPassword(User);
+        var resetPassword = await UserService.resetPassword(User); 
         if (resetPassword===0)
             return res.status(400).json({message: "Error en la contraseña"})
         else

@@ -16,7 +16,7 @@ router.get('/users', UserController.getUsers); //Get all the user
 router.post('/userByMail', Authorization, UserController.getUsersByMail); //Get user by mail
 router.put('/update', Authorization, UserController.updateUser); //Update user 
 router.delete('/delete/:id', Authorization, UserController.deleteUserById); //Delete User
-router.post('/resetPassword',Authorization , UserController.resetPassword); //Reset password
+router.post('/resetPassword/:token',Authorization , UserController.resetPassword); //Reset password
 router.post('/sendResetEmail', UserController.sendEmail); //Send reset email
 
 
