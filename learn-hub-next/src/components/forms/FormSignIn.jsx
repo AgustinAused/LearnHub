@@ -4,8 +4,6 @@ import useAuth from "@/customHooks/useAuth";
 import {
   Input,
   Button,
-  Checkbox,
-  Typography,
   Card,
 } from "@material-tailwind/react";
 import Link from "next/link";
@@ -25,8 +23,24 @@ export function FormSignIn() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor o realizar la validación necesaria.
+    // Aqui vemos el form
     console.log(formData);
+    // Aqui se envian aca se hace la req
+    fetch("http//localhost:4050/api/users/login", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Guardar el token en localStorage
+        localStorage.setItem("token", data.token);
+        // Puedes también realizar otras acciones con el token si es necesario
+        console.log("Token guardado en localStorage:", data.token);
+      })
+      .catch((err) => console.log(err));
   };
   const [isAuthenticated, setIsAuthenticated] = useAuth("auth", "false");
 
