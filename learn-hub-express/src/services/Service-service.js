@@ -62,6 +62,21 @@ exports.getServiceByUser = async function (user) {
         throw Error('Error while getting service');
     }
 };
+// Async function to get the service by id
+exports.getServiceById = async function (body) {
+    // Try Catch the awaited promise to handle the error 
+    try {
+        // Find the service 
+        let service = await Service.findById(body.id);
+        // Return the service list that was retured by the mongoose promise
+        return service;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)
+        throw Error('Error while getting service')
+    }
+}
+
 
 // Async function to add a new service
 exports.createService = async function (service) {

@@ -11,10 +11,20 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
-// Get a single service
+// Get a single service by User
 exports.getServiceByUser = async (req, res) => {
   try {
     const service = await Service.getServiceByUser(req.body);
+    res.status(200).json(service);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// Get a single service by ID
+exports.getServiceById = async (req, res) => {
+  try {
+    const service = await Service.getServiceById(req.body);
     res.status(200).json(service);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/allServices',  Service_controller.getAllServices); //Get all the services
 router.get('/serviceUser',  Service_controller.getServiceByUser); //Get a single service
+router.get('/serviceById',  Service_controller.getServiceById); //Get a single service
 router.post('/createService',Authentication,  Service_controller.createService); //Create a new service
 router.put('/updateService',Authentication,  Service_controller.updateService); //Update a service
 router.delete('/deleteService',Authentication,  Service_controller.deleteService); //Delete a service
