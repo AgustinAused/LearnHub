@@ -63,11 +63,11 @@ exports.getServiceByUser = async function (user) {
     }
 };
 // Async function to get the service by id
-exports.getServiceById = async function (body) {
+exports.getServiceById = async function (id) {
     // Try Catch the awaited promise to handle the error 
     try {
         // Find the service 
-        let service = await Service.findById(body.id);
+        let service = await Service.findById(id);
         // Return the service list that was retured by the mongoose promise
         return service;
     } catch (e) {
