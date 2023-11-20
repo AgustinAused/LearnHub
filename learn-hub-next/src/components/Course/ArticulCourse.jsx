@@ -37,7 +37,7 @@ export default function ArticulCourse({ course }) {
               </p>
             </div>
             <div className="px-6 py-4 ">
-              <FormsInscrip />
+              <FormsInscrip price={courseDat.price} serviceType={courseDat.title}/>
             </div>
           </div>
         </div>

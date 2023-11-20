@@ -38,7 +38,7 @@ exports.createContraction = async function (contract) {
         hour: contract.hour,
         message: contract.message,
         totalCost: contract.totalCost,
-        state: contract.state,
+        state: "Requested",
     })
     try {
         // Saving the contract 

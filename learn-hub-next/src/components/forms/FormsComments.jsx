@@ -19,7 +19,7 @@ export default function FormsComments() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor o realizar la validación necesaria.
+        fetch
         console.log(formData);
     }
     // Revisar (Espera)
