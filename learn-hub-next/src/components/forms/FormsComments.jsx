@@ -3,12 +3,13 @@ import React,{useState} from "react";
 import { RatingWithItem } from "../rating/Rating";
 
 
-export default function FormsComments() {
+export default function FormsComments(idService) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         comment: "",
         rating: 4,
+        service: idService,
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -19,7 +20,13 @@ export default function FormsComments() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch
+        fetch(`http//localhost:4050/api/comments/new`,{
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
         console.log(formData);
     }
     // Revisar (Espera)

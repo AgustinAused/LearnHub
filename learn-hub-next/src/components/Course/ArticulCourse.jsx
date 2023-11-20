@@ -56,7 +56,7 @@ export default function ArticulCourse({ course }) {
         </div>
       </div>
       <div className="md:mx-32">
-        <FormsComments />
+        <FormsComments idService={course}/>
       </div>
     </div>
   );

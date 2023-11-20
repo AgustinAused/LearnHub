@@ -14,20 +14,15 @@ router.get('/', function(req, res, next) {
 // Get all comments
 router.get('/all', commentController.getAllCommentsUser);
 // Create new comment
-router.post('/new/:id_user', Authentication, commentController.createComment);
+router.post('/new', commentController.createComment);
 // Get all comment in the service
-router.get('/service/:id_service', commentController.getCommentByService);
+router.get('/:id_service', commentController.getCommentByService);
 // Update a comment
 router.put('/update/:id', Authentication, commentController.updateComment);
 // Delete a comment
 router.delete('/delete/:id', Authentication, commentController.deleteComment);
 // Change State
 router.put('/changeState/:id', Authentication, commentController.changeState);
-
-
-module.exports = router;
-
-
 
 
 module.exports = router;

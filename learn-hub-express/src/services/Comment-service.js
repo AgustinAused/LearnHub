@@ -43,9 +43,9 @@ exports.getCommentsByService = async function(service_id){
 exports.createComment = async function(comment){
     // Creating a new Mongoose Object by using the new keyword
     var newComment = new Comment({
-        contenido: comment.contenido,
+        contenido: comment.comment,
         date: new Date(),
-        calificacion: comment.calificacion,
+        calificacion: comment.rating,
         email: comment.email,
         state: ""
         });
