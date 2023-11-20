@@ -16,7 +16,7 @@ export default function CourseAccount({ course }) {
   return (
     <Card className="items-center flex justify-between flex-row w-">
       <CardBody className="">
-        <Typography variant="h5" color="blue-gray" className="mb-2">
+        <Typography href="null" variant="h5" color="blue-gray" className="mb-2">
           {course.title}
         </Typography>
         <Typography>{course.description}</Typography>

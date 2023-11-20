@@ -1,12 +1,12 @@
 // Gettign the Newly created Mongoose Model we just created 
-var User = require('../database/models/Usuario');
+let User = require('../database/models/Usuario');
 const nodemailer = require('nodemailer');
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
 
 
 
-// Saving the context of this module inside the _the variable
+// Saving the context of this module inside the _the letiable
 _this = this
 
 // Async function to get the User List
@@ -42,7 +42,7 @@ exports.getUsersByMail = async function (email) {
     try {
         console.log("Email:", email);
         // Utiliza el método findOne de Mongoose para buscar un usuario por su dirección de correo electrónico
-        var user = await User.findOne({ email: email });
+        let user = await User.findOne({ email: email });
         // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
         if (!user) {
             return null; // O puedes lanzar un error si lo prefieres: throw Error('Usuario no encontrado');
@@ -59,9 +59,11 @@ exports.getUsersByMail = async function (email) {
 
 exports.createUser = async function (user) {
     // Creating a new Mongoose Object by using the new keyword
-    var hashedPassword = bcrypt.hashSync(user.password, 8);
-    
-    var newUser = new User({
+    let hashedPassword = bcrypt.hashSync(user.password, 8);
+
+    //comprobar que sean el tipo de datos correctos
+        
+    let newUser = new User({
         name: user.name,
         email: user.email,
         creationDate: new Date(),
@@ -71,13 +73,14 @@ exports.createUser = async function (user) {
 
     try {
         // Saving the User 
-        var savedUser = await newUser.save();
-        var token = jwt.sign({
-            id: savedUser._id
-        }, process.env.SECRET, {
-            expiresIn: 86400 // expires in 24 hours
-        });
-        return token;
+        let savedUser = await newUser.save();
+        //si logra crear el usuario, manda una respuesta de bien
+        if(savedUser){
+            let ok =true;
+            return ok;
+        }
+        
+        return ok;
     } catch (e) {
         // return a Error message describing the reason 
         console.log(e)    
@@ -90,7 +93,7 @@ exports.updateUser = async function (user) {
     try {
         //Find the old User Object by the Id
         console.log(user._id)
-        var oldUser = await User.findOne(user._id);
+        let oldUser = await User.findOne(user._id);
         console.log (oldUser)
     } catch (e) {
         // return a Error message describing the reason
@@ -103,7 +106,7 @@ exports.updateUser = async function (user) {
     }
     //rehacer logica
     //Edit the User Object
-    var hashedPassword = bcrypt.hashSync(user.password, 8);
+    let hashedPassword = bcrypt.hashSync(user.password, 8);
     oldUser.nombre = user.nombre ? user.nombre : oldUser.nombre;
     oldUser.email = user.email ? user.email : oldUser.email;
     oldUser.password = hashedPassword ? hashedPassword : oldUser.password;
@@ -111,7 +114,7 @@ exports.updateUser = async function (user) {
     oldUser.telefono = user.telefono ? user.telefono : oldUser.telefono;
     oldUser.nacimiento = user.nacimiento ? user.nacimiento : oldUser.nacimiento;
     try {
-        var savedUser = await oldUser.save()
+        let savedUser = await oldUser.save()
         return savedUser;
     } catch (e) {
         // return a Error message describing the reason
@@ -124,7 +127,7 @@ exports.deleteUser = async function (id) {
     console.log(id)
     // Delete the User
     try {
-        var deleted = await User.remove({
+        let deleted = await User.remove({
             _id: id
         })
         if (deleted.n === 0 && deleted.ok === 1) {
@@ -144,18 +147,21 @@ exports.loginUser = async function (user) {
     try {
         // Find the User 
         console.log("login:",user)
-        var _details = await User.findOne({
+        let _details = await User.findOne({
             email: user.email
         });
-        var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
+        if (!_details) {
+            throw Error("Error while Login User");
+        }
+        let passwordIsValid = bcrypt.compareSync(user.password, _details.password);
         if (!passwordIsValid) return 0;
 
-        var token = jwt.sign({
+        let token = jwt.sign({
             id: _details._id
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
-        return {token:token, user:_details};
+        return token;
     } catch (e) {
         // return a Error message describing the reason   
         console.log(e) 

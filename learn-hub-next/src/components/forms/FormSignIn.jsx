@@ -1,19 +1,24 @@
 "use client";
 import React, { useState } from "react";
-import useAuth from "@/customHooks/useAuth";
 import {
   Input,
   Button,
   Card,
 } from "@material-tailwind/react";
-import Link from "next/link";
+
+import loginAction from "@/components/posts/LoginPost";
+
+import { useRouter } from "next/navigation";
 
 export function FormSignIn() {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState(""); // New state for error message
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -21,33 +26,34 @@ export function FormSignIn() {
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui vemos el form
-    console.log(formData);
-    // Aqui se envian aca se hace la req
-    fetch("http//localhost:4050/api/users/login", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // Guardar el token en localStorage
-        localStorage.setItem("token", data.token);
-        // Puedes también realizar otras acciones con el token si es necesario
-        console.log("Token guardado en localStorage:", data.token);
-      })
-      .catch((err) => console.log(err));
+
+    // Check if email and password are provided
+    if (!formData.email || !formData.password) {
+      setErrorMessage("Please enter a valid email and password");
+      return;
+    }
+
+    try {
+      const loginOk = await loginAction(formData);
+      console.log(loginOk);
+      if (loginOk.status !== 400) {
+        console.log("Token guardado en localStorage:", loginOk);
+        router.refresh();
+        router.push("/provider/account");
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
-  const [isAuthenticated, setIsAuthenticated] = useAuth("auth", "false");
+
 
   return (
     <Card color="white" className="p-6 my-36 max-w-screen-lg sm:w-96" shadow={true}>
       <h2 className="text-2xl font-semibold mb-4">Inicio de Sesión</h2>
-      <form className="mt-8 mb-2 w-80 ">
+      <form className="mt-8 mb-2 w-80">
         <div className="mb-4">
           <Input
             type="email"
@@ -55,7 +61,7 @@ export function FormSignIn() {
             value={formData.email}
             onChange={handleChange}
             label="Email"
-          />
+            />
         </div>
         <div className="mb-4">
           <Input
@@ -64,18 +70,21 @@ export function FormSignIn() {
             value={formData.password}
             onChange={handleChange}
             label="Contraseña"
-          />
+            />
         </div>
+        
+        {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>} {/* Show error message if exists */}
 
-        <a href="/provider/account">
         <Button
-          onClick={() => setIsAuthenticated("true")}
+          color="lightBlue"
+          buttonType="filled"
+          size="lg"
           className="mt-6"
           fullWidth
+          onClick={handleSubmit}
         >
-        Ingresar
+          Ingresar
         </Button>
-        </a>
       </form>
       <p className="mt-4 text-center text-gray-600">
         ¿No tienes una cuenta?{" "}

@@ -18,7 +18,11 @@ import {
   PlusCircleIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import useAuth from "@/customHooks/useAuth";
+import LogoutSession from "../posts/Logout";
+import { useRouter } from "next/navigation";
+
+// handler del logout
+
 
 function NavList() {
   return (
@@ -30,7 +34,7 @@ function NavList() {
           variant="small"
           color="black"
           className="font-normal"
-        >
+          >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <PlusCircleIcon className="h-[2rem] w-[2rem] " />
             Agrega un Servicio
@@ -44,7 +48,7 @@ function NavList() {
           variant="small"
           color="black"
           className="font-normal"
-        >
+          >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <FlagIcon className="h-[2rem] w-[2rem]" />
             Contrataciones
@@ -57,25 +61,34 @@ function NavList() {
 
 export default function NavbarAutenticado() {
   const [openNav, setOpenNav] = React.useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useAuth("auth", "false");
-
+  const router = useRouter();
+  
+  const logout = async (e) => {
+    e.preventDefault();
+    if (LogoutSession()) {
+      router.refresh();
+      router.push('/');
+    }
+    
+  }
   React.useEffect(() => {
     window.addEventListener(
       "resize",
       () => window.innerWidth >= 960 && setOpenNav(false)
-    );
-  }, []);
-
-  return (
-    <Navbar
+      );
+    }, []);
+    
+    return (
+      <Navbar
       color="transparent"
       className="mx-auto my-4 w-full px-4 py-2  "
       fullWidth
-    >
+      >
       <div className="flex items-center justify-between text-black">
         <div className="flex flex-row items-center ">
           <Link href="/">
             <Typography
+            href="/"
               as="div"
               variant="h3"
               className=" font-bold mr-4 cursor-pointer py-1.5 lg:ml-6  "
@@ -108,18 +121,18 @@ export default function NavbarAutenticado() {
               </ListItem>
             </Typography>
           </Link>
-          <a href="/" className="p-0 m-0">
+          
             <Button
-              onClick={() => {
-                setIsAuthenticated("false");
-              }}
+              onClick={
+                logout
+              }
               variant="outlined"
               size="sm"
               fullWidth
             >
               Sing Out
             </Button>
-          </a>
+          
         </div>
         <IconButton
           variant="text"
