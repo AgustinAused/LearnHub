@@ -2,6 +2,10 @@ const express = require("express");
 const UserController = require("../controllers/User-controller");
 const router = express.Router();
 const Authorization = require("../auth/authentication");
+const multer = require('multer');
+
+//importanto middlewares
+
 const {
   registervalidations,
   handleRegisterValidationResults,
@@ -11,6 +15,9 @@ const {
   handleLoginValidationResults,
 } = require("./middle/loginValidation");
 
+const upload = multer({ storage: multer.memoryStorage() });
+
+
 //User router
 /* GET users listing. */
 router.get("/", function (req, res) {
@@ -19,15 +26,12 @@ router.get("/", function (req, res) {
 
 router.post(
   "/registration",
-  registervalidations,
-  handleRegisterValidationResults,
+  upload.single('image'),
   UserController.createUser
 ); //Create user
 
 router.post(
   "/login",
-  loginValidations,
-  handleLoginValidationResults,
   UserController.loginUser
 ); //Login user
 

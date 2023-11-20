@@ -57,25 +57,37 @@ exports.getUsersByMail = async function (email) {
     }
 }
 
-exports.createUser = async function (user) {
+exports.createUser = async function (data) {
     // Creating a new Mongoose Object by using the new keyword
+    const user = data.body;
+    const image = data.file;
+
     let hashedPassword = bcrypt.hashSync(user.password, 8);
 
-    //comprobar que sean el tipo de datos correctos
-    console.log("user",user)
     let newUser = new User({
         name: user.name,
         email: user.email,
         creationDate: new Date(),
         password: hashedPassword,
         phono: user.phono,
-        
-    })
+    });
+
+    // Check if the user has provided an image
+    if (image) {
+        newUser.image = {
+            data: image.buffer,
+            contentType: image.mimetype
+        };
+    } else {
+        // Use a default image
+        newUser.image = {
+            data: fs.readFileSync(path.join(__dirname, '../path/to/default/image.png')),
+            contentType: 'image/png'
+        };
+    }
 
     try {
-        // Saving the User 
         let savedUser = await newUser.save();
-        //si logra crear el usuario, manda una respuesta de bien
         if(savedUser){
             let ok =true;
             return ok;
@@ -83,9 +95,8 @@ exports.createUser = async function (user) {
         
         return ok;
     } catch (e) {
-        // return a Error message describing the reason 
-        console.log(e)    
-        return e;
+        console.log("error services",e)
+        throw Error('Error while creating user');
     }
 }
 

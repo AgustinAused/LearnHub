@@ -28,29 +28,33 @@ export function FormSignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      console.log(formData);
-      const response = await fetch(
-        "http://localhost:4050/api/users/registration",
-        {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    const form = new FormData();
+    form.append("name", formData.name);
+    form.append("email", formData.email);
+    form.append("password", formData.password);
+    form.append("celular", formData.celular);
+    form.append("password_confirm", formData.password_confirm);
+    form.append("terms", formData.terms);
+    if (formData.image) {
+        form.append("image", formData.image);
+    }
 
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) {
-        throw new Error("Error sending form data");
-      } else {
-        console.log("Registration successful");
-        router.push("/sign-in"); // Redirect the user to the login page
-      }
+    try {
+        const response = await fetch("http://localhost:4050/api/users/registration", {
+            method: "POST",
+            body: form,
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (!response.ok) {
+            throw new Error("Error sending form data");
+        } else {
+            console.log("Registration successful");
+            router.push("/sign-in");
+        }
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
   };
 
