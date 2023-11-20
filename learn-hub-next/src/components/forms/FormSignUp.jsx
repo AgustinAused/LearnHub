@@ -10,8 +10,6 @@ import zxcvbn from "zxcvbn";
 
 import { useRouter } from "next/navigation";
 
-// ...
-
 export function FormSignUp() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -19,9 +17,42 @@ export function FormSignUp() {
     email: "",
     password: "",
     celular: "",
+    password_confirm: "",
+    terms: false,
+    image: null, // Add image property to formData state
   });
+
   const [isChecked, setIsChecked] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      console.log(formData);
+      const response = await fetch(
+        "http://localhost:4050/api/users/registration",
+        {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) {
+        throw new Error("Error sending form data");
+      } else {
+        console.log("Registration successful");
+        router.push("/sign-in"); // Redirect the user to the login page
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,37 +71,18 @@ export function FormSignUp() {
 
   const handleCheckboxChange = (e) => {
     setIsChecked(e.target.checked);
+    setFormData({
+      ...formData,
+      terms: e.target.checked,
+    });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor o realizar la validación necesaria.
-    console.log(formData);
-
-    try {
-      const response = await fetch(
-        "http://localhost:4050/api/users/registration",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-      
-      
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) {
-        throw new Error("Error al enviar los datos del formulario");
-      } else {
-        console.log("Registro exitoso");
-        router.push("/sign-in"); // Redirigir al usuario a la página de inicio de sesión
-      }
-    } catch (error) {
-      console.error(error);
-    }
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({
+      ...formData,
+      image: file,
+    });
   };
 
   const handlePasswordChange = (e) => {
@@ -85,7 +97,7 @@ export function FormSignUp() {
       className="p-6 my-36 max-w-screen-lg sm:w-96"
       shadow={true}
     >
-      <h2 className="text-2xl font-semibold mb-4">Registro</h2>
+      <h2 className="text-2xl font-semibold mb-4">Registration</h2>
       <form className="mt-8 mb-2 w-80 ">
         <div className="mb-4">
           <Input
@@ -93,7 +105,7 @@ export function FormSignUp() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            label="Nombre"
+            label="Name"
           />
         </div>
         <div className="mb-4">
@@ -111,7 +123,32 @@ export function FormSignUp() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            label="Contraseña"
+            label="Password"
+            onKeyUp={handlePasswordChange}
+          />
+          {passwordStrength > 0 && (
+            <div className="text-sm text-red-600 mt-1">
+              Password strength:{" "}
+              {
+                ["Very weak", "Weak", "Reasonable", "Strong", "Very strong"][
+                  passwordStrength - 1
+                ]
+              }
+            </div>
+          )}
+          {formData.password.length > 0 && formData.password.length < 8 && (
+            <div className="text-sm text-red-600 mt-1">
+              Password must be at least 8 characters long.
+            </div>
+          )}
+        </div>
+        <div className="mb-4">
+          <Input
+            type="password"
+            name="password_confirm"
+            value={formData.password_confirm}
+            onChange={handleChange}
+            label="Confirm password"
             onKeyUp={handlePasswordChange}
           />
           {passwordStrength > 0 && (
@@ -137,6 +174,14 @@ export function FormSignUp() {
             value={formData.celular}
             onChange={handleChange}
             label="Celular"
+          />
+        </div>
+        <div className="mb-4">
+          <Input
+            type="file" // Add file input type
+            name="image"
+            onChange={handleImageChange} // Handle image change
+            label="User Image"
           />
         </div>
         <Checkbox

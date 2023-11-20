@@ -62,13 +62,14 @@ exports.createUser = async function (user) {
     let hashedPassword = bcrypt.hashSync(user.password, 8);
 
     //comprobar que sean el tipo de datos correctos
-        
+    console.log("user",user)
     let newUser = new User({
         name: user.name,
         email: user.email,
         creationDate: new Date(),
         password: hashedPassword,
-        phono: user.phono
+        phono: user.phono,
+        
     })
 
     try {
@@ -84,7 +85,7 @@ exports.createUser = async function (user) {
     } catch (e) {
         // return a Error message describing the reason 
         console.log(e)    
-        throw Error("Error while Creating User")
+        return e;
     }
 }
 
