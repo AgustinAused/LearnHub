@@ -22,7 +22,7 @@ export default function AgregarCursoForm() {
     //url endpoint
     const url = 'http//localhost:4050/api/service/createService';
     //token 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     const handleSubmit = (e) => {
         e.preventDefault();
         // Aquí puedes acceder a los datos del formulario

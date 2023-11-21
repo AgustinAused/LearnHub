@@ -18,7 +18,7 @@ import {
   PlusCircleIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import LogoutSession from "../posts/Logout";
+import LogoutSession from "../../actions/Logout";
 import { useRouter } from "next/navigation";
 
 // handler del logout

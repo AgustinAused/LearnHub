@@ -51,6 +51,7 @@ exports.getService = async function (req) {
 exports.getServiceByUser = async function (user) {
     // Get the token from the headers
     const token = user.headers.authorization;
+    console.log("token", token)
     // Verify and decode the token
     const decodedToken = jwt.verify(token, process.env.SECRET);
     
@@ -61,7 +62,7 @@ exports.getServiceByUser = async function (user) {
     let services = []
     try {
         // Find the user 
-        let _user = await User.findById(userId).populate('Servicio');;
+        let _user = await User.findById(userId).populate('servicios');;
         
         // Get the service list 
         services = _user.services;

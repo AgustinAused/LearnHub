@@ -14,7 +14,7 @@ export default function page() {
       console.log("servicesFromServer", servicesFromServer);
       setServices(servicesFromServer);
     };
-    // getServices();
+    getServices();
   }, []);
 
   return (
