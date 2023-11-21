@@ -6,7 +6,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 
-import loginAction from "@/components/posts/LoginPost";
+import loginAction from "@/actions/LoginPost";
 
 import { useRouter } from "next/navigation";
 

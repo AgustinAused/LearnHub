@@ -12,5 +12,5 @@ let ContratacionSchema = new mongoose.Schema({
     state : String,
 })
 ContratacionSchema.plugin(mongoosePaginate)
-const Contratacion = mongoose.model('Contratacion', ContratacionSchema)
+const Contratacion = mongoose.model('Contrataciones', ContratacionSchema)
 module.exports = Contratacion;

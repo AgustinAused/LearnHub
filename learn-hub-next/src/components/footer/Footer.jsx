@@ -38,7 +38,7 @@ export function FooterWithSocialLinks() {
           <li>
             <Typography
               as="a"
-              href=""
+              href="/"
               color="black"
               className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
             >

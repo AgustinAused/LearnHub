@@ -44,7 +44,7 @@ function NavList() {
       <Link href="/provider/contraction">
         <Typography
           as="div"
-          href=""
+          href='/provider/contraction'
           variant="small"
           color="black"
           className="font-normal"

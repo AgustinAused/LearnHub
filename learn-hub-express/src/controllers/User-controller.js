@@ -24,9 +24,9 @@ exports.getUsers = async (req, res) => {
 };
 
 // Get a single user 
-exports.getUsersByMail = async (req, res) => {
+exports.getUsersByToken = async (req, res) => {
     try {
-        const user = await UserService.getUserById({email: req.body.email});
+        const user = await UserService.getUsersByToken(req);
         res.json(user);
     } catch (err) {
         res.status(404).json({ message: err.message });

@@ -37,23 +37,31 @@ exports.getUsers = async function (req) {
         throw Error('Error while Paginating Users');
     }
 }
-exports.getUsersByMail = async function (email) {
-    // Try Catch the awaited promise to handle the error 
-    try {
-        console.log("Email:", email);
-        // Utiliza el método findOne de Mongoose para buscar un usuario por su dirección de correo electrónico
-        let user = await User.findOne({ email: email });
-        // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
-        if (!user) {
-            return null; // O puedes lanzar un error si lo prefieres: throw Error('Usuario no encontrado');
-        }
-        // Return the Userd list that was retured by the mongoose promise
-        return user;
+exports.getUsersByToken = async function (req) {
+    // Get the token from the headers
+    const token = req.headers.authorization;
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    
+    // Extract the user ID from the decoded token
+    const userId = decodedToken.id;
 
+    // Use the user ID to retrieve the user from the database
+    try {
+        const user = await User.findById(userId);
+        //armo el objeto que voy a devolver
+        let userResponse = {
+            name: user.name,
+            email: user.email,
+            phono: user.phono,
+            image: user.image,
+            creationDate: user.creationDate,
+        }
+
+        return userResponse;
     } catch (e) {
-        // return a Error message describing the reason 
-        console.log("error services",e)
-        throw Error('Error while Paginating Users');
+        console.log("error services", e);
+        throw Error('Error while getting user by token');
     }
 }
 

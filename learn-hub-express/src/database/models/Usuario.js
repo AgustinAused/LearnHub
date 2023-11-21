@@ -9,7 +9,7 @@ let UsuarioSchema = new mongoose.Schema({
   degree: String,
   phono: String,
   birth: Date,
-  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "Servicio" }],
+  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "servicios" }],
   image: {
     data: Buffer,
     contentType: String
@@ -18,5 +18,5 @@ let UsuarioSchema = new mongoose.Schema({
   
 
 UsuarioSchema.plugin(mongoosePaginate);
-const Usuario = mongoose.model("Usuario", UsuarioSchema);
+const Usuario = mongoose.model("Usuarios", UsuarioSchema);
 module.exports = Usuario;

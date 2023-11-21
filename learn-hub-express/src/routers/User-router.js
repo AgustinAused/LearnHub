@@ -2,7 +2,7 @@ const express = require("express");
 const UserController = require("../controllers/User-controller");
 const router = express.Router();
 const Authorization = require("../auth/authentication");
-const multer = require('multer');
+const multer = require("multer");
 
 //importanto middlewares
 
@@ -17,27 +17,18 @@ const {
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-
 //User router
 /* GET users listing. */
 router.get("/", function (req, res) {
   res.send("Llegaste a la ruta de  api/user-routes");
 });
 
-router.post(
-  "/registration",
-  upload.single('image'),
-  UserController.createUser
-); //Create user
+router.post("/registration", upload.single("image"), UserController.createUser); //Create user
 
-router.post(
-  "/login",
-  UserController.loginUser
-); //Login user
-
+router.post("/login", UserController.loginUser); //Login user
 
 router.get("/users", UserController.getUsers); //Get all the user
-router.post("/userByMail", Authorization, UserController.getUsersByMail); //Get user by mail
+router.get("/userByToken", UserController.getUsersByToken); //Get user by mail
 router.put("/update", Authorization, UserController.updateUser); //Update user
 router.delete("/delete/:id", Authorization, UserController.deleteUserById); //Delete User
 router.post(

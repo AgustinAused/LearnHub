@@ -1,5 +1,8 @@
 let Service = require('../database/models/Servicio');
-let usuario = require('../database/models/Usuario');
+let User = require('../database/models/Usuario');
+const nodemailer = require('nodemailer');
+let bcrypt = require('bcryptjs');
+let jwt = require('jsonwebtoken');
 
 
 // Saving the context of this module inside the _the variable
@@ -46,14 +49,22 @@ exports.getService = async function (req) {
 
 // Async function to get the service by user
 exports.getServiceByUser = async function (user) {
+    // Get the token from the headers
+    const token = user.headers.authorization;
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    
+    // Extract the user ID from the decoded token
+    const userId = decodedToken.id;
+    
+
     let services = []
     try {
         // Find the user 
-        console.log("login:", user);
-        let _user = await usuario.findOne({ name: user.name });
-        console.log(_user)
+        let _user = await User.findById(userId).populate('Servicio');;
+        
         // Get the service list 
-        services = _user.servicios;
+        services = _user.services;
         // Return the service list that was retured by the mongoose promise
         return services;
     } catch (e) {
@@ -67,13 +78,13 @@ exports.getServiceById = async function (id) {
     // Try Catch the awaited promise to handle the error 
     try {
         // Find the service 
-        let service = await Service.findById(id);
+        let services = await Service.findById(id).populate('services');
         // Return the service list that was retured by the mongoose promise
-        return service;
+        return services;
     } catch (e) {
         // return a Error message describing the reason 
         console.log(e)
-        throw Error('Error while getting service')
+        throw Error('Error while getting services')
     }
 }
 

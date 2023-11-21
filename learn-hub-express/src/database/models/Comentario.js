@@ -8,5 +8,5 @@ let ComentarioSchema = new mongoose.Schema({
     state: String
 })
 ComentarioSchema.plugin(mongoosePaginate)
-const Comentario = mongoose.model('Comentario', ComentarioSchema)
+const Comentario = mongoose.model('Comentarios', ComentarioSchema)
 module.exports = Comentario;
