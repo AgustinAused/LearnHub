@@ -15,8 +15,6 @@ export default async function PostServicios(formData) {
   }
 try {
     const token = cookies.get("token"); // Access the "token" value directly
-    // const cookies = parseCookies();
-    // const token = cookies.token;
     const response = await fetch("http://localhost:4050/api/service/createService", {
         headers: {
             Authorization: `Bearer ${token}`,
