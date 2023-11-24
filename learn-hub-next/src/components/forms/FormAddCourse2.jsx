@@ -1,4 +1,6 @@
 'use client';
+// import getCookie from "@/customHooks/GetToken";
+import postServicios from '@/actions/PostServicios';
 import React, { useState } from "react";
 
 export default function AgregarCursoForm() {
@@ -20,26 +22,17 @@ export default function AgregarCursoForm() {
         });
     };
     //url endpoint
-    const url = 'http//localhost:4050/api/service/createService';
-    //token 
-    // const token = localStorage.getItem("token");
-    const handleSubmit = (e) => {
+    
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Aquí puedes acceder a los datos del formulario
         console.log(curso);
-        // Aqui se envian aca se hace la req
-        fetch(url,
-            {
-                method: 'POST',
-                body: JSON.stringify(curso),
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+        try {
+            const data = await postServicios(curso);
+            console.log(data);
+            } catch (error) {
+            console.error('Error:', error.message);
+            }
     };
 
     return (

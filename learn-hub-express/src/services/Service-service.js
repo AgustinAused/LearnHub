@@ -57,17 +57,13 @@ exports.getServiceByUser = async function (user) {
     
     // Extract the user ID from the decoded token
     const userId = decodedToken.id;
-    
-
-    let services = []
+    let service = [];
     try {
         // Find the user 
-        let _user = await User.findById(userId).populate('servicios');;
-        
-        // Get the service list 
-        services = _user.services;
+        let _user = await User.findById(userId).populate('service');
+        service = _user.services;
         // Return the service list that was retured by the mongoose promise
-        return services;
+        return service;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)

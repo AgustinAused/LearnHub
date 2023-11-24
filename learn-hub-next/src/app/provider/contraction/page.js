@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from "react"
-import hiringData from "@/data/hiringData";
+// import hiringData from "@/data/hiringData";
 import CardContraction from "@/components/cards/CardContraction";
 
 export default function page({ params }) {
@@ -8,9 +8,7 @@ export default function page({ params }) {
     const [data,setData] = useState([])
     useEffect(() => {
             console.log(params.slug);
-            let data = hiringData; 
-            setData(data);
-            console.log(data);
+            
         }
     )
     return(

@@ -1,7 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-export default async function GetServices(formData) {
+// import cookies from 'js-cookie';
+export default async function PostServicios(formData) {
   const form = new FormData();
   form.append("name", formData.name);
   form.append("email", formData.email);
@@ -14,13 +15,18 @@ export default async function GetServices(formData) {
   }
 try {
     const token = cookies.get("token"); // Access the "token" value directly
-    const response = await fetch("URL_DE_LA_API", {
+    // const cookies = parseCookies();
+    // const token = cookies.token;
+    const response = await fetch("http://localhost:4050/api/service/createService", {
         headers: {
             Authorization: `Bearer ${token}`,
         },
         method: "POST",
         body: formData,
     });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const data = await response.json();
     console.log(data);
     return data;

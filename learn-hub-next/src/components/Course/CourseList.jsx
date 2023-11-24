@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useState,useEffect} from "react";
 import CardCourse from "@/components/cards/CardCourse";
 // import ListCourse from "@/data/coursesData"
 
@@ -18,9 +18,9 @@ export default function CourseList() {
         .then(data => {
             console.log(data);
             // Recuperamos el array de cursos
-            const courses = data.cursos;
+            const listCourse = data.services;
             // Actualizamos el estado con el array de cursos
-            setListCourse(courses);
+            setListCourse(listCourse);
         })
         .catch(error => {
             console.error('Error fetching data:', error)

@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 export default function page() {
   const [services, setServices] = useState([]); // Lista de servicios que ofrece el usuario
   
- useEffect(() => {
+useEffect(() => {
     const getServices = async () => {
       const servicesFromServer = await getServicesByUser();
       console.log("servicesFromServer", servicesFromServer);
@@ -22,7 +22,7 @@ export default function page() {
     <UserProfileCard/>
       <div className="flex justify-end">
         {/* Lista de servicios ofrecidos por la cuenta que los da*/}
-        {/* <CourseListAccount courses={services} /> */}
+        <CourseListAccount courses={services} />
       </div>
     </div>
   );

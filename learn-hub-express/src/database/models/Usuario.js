@@ -9,7 +9,7 @@ let UsuarioSchema = new mongoose.Schema({
   degree: String,
   phono: String,
   birth: Date,
-  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "servicios" }],
+  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "service" }],
   image: {
     data: Buffer,
     contentType: String
