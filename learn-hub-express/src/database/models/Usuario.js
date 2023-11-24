@@ -1,6 +1,7 @@
 let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 let mongoosePaginate = require("mongoose-paginate");
-let UsuarioSchema = new mongoose.Schema({
+let UsuarioSchema = new Schema({
   name: String,
   lastName: String,
   email: String,
@@ -9,7 +10,7 @@ let UsuarioSchema = new mongoose.Schema({
   degree: String,
   phono: String,
   birth: Date,
-  services: [{ type: mongoose.Schema.Types.ObjectId, ref: "service" }],
+  services: [{ type: Schema.Types.ObjectId, ref: "servicios" }],
   image: {
     data: Buffer,
     contentType: String
@@ -18,5 +19,5 @@ let UsuarioSchema = new mongoose.Schema({
   
 
 UsuarioSchema.plugin(mongoosePaginate);
-const Usuario = mongoose.model("Usuarios", UsuarioSchema);
+const Usuario = mongoose.model("usuarios", UsuarioSchema);
 module.exports = Usuario;

@@ -14,5 +14,5 @@ let ServicioSchema = new mongoose.Schema({
     // hiring: [{id:mongoose.ObjectId,ref: 'Contratacion'}],
 }) 
 ServicioSchema.plugin(mongoosePaginate)
-const Servicio = mongoose.model('Servicios', ServicioSchema)
+const Servicio = mongoose.model('servicios', ServicioSchema)
 module.exports = Servicio;

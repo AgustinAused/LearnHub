@@ -15,7 +15,7 @@ exports.getAllServices = async (req, res) => {
 exports.getServiceByUser = async (req, res) => {
   try {
     const service = await Service.getServiceByUser(req);
-    res.status(200).json(services);
+    res.status(200).json(service);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -33,21 +33,9 @@ exports.getServiceById = async (req, res) => {
 
 // Create a new service
 exports.createService = async (req, res) => {
-  const service = new Service({
-    name: req.body.name,
-    description: req.body.description,
-    price: req.body.price,
-    date: new Date(),
-    image: req.body.image,
-    state: req.body.state,
-    frecuency: req.body.frecuency,
-    duration: req.body.duration,
-    category: req.body.category,
-  });
-
   try {
-    const newService = await service.save();
-    res.status(201).json(newService);
+    const service = await Service.createService(req);
+    res.status(201).json(service);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
