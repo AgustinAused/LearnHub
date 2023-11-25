@@ -3,14 +3,24 @@ import { cookies } from "next/headers";
 
 export default async function UnpublishService(id) {
     try {
-        const token = cookies().get("token"); // Convert token to string
-        const response = await fetch(`http://localhost:4050/api/services/unpublishService/${id}`, {
-        method: "PUT",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
+        const token = cookies().get("token");
+        // Convert token to string
+        let tokenString = JSON.stringify(token);
+        const extractedToken = tokenString.split('"')[7];
+        console.log(id + "y "+ token);
+        const response = await fetch(`http://localhost:4050/api/services/unpublishService`, {
+            method: "PUT",
+            headers: {
+                Authorization: `Bearer ${extractedToken}`,
+                "Content-Type": "application/json",
+            },
+            body:JSON.stringify({
+                id: id,
+            }),
         });
-        console.log("Full Response:", response); // Log the full response
+
+        console.log("Full Response:", response);
+
         const data = await response.json();
         console.log("Parsed JSON Data:", data);
         return data;

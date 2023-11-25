@@ -1,4 +1,5 @@
 import DeleteService from "@/actions/DeleteService";
+import UnpublishService from "@/actions/UnpublishService";
 import {
   Card,
   CardBody,
@@ -25,12 +26,10 @@ export default function CourseAccount({ course }) {
     e.preventDefault();
     // Your code here
     try{
-      const unpublishFetch = async () => {
-        const courseDA = await UnpublishService(course._id);
-        console.log('service unpublish');
-      };
+      const courseDA = await UnpublishService(course._id);
+      console.log('service unpublish :' + courseDA); 
       unpublishFetch();
-    }catch{
+    }catch(error){
       console.error("Error:", error);
     }
   };

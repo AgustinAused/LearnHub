@@ -205,12 +205,13 @@ exports.deleteService = async function (req) {
 };
 
 // Async function to Unpublish Service
-exports.unpublishService = async function (req) {
+exports.unpublishService = async function (id) {
   // Get the service ID
-  let id = req.params.id;
+  // let id = body.id;
   try {
     // Find the service by ID
-    let service = await Service.findById(id);
+    console.log("Service ID:", id);
+    let service = await Service.findById({_id : id});
     // Check if the service exists
     if (!service) {
       throw Error("Service not found");

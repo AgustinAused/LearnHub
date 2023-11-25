@@ -2,9 +2,9 @@
 "use server";
 import { cookies } from "next/headers";
 
+
 export default async function DeleteService(id) {
     try {
-        
         const token = cookies().get("token");
         // Convert token to string
         let tokenString = JSON.stringify(token);
