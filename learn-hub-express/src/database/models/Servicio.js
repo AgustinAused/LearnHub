@@ -15,7 +15,8 @@ let ServicioSchema = new Schema({
     state : String,
     frequency : String,
     duration : String,
-    categoria: String,
+    category: String,
+    classType : String,
     // comments: [{id:mongoose.ObjectId,ref: 'Comentario'}],
     // hiring: [{id:mongoose.ObjectId,ref: 'Contratacion'}],
 }) 

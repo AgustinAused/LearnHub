@@ -8,7 +8,7 @@ export default function AgregarCursoForm() {
     description: "",
     image: null,
     state: "active",
-    frecuency: "",
+    frequency: "",
     duration: "",
     classType: "",
     category: "",

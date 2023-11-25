@@ -99,7 +99,7 @@ exports.createService = async function (service) {
   let newService = new Service({
     name: data.title,
     description: data.description,
-    resposable : userId ,
+    responsable : userId ,
     price: data.price,
     date: Date.now(),
     responsable: {userId},
@@ -107,6 +107,7 @@ exports.createService = async function (service) {
     frequency: data.frequency,
     duration: data.duration,
     category: data.category,
+    classType: data.classType,
   });
   // Check if the user has provided an image
   if (image) {
@@ -128,7 +129,12 @@ exports.createService = async function (service) {
     // Saving the service
     let savedService = await newService.save();
 
+<<<<<<< Updated upstream
    
+=======
+    // le metemos un responsable al servicio
+    savedService.push({ _id: userId });
+>>>>>>> Stashed changes
 
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio

@@ -23,28 +23,12 @@ export default function FormDataTea() {
     });
   };
 
-  //url endpoint
-  const url = 'http//localhost:4050/api/users/update';
-  //token 
-  const token = localStorage.getItem("token");
   const handlerSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes acceder a los datos del formulario
     console.log('Datos del formulario:', formulario);
     // Aqui se envian aca se hace la req
-    fetch(url,
-      {
-        method: 'PUT',
-        body: JSON.stringify(formulario),
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err))
-  };
+  }
 
   return (
     <Card
