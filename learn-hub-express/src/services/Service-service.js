@@ -140,7 +140,7 @@ exports.createService = async function (service) {
 
     User.findByIdAndUpdate(
         userId,
-        { $push: { services: savedServiceId, ref:'Servicios' } },
+        { $push: { services: savedService._id, ref:'Servicios' } },
         { new: true }
       )
         .then((usuarioActualizado) => {
@@ -192,14 +192,12 @@ exports.updateService = async function (service) {
 };
 
 // Async function to delete a service
-exports.deleteService = async function (id) {
+exports.deleteService = async function (req) {
   // Delete the service
   try {
-    var deleted = await Service.remove({ _id: id });
-    if (deleted.result.n === 0) {
-      throw Error("service Could not be deleted");
-    }
-    return deleted;
+    const deletedService = await Service.findOneAndDelete({ _id: req.params.id });
+    console.log("eliminado")
+    return deletedService;
   } catch (e) {
     console.log(e);
     throw Error("Error Occured while Deleting the service");
@@ -207,7 +205,9 @@ exports.deleteService = async function (id) {
 };
 
 // Async function to Unpublish Service
-exports.unpublishService = async function (id) {
+exports.unpublishService = async function (req) {
+  // Get the service ID
+  let id = req.params.id;
   try {
     // Find the service by ID
     let service = await Service.findById(id);

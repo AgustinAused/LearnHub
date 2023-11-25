@@ -1,3 +1,4 @@
+import DeleteService from "@/actions/DeleteService";
 import {
   Card,
   CardBody,
@@ -8,7 +9,32 @@ import {
 import Link from "next/link";
 
 export default function CourseAccount({ course }) {
-  const deleteCourse = () => {};
+  const deleteCourse = async (e) => {
+    e.preventDefault();
+    try {
+        const deleteFetch = async () => {
+          const courseDA = await DeleteService(course._id);
+        };
+        deleteFetch();
+    }
+    catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  const unpublishCourse = async (e) => {
+    e.preventDefault();
+    // Your code here
+    try{
+      const unpublishFetch = async () => {
+        const courseDA = await UnpublishService(course._id);
+        console.log('service unpublish');
+      };
+      unpublishFetch();
+    }catch{
+      console.error("Error:", error);
+    }
+  };
+
 
   return (
     <Card className="items-center flex justify-between flex-row w-">
@@ -19,7 +45,7 @@ export default function CourseAccount({ course }) {
         <Typography>{course.description}</Typography>
       </CardBody>
       <CardFooter className="space-x-4 flex-row">
-        <Button className="" onClick={deleteCourse}>
+        <Button className="" onClick={unpublishCourse}>
           unpublish
         </Button>
         {/*tinee que eliminar el conmentario */}
