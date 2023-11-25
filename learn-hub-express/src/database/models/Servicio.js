@@ -1,10 +1,15 @@
 let mongoose = require('mongoose')
+let Schema = mongoose.Schema;
 let mongoosePaginate = require('mongoose-paginate')
-let ServicioSchema = new mongoose.Schema({
+let ServicioSchema = new Schema({
     name : String,
     description : String,
     price : String,
-    responsable : {id:mongoose.ObjectId,ref:'Usuario'},
+    responsable : {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario', // Aquí debes especificar el nombre del modelo de Usuario
+        required: true
+    },
     image : String,
     date : Date,
     state : String,
