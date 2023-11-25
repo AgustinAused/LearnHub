@@ -1,4 +1,5 @@
 import DeleteService from "@/actions/DeleteService";
+import PublishService from "@/actions/PublishService";
 import UnpublishService from "@/actions/UnpublishService";
 import {
   Card,
@@ -33,6 +34,17 @@ export default function CourseAccount({ course }) {
       console.error("Error:", error);
     }
   };
+  const PublishCourse = async (e) => {
+    e.preventDefault();
+    // Your code here
+    try{
+      const courseDA = await PublishService(course._id);
+      console.log('service publish :' + courseDA); 
+      unpublishFetch();
+    }catch(error){
+      console.error("Error:", error);
+    }
+  };
 
 
   return (
@@ -44,9 +56,18 @@ export default function CourseAccount({ course }) {
         <Typography>{course.description}</Typography>
       </CardBody>
       <CardFooter className="space-x-4 flex-row">
-        <Button className="" onClick={unpublishCourse}>
-          unpublish
-        </Button>
+        {
+          course.state === "Publish" ? (
+            <Button className="" onClick={unpublishCourse}>
+              Unpublish
+            </Button>
+          ) : (
+            <Button className="" onClick={PublishCourse}>
+              Publish
+            </Button>
+          )
+        }
+        
         {/*tinee que eliminar el conmentario */}
         <Link href={`commets/${course.id}`}>
           <Button className="">Commets</Button>

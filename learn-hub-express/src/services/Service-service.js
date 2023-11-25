@@ -244,6 +244,6 @@ exports.publishService = async function (id) {
     return savedService;
   } catch (e) {
     console.log(e);
-    throw Error("Error Occured while unpublishing the service");
+    throw Error("Error Occured while publishing the service");
   }
 }
