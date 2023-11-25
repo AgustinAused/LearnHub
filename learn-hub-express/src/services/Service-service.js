@@ -37,7 +37,7 @@ exports.getService = async function (req) {
   // Try Catch the awaited promise to handle the error
   try {
     console.log("Query", filters);
-    let services = await Service.paginate(filters, options);
+    let services = await Service.paginate(filters, options).populate('responsable');
     // Return the serviced list that was retured by the mongoose promise
     return services;
   } catch (e) {
@@ -135,8 +135,7 @@ exports.createService = async function (service) {
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio
 
-    let savedServiceId= savedService.id;
-    console.log(savedServiceId)
+    console.log(savedService.responsable)
 
     User.findByIdAndUpdate(
         userId,
@@ -144,7 +143,7 @@ exports.createService = async function (service) {
         { new: true }
       )
         .then((usuarioActualizado) => {
-          console.log('Usuario actualizado:', usuarioActualizado);
+          // console.log('Usuario actualizado:', usuarioActualizado);
         })
         .catch((err) => {
           console.error(err);
