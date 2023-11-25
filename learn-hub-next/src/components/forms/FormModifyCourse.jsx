@@ -29,7 +29,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <input
             type="text"
             id="titulo"
-            name="title"
+            name="name"
             value={curso.name}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
@@ -51,13 +51,13 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           ></textarea>
         </div>
         <div>
-          <label htmlFor="duracion" className="block text-sm font-medium text-gray-600">
+          <label htmlFor="duration" className="block text-sm font-medium text-gray-600">
             Duración
           </label>
           <input
             type="text"
-            id="duracion"
-            name="duracion"
+            id="duration"
+            name="duration"
             value={curso.duration}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
@@ -70,7 +70,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           </label>
           <select
             id="frecuencia"
-            name="frecuencia"
+            name="frequency"
             value={curso.frequency}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
@@ -89,7 +89,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <input
             type="text"
             id="categoria"
-            name="categoria"
+            name="category"
             value={curso.category}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
@@ -102,7 +102,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           </label>
           <select
             id="tipoClase"
-            name="type"
+            name="classType"
             value={curso.classType}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"

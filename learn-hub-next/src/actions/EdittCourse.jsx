@@ -13,8 +13,6 @@ export default async function EditCourse(courseModify) {
             },
             body: JSON.stringify(courseModify),
         });
-        console.log("Full Response:", response); // Log the full response
-        const data = await response.json();
         console.log("Parsed JSON Data:", data);
         return data;
     } catch (error) {
