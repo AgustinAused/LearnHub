@@ -30,7 +30,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="titulo"
             name="title"
-            value={curso.title}
+            value={curso.name}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -58,7 +58,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="duracion"
             name="duracion"
-            value={curso.duracion}
+            value={curso.duration}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -71,7 +71,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <select
             id="frecuencia"
             name="frecuencia"
-            value={curso.frecuencia}
+            value={curso.frequency}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -90,7 +90,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="categoria"
             name="categoria"
-            value={curso.categoria}
+            value={curso.category}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -103,7 +103,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <select
             id="tipoClase"
             name="type"
-            value={curso.type}
+            value={curso.classType}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required

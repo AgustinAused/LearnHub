@@ -69,11 +69,11 @@ export default function CourseAccount({ course }) {
         }
         
         {/*tinee que eliminar el conmentario */}
-        <Link href={`commets/${course.id}`}>
+        <Link href={`commets/${course._id}`}>
           <Button className="">Commets</Button>
           {/*pagina de gestion de comentarios*/}
         </Link>
-        <Link href={`/course/edit/${course.id}`}>
+        <Link href={`/course/edit/${course._id}`}>
           <Button className="">Modify</Button>
           {/*abre el formulario y modifica los campos necesarios */}
         </Link>
