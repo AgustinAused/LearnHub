@@ -4,6 +4,7 @@ let ServicioSchema = new mongoose.Schema({
     name : String,
     description : String,
     price : String,
+    responsable : {id:mongoose.ObjectId,ref:'Usuario'},
     image : String,
     date : Date,
     state : String,

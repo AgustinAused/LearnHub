@@ -15,13 +15,13 @@ export default function CardCourse({ course }) {
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-2">
-                    {course.title}
+                    {course.name}
                 </Typography>
                 <Typography>
                     {course.description}
                 </Typography>
                 <Typography>
-                    {course.name}
+                    {course.responsable}
                 </Typography>
                 <Typography>
                     {course.frequency}

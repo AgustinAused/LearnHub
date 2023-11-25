@@ -99,6 +99,7 @@ exports.createService = async function (service) {
   let newService = new Service({
     name: data.title,
     description: data.description,
+    resposable : userId ,
     price: data.price,
     date: Date.now(),
     state: data.state,
