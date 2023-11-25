@@ -7,7 +7,7 @@ let ServicioSchema = new Schema({
     price : String,
     responsable : {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario', // Aquí debes especificar el nombre del modelo de Usuario
+        ref: 'usuarios', // Aquí debes especificar el nombre del modelo de Usuario
         required: true
     },
     image : String,

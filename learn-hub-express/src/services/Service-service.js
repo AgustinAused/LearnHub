@@ -13,6 +13,7 @@ exports.getService = async function (req) {
   const options = {
     page: req.query.page || 1, // Número de página desde la solicitud
     limit: req.query.limit || 10, // Cantidad de documentos por página desde la solicitud
+    populate: "responsable"
   };
 
   const filters = {};
@@ -37,7 +38,7 @@ exports.getService = async function (req) {
   // Try Catch the awaited promise to handle the error
   try {
     console.log("Query", filters);
-    let services = await Service.paginate(filters, options).populate('responsable');
+    let services = await Service.paginate(filters, options);
     // Return the serviced list that was retured by the mongoose promise
     return services;
   } catch (e) {
