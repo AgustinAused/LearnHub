@@ -1,8 +1,8 @@
 import ArticulCourse from '@/components/Course/ArticulCourse';
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export default function page({params}) {
-  useEffect();
+
 
   return (
     <div className='my-28'>

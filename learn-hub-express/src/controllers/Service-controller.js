@@ -25,8 +25,18 @@ exports.getServiceByUser = async (req, res) => {
 exports.getServiceById = async (req, res) => {
   try {
     const service = await Service.getServiceById(req.params.id);
+    if (!service) {
+      // Service not found
+      return res.status(404).json({ message: 'Service not found' });
+    }
+    // Service found, respond with the service data
     res.status(200).json(service);
   } catch (err) {
+    if (err.name === 'ValidationError') {
+      // Handle validation errors
+      return res.status(400).json({ message: 'Validation error', errors: err.errors });
+    }
+    // Other types of errors
     res.status(500).json({ message: err.message });
   }
 };

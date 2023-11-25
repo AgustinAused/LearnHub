@@ -4,18 +4,22 @@ import { CarouselCustomNavigation } from "@/components/carrousel/CarouselCustomN
 import FormsComments from "../forms/FormsComments";
 import CustomComment from "../comment/CustomComment";
 import FormsInscrip from "../forms/FormsInscrip";
+import GetServiceById from "@/actions/GetServiceById";
+
 // import coursesData from "@/data/coursesData";
 
 export default function ArticulCourse({ course }) {
   const [courseDat, setCourseDat] = useState({});
   useEffect(() => {
-    fetch(`http//localhost:4050/api/service/serviceById/${course}`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      setCourseDat(data);
-    })
-    .catch(err => console.log(err));
+    try {
+      const fetchCourse = async () => {
+        const courseDA = await GetServiceById(course);
+        setCourseDat(courseDA);
+      };
+      fetchCourse();
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
   return (
     <div>
