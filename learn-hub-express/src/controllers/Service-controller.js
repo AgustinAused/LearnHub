@@ -64,8 +64,8 @@ exports.updateService = async (req, res) => {
 // Delete a service
 exports.deleteService = async (req, res) => {
   try {
-    const service = await Service.deleteService(req.body)// deberia ser un id
-    res.status(200).json({ message: 'Service deleted successfully' });
+    const service = await Service.deleteService(req)// deberia ser un id
+    res.status(200).json({ message: 'Service deleted successfully', serviceEliminate : service });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
