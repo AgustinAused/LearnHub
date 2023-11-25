@@ -126,8 +126,12 @@ exports.createService = async function (service) {
   try {
     // Saving the service
     let savedService = await newService.save();
+
+    // le metemos un responsable al servicio
+    savedService.push({ responsable: userId });
+
     // Update the User with the new service
-    // busco al usuario
+    // busco al usuario por id y le agrego el servicio
 
     let savedServiceId= savedService.id;
     console.log(savedServiceId)
