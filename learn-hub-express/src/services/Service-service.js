@@ -100,10 +100,8 @@ exports.createService = async function (service) {
   let newService = new Service({
     name: data.title,
     description: data.description,
-    responsable : mongoose.Types.ObjectId(userId) ,
     price: data.price,
     date: Date.now(),
-    responsable: {userId},
     state: data.state,
     frequency: data.frequency,
     duration: data.duration,
@@ -128,10 +126,11 @@ exports.createService = async function (service) {
   //   }
   try {
     // Saving the service
+    newService.responsable = userId;
     let savedService = await newService.save();
+    // agregar el id de usuario al servicio
+    // console.log(savedService)
 
-    // le metemos un responsable al servicio
-    savedService.push({ _id: userId });
 
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio

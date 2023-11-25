@@ -65,9 +65,10 @@ export default function NavbarAutenticado() {
   
   const logout = async (e) => {
     e.preventDefault();
-    if (await LogoutSession()) {
-      router.push('/');
+    const logout = LogoutSession();
+    if (logout) {
       router.refresh();
+      router.push('/');
     }
     
   }
