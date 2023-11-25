@@ -22,7 +22,7 @@ export default async function loginAction(formData) {
       cookies().set("token", data.loginUser, { secure: true });
       // cookies.set("token", data.token,{secure:true});
       // Puedes también realizar otras acciones con el token si es necesario
-      console.log("Token guardado en localStorage:", data.loginUser);
+      console.log("Token guardado en las cookies", data.loginUser);
       return data;
     }
   

@@ -102,6 +102,7 @@ exports.createService = async function (service) {
     resposable : userId ,
     price: data.price,
     date: Date.now(),
+    responsable: {userId},
     state: data.state,
     frequency: data.frequency,
     duration: data.duration,
@@ -127,8 +128,7 @@ exports.createService = async function (service) {
     // Saving the service
     let savedService = await newService.save();
 
-    // le metemos un responsable al servicio
-    savedService.push({ responsable: userId });
+   
 
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio
