@@ -21,20 +21,20 @@ export default function CardCourse({ course }) {
                     {course.description}
                 </Typography>
                 <Typography>
-                    {course.responsable.nombre}
+                    {course.name}
                 </Typography>
                 <Typography>
-                    {course.frecuencia}
+                    {course.frequency}
                 </Typography>
                 <Typography>
-                    {course.duracion}
+                    {course.duration}
                 </Typography>
                 <Typography>
                     {course.categoria}
                 </Typography>
             </CardBody>
             <CardFooter className="pt-0">
-                <Link href= {`/course/${course.id}`}>
+                <Link href= {`/course/${course._id}`}>
                     <Button>Leer mas</Button>
                 </Link>
             </CardFooter>
