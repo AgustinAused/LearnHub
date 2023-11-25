@@ -7,7 +7,7 @@ export default async function PostServicios(formData) {
   form.append("title", formData.title);
   form.append("description", formData.description);
   form.append("state", "active");
-  form.append("frecuency", formData.frecuency);
+  form.append("frequency", formData.frequency);
   form.append("duration", formData.duration);
   form.append("classType", formData.classType);
   form.append("category", formData.category);

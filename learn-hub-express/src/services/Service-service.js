@@ -1,5 +1,6 @@
 let Service = require("../database/models/Servicio");
 let User = require("../database/models/Usuario");
+let mongoose = require("mongoose");
 const nodemailer = require("nodemailer");
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
@@ -99,7 +100,7 @@ exports.createService = async function (service) {
   let newService = new Service({
     name: data.title,
     description: data.description,
-    responsable : userId ,
+    responsable : mongoose.Types.ObjectId(userId) ,
     price: data.price,
     date: Date.now(),
     responsable: {userId},
@@ -129,12 +130,8 @@ exports.createService = async function (service) {
     // Saving the service
     let savedService = await newService.save();
 
-<<<<<<< Updated upstream
-   
-=======
     // le metemos un responsable al servicio
     savedService.push({ _id: userId });
->>>>>>> Stashed changes
 
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio
