@@ -19,6 +19,7 @@ router.post('/createService', upload.single("image"),  Service_controller.create
 router.put('/updateService',Authentication,  Service_controller.updateService); //Update a service
 router.delete('/deleteService/:id',Authentication,  Service_controller.deleteService); //Delete a service
 router.put('/unpublishService',Authentication,  Service_controller.unpublishService); //Unpublish a service
+router.put('/publishService',Authentication,  Service_controller.publishService); //Publish a service
 
 
 

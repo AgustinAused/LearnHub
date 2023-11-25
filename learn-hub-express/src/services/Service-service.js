@@ -195,7 +195,11 @@ exports.updateService = async function (service) {
 exports.deleteService = async function (req) {
   // Delete the service
   try {
+    
     const deletedService = await Service.findOneAndDelete({ _id: req.params.id });
+    const user = await User.findById({_id : deletedService.responsable})
+    user.services.findOneAndDelete({_id : deletedService._id});
+    
     console.log("eliminado")
     return deletedService;
   } catch (e) {
@@ -206,11 +210,8 @@ exports.deleteService = async function (req) {
 
 // Async function to Unpublish Service
 exports.unpublishService = async function (id) {
-  // Get the service ID
-  // let id = body.id;
+
   try {
-    // Find the service by ID
-    console.log("Service ID:", id);
     let service = await Service.findById({_id : id});
     // Check if the service exists
     if (!service) {
@@ -227,3 +228,22 @@ exports.unpublishService = async function (id) {
     throw Error("Error Occured while unpublishing the service");
   }
 };
+
+exports.publishService = async function (id) {
+  try {
+    let service = await Service.findById({_id : id});
+    // Check if the service exists
+    if (!service) {
+      throw Error("Service not found");
+    }
+    // Update the state to "Unpublish"
+    service.state = "Publish";
+    // Save the updated service
+    let savedService = await service.save();
+
+    return savedService;
+  } catch (e) {
+    console.log(e);
+    throw Error("Error Occured while unpublishing the service");
+  }
+}

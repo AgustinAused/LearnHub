@@ -1,14 +1,17 @@
-"use server";
-import { cookies } from "next/headers";
 
-export default async function UnpublishService(id) {
+"use server";
+
+import { cookies } from "next/headers"; 
+
+
+export default async function PublishService(id) {
     try {
         const token = cookies().get("token");
         // Convert token to string
         let tokenString = JSON.stringify(token);
         const extractedToken = tokenString.split('"')[7];
         console.log(id + "y "+ token);
-        const response = await fetch(`http://localhost:4050/api/services/unpublishService`, {
+        const response = await fetch(`http://localhost:4050/api/services/publishService`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
@@ -26,3 +29,4 @@ export default async function UnpublishService(id) {
         console.error("Error:", error);
     }
     }
+    
