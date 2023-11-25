@@ -128,12 +128,13 @@ exports.updateUser = async function (user) {
     //rehacer logica
     //Edit the User Object
     let hashedPassword = bcrypt.hashSync(user.password, 8);
-    oldUser.nombre = user.nombre ? user.nombre : oldUser.nombre;
-    oldUser.email = user.email ? user.email : oldUser.email;
-    oldUser.password = hashedPassword ? hashedPassword : oldUser.password;
-    oldUser.titulo = user.titulo ? user.titulo : oldUser.titulo;
-    oldUser.telefono = user.telefono ? user.telefono : oldUser.telefono;
-    oldUser.nacimiento = user.nacimiento ? user.nacimiento : oldUser.nacimiento;
+    if (user.nombre) oldUser.nombre = user.nombre;
+    if (user.email) oldUser.email = user.email;
+    if (user.password) oldUser.password = bcrypt.hashSync(user.password, 8);
+    if (user.titulo) oldUser.titulo = user.titulo;
+    if (user.telefono) oldUser.telefono = user.telefono;
+    if (user.nacimiento) oldUser.nacimiento = user.nacimiento;
+
     try {
         let savedUser = await oldUser.save()
         return savedUser;

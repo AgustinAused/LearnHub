@@ -7,6 +7,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import UpdateExpirience from "@/actions/Updateexperience";
 
 export default function FormDataTea() {
 
@@ -23,11 +24,18 @@ export default function FormDataTea() {
     });
   };
 
-  const handlerSubmit = (e) => {
+  const  handlerSubmit = async (e) => {
     e.preventDefault();
     // Aquí puedes acceder a los datos del formulario
     console.log('Datos del formulario:', formulario);
     // Aqui se envian aca se hace la req
+    try{
+        const update = await UpdateExpirience(formulario);
+        console.log(update);
+
+    }catch(error){
+      console.log('Error: ', error);
+    }
   }
 
   return (
@@ -38,9 +46,15 @@ export default function FormDataTea() {
     >
       <h2 className="text-2xl font-semibold mb-4">Experiencia del Proveedor</h2>
       <form className="mt-8 mb-2 w-80 " onClick={handlerSubmit}>
-        <div className="mb-4">
-          <Input type="text" name="Titulo" label="Título" value={formulario.titulo}
-            onChange={handleChange} />
+        
+    <div className="mb-4">
+    <Input
+    name="titulo"
+    label="Titulo"
+    type="text"
+    value={formulario.titulo}
+    onChange={handleChange}
+  />
         </div>
         <div class="relative w-full min-w-[200px]">
     <textarea  name="experiencia" value={formulario.experiencia} onChange={handleChange}
