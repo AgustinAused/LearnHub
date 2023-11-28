@@ -23,12 +23,12 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
       <h2 className="text-2xl font-semibold mb-4">Modificar Curso</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="titulo" className="block text-sm font-medium text-gray-600">
+          <label htmlFor="name" className="block text-sm font-medium text-gray-600">
             Título
           </label>
           <input
             type="text"
-            id="titulo"
+            id="name"
             name="name"
             value={curso.name}
             onChange={handleChange}
