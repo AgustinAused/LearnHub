@@ -184,6 +184,20 @@ exports.updateService = async function (service) {
   console.log(oldService);
   try {
     var savedService = await oldService.save();
+    console.log(savedService);
+    let userId = savedService.responsable;
+    User.findByIdAndUpdate(
+      userId,
+      { $push: { services: savedService._id } },
+      { new: true }
+    )
+      .then((usuarioActualizado) => {
+        console.log('Usuario actualizado:', usuarioActualizado);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    
     return savedService;
   } catch (e) {
     console.log(e);
