@@ -6,18 +6,29 @@
 - [x] 2. Alejandro Biarrieta 
 
 ### Descripción del proyecto
-El proyecto consiste en un marketplace de servicios de todo tipo, en el cual los usuarios pueden registrarse y ofrecer sus servicios, así como también pueden contratar los servicios de otros usuarios. El proyecto está desarrollado en el framework de React, utilizando el lenguaje de programación JavaScript, y la base de datos utilizada es .
+El proyecto consiste en un marketplace de servicios de todo tipo, en el cual los usuarios pueden registrarse y ofrecer sus servicios, así como también pueden contratar los servicios de otros usuarios. El proyecto está desarrollado en el framework de React, utilizando el lenguaje de programación JavaScript, y la base de datos utilizada es mongoDB.
+
+el backend esta hecho en node js con las librerias de mongoo para la base de datos.
+El frontend se hizo en react, y el frontend es una pagina web que permite a los usuarios registrarse o logue
+arse, y una vez logueado, puede ver los servicios que ofrece, contratarlos, y calificarlos.
+
 
 ### Funcionalidades
-- [x] 1. Registro de usuarios
-- [x] 2. Login de usuarios
+- [x] 1. Registro de profesor
+- [x] 2. Login de profesor
 - [x] 3. Publicación de servicios
 - [x] 4. Contratación de servicios
 - [x] 5. Calificación de servicios
 - [x] 6. Visualización de servicios
-- [x] 7. Visualización de usuarios
-- [x] 8. Visualización de contrataciones
-- [x] 9. Visualización de calificaciones
+- [x] 7. Buscar servicio con filtros
+- [x] 8. Visualización de servicios contratados
+- [x] 9. Visualización de contrataciones
+- [x] 10. Visualización de calificaciones
+- [x] 11. Visualización de perfil de profesor
+- [x] 12. Visualización de perfil de servicio
+
+
+### Funcionalidades a desarrollar
 
 
 ### Tecnologías utilizadas
@@ -57,6 +68,7 @@ El proyecto se encuentra en diseño y desarrollo.
 
 ### Diagrama de clases
 ![Diagrama de clases](
+    
 )
 
 ### Diagrama de base de datos
