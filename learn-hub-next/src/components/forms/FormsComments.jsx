@@ -1,6 +1,7 @@
 'use client';
 import React,{useState} from "react";
 import { RatingWithItem } from "../rating/Rating";
+import NewComment from "@/actions/NewCommet";
 
 
 export default function FormsComments(idService) {
@@ -9,7 +10,6 @@ export default function FormsComments(idService) {
         email: "",
         comment: "",
         rating: 4,
-        service: idService,
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -20,14 +20,14 @@ export default function FormsComments(idService) {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http//localhost:4050/api/comments/new`,{
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
         console.log(formData);
+    try{
+        let com = NewComment(formData);
+        console.log(com);
+    }catch(err){
+        console.log(err);
+    }
+
     }
     // Revisar (Espera)
     return(

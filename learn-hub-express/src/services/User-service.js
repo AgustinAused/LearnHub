@@ -176,6 +176,8 @@ exports.loginUser = async function (user) {
             throw Error("Error while Login User");
         }
         let passwordIsValid = bcrypt.compareSync(user.password, _details.password);
+
+        
         if (!passwordIsValid) return 0;
 
         let token = jwt.sign({
@@ -183,25 +185,6 @@ exports.loginUser = async function (user) {
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
-
-        // Verificar si el token está a punto de expirar (por ejemplo, en los próximos 5 minutos)
-        const expirationThreshold = 5 * 60; // 5 minutos en segundos
-        const currentTimestamp = Math.floor(Date.now() / 1000);
-
-        const decodedToken = jwt.verify(token, process.env.SECRET);
-
-        console.log("tiempo de expiracion: ",token.exp )
-
-        if (decodedToken.exp - currentTimestamp < expirationThreshold) {
-            // Token está a punto de expirar, refrescarlo
-            const refreshedToken = await generateAccessToken(token);
-
-            // Actualizar el cliente con el nuevo token
-            token = refreshedToken;
-            console.log({ message: 'Token refreshed', refreshedToken });
-        }
-
-        
         return token;
     } catch (e) {
         // return a Error message describing the reason   
@@ -211,26 +194,7 @@ exports.loginUser = async function (user) {
 
 }
 
-// Reset Password
-exports.resetPassword = async ({email, newPassword}) =>{
-    try {
-        // Obtener el usuario basado en el token de restablecimiento de contraseña
-        const user = await User.findOne({ email: email });
-        // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
-        if (!user) {
-            throw Error('Usuario no encontrado');
-        }
-        // Actualizar la contraseña del usuario
-        user.password = newPassword;
-        // Guardar el usuario en la base de datos
-        await user.save();
-        // Retornar el usuario
-        return user;
-    } catch (error){
-        console.log(error)
-        throw error
-    }
-}
+
 
 
 exports.sendResetEmail = async function (email, resetToken) {
@@ -259,13 +223,23 @@ exports.sendResetEmail = async function (email, resetToken) {
 }
 
 
-//generate access token 
-async function generateAccessToken(token) {
-    // Crear un nuevo token con el mismo payload, pero con una nueva fecha de expiración
-    // NOTE: Usar el mismo payload que el token original, o de lo contrario el token no será válido
-    const payload = { ...token.payload };
-    const newToken = jwt.sign({ payload }, process.env.SECRET, {
-        expiresIn: 86400 // 24 horas
-    });
-    return newToken;
+// Reset Password
+exports.resetPassword = async ({email, newPassword}) =>{
+    try {
+        // Obtener el usuario basado en el token de restablecimiento de contraseña
+        const user = await User.findOne({ email: email });
+        // Si no se encuentra ningún usuario, puedes retornar null o un mensaje indicando que el usuario no fue encontrado
+        if (!user) {
+            throw Error('Usuario no encontrado');
+        }
+        // Actualizar la contraseña del usuario
+        user.password = newPassword;
+        // Guardar el usuario en la base de datos
+        await user.save();
+        // Retornar el usuario
+        return user;
+    } catch (error){
+        console.log(error)
+        throw error
+    }
 }

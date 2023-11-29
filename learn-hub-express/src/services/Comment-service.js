@@ -7,7 +7,7 @@ const User = require('../database/models/Usuario');
 _this = this
 
 // Async function to get the comment list
-exports.getComments = async function(service_id){
+exports.getComments = async function(service_id){ //
     try {
         var comment = await Comment.find({_id : service_id, state : "true"});
         // Return the comment list that was retured by the mongoose promise
@@ -20,7 +20,7 @@ exports.getComments = async function(service_id){
 }
 
 // Async function to get comments by service
-exports.getCommentsByService = async function(service_id){
+exports.getCommentsByService = async function(service_id){ // only use proffesor 
     let comments = []
     try{
         // Find the service 
@@ -47,7 +47,7 @@ exports.createComment = async function(comment){
         date: new Date(),
         calificacion: comment.rating,
         email: comment.email,
-        state: ""
+        state: false
         });
     try{
         // Saving the comment 
@@ -102,6 +102,17 @@ exports.changeState = async function(id){
         comment.state = true; // Assuming 'true' is a boolean value
         // Save the updated comment
         const savedComment = await comment.save();
+
+        // Updare the comment in service
+        let _service = await Service.findOne({comments : id});
+        _service.comments.pull(id);
+        _service.comments.push(savedComment);
+        await _service.save();
+        // Update the comment in user
+        let _user = await User.findOne({service:_service});
+        _user.comments.pull(_service._id);
+        _user.comments.push(savedComment);
+        await _user.save();
         // Return the saved comment
         return savedComment;
     } catch (e) {

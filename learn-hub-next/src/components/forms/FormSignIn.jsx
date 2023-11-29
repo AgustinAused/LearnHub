@@ -37,8 +37,10 @@ export function FormSignIn() {
     }
 
     try {
+      console.log(formData);
       const loginOk = await loginAction(formData);
-      console.log(loginOk);
+      // console.log("holka",loginOk);
+      console.log(loginOk.status);
       if (loginOk.status !== 400) {
         console.log("Token guardado en localStorage:", loginOk);
         router.refresh();
