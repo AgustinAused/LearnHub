@@ -1,6 +1,7 @@
 let mongoose = require('mongoose')
+let Schema = mongoose.Schema;
 let mongoosePaginate = require('mongoose-paginate')
-let ComentarioSchema = new mongoose.Schema({
+let ComentarioSchema = new Schema({
     content : String,
     email: String,
     score : String,

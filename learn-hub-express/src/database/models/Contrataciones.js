@@ -1,6 +1,7 @@
 let mongoose = require('mongoose')
+let Schema = mongoose.Schema;
 let mongoosePaginate = require('mongoose-paginate')
-let ContratacionSchema = new mongoose.Schema({
+let ContratacionSchema = new Schema({
     serviceType: String,
     name: String,
     lastName: String,

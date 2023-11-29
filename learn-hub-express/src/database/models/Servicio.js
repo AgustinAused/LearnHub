@@ -17,8 +17,14 @@ let ServicioSchema = new Schema({
     duration : String,
     category: String,
     classType : String,
-    // comments: [{id:mongoose.ObjectId,ref: 'Comentario'}],
-    // hiring: [{id:mongoose.ObjectId,ref: 'Contratacion'}],
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comentario',
+    }],
+    hiring: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Contratacion',
+    }],
 }) 
 ServicioSchema.plugin(mongoosePaginate)
 const Servicio = mongoose.model('servicios', ServicioSchema)
