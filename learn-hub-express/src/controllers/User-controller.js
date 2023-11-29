@@ -6,10 +6,15 @@ const UserService = require("../services/User-service");
 exports.createUser = async (req, res) => {
     try {
         console.log(req.body)
-        const user = await UserService.createUser(req);
-        res.status(201).json(user);
+         // Llamar al servicio para crear un nuevo usuario
+         const user = await UserService.createUser(req);
+
+         // Devolver el resultado al cliente
+         res.status(201).json(user);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        // Manejar errores de manera más específica y/o loguearlos
+        console.error("Error en la creación de usuario:", err);
+        res.status(500).json({ message: "Error interno del servidor." });
     }
 };
 
