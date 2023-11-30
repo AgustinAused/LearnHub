@@ -58,15 +58,7 @@ exports.createContraction = async function (req) {
             { $push: { hiring: savedContract._id, ref: 'Contrataciones' } },
             { new: true }
         );
-        let userId = updatedService.responsable;
-        // let userr = await user.findOne({ _id: userId });
-        let updatedUser = await user.findByIdAndUpdate(
-            {_id: userId},
-            { $set: { services: updatedService._id , ref: 'Servicio' } },
-            { new: true }
-        );
-
-        console.log("userId", userId);
+       
         // Update user with the new service
         // console.log(updatedService);
         // console.log(updatedUser);??

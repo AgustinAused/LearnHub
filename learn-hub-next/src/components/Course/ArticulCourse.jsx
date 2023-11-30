@@ -15,6 +15,8 @@ export default function ArticulCourse({ course }) {
       const fetchCourse = async () => {
         const courseDA = await GetServiceById(course);
         setCourseDat(courseDA);
+        console.log(courseDA);
+        console.log(course);
       };
       fetchCourse();
     } catch (error) {
@@ -41,7 +43,7 @@ export default function ArticulCourse({ course }) {
               </p>
             </div>
             <div className="px-6 py-4 ">
-              <FormsInscrip id={course._id} price={courseDat.price} serviceType={courseDat.title}/>
+              <FormsInscrip  price={courseDat.price} serviceType={courseDat.classType} id={course}/>
             </div>
           </div>
         </div>
