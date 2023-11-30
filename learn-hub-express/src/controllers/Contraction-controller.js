@@ -4,7 +4,11 @@ const contraction = require('../services/Contraction-service');
 // Get all contractions
 exports.getAllContractions = async (req, res) => {
   try {
-    const contractions = await contraction.getContractsByUser(req.body); //id
+    let token = req.headers.Authorization;
+    const decoded = jwt.verify(token, process.env.SECRET);
+
+
+    const contractions = await contraction.getContractsByUser(decoded.id); //id
     res.status(200).json(contractions);
   } catch (err) {
     res.status(500).json({ message: err.message });

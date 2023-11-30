@@ -9,19 +9,19 @@ _this = this
 // Async function to get the contract list by user 
 exports.getContractsByUser = async function (id) {
     try {
-        var userContract = await user.findById(id);
-        var contractsList = [];
-        for (let i = 0; i < userContract.services.length; i++) {
-            var serviceContract = await service.findById(userContract.services[i]);
-            for (let j = 0; j < serviceContract.hiring.length; j++) {
-                var contract = await contracts.findById(serviceContract.hiring[j]);
-                contractsList.push(contract);
-            }
+        const userContract = await user.findById(id).populate('services');
+        
+        const contractsList = [];
+
+        for (const serviceContract of userContract.services) {
+            const contractsOfService = await contracts.find({ _id: { $in: serviceContract.hiring } });
+            contractsList.push(...contractsOfService);
         }
+
         return contractsList;
     } catch (e) {
-        // return a Error message describing the reason     
-        throw Error("Error while Paginating Contracts")
+        console.error(e);
+        throw Error("Error while Retrieving Contracts");
     }
 }
 
@@ -37,7 +37,6 @@ exports.createContraction = async function (req) {
     // Creating a new Mongoose Object by using the new keyword
     
     var newContract = new contracts({
-        // serviceType: req.body.serviceType,
         name: req.body.name,
         lastName: req.body.lastName,
         email: req.body.email,
@@ -53,22 +52,28 @@ exports.createContraction = async function (req) {
         // Saving the contract 
         var savedContract = await newContract.save();
 
-        let updatedService = await Servicio.findByIdAndUpdate(
-            serviceId,
+        let updatedService = await service.findByIdAndUpdate(
+            // Find the service by ID
+            {_id: serviceId},
             { $push: { hiring: savedContract._id, ref: 'Contrataciones' } },
             { new: true }
         );
-        // Update user with the new service
+        let userId = updatedService.responsable;
+        // let userr = await user.findOne({ _id: userId });
         let updatedUser = await user.findByIdAndUpdate(
-            { services: updatedService._id },
-            { $addToSet: { services: updatedService._id, ref: 'Servicios' } },
+            {_id: userId},
+            { $set: { services: updatedService._id , ref: 'Servicio' } },
             { new: true }
         );
-        console.log(updatedService);
-        console.log(updatedUser);
+
+        console.log("userId", userId);
+        // Update user with the new service
+        // console.log(updatedService);
+        // console.log(updatedUser);??
         return savedContract;
     } catch (e) {
-        // return a Error message describing the reason     
+        // return a Error message describing the reason 
+        console.error(e);    
         throw Error("Error while Creating Contract")
     }
 }
