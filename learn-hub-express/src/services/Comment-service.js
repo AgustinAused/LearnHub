@@ -9,28 +9,31 @@ _this = this
 // Async function to get the comment list
 exports.getComments = async function(service_id){ //
     try {
-        var comment = await Comment.find({_id : service_id, state : "true"});
+        let _service = Service.findById({_id : service_id}).populate('servicios');
+        let comments = _service.comments;
         // Return the comment list that was retured by the mongoose promise
-        return comment;
+        return comments;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)
         throw Error('Error while getting comment')
     }  
-}
+} // para usar en los post de los servicos
 
 // Async function to get comments by service
-exports.getCommentsByService = async function(service_id){ // only use proffesor 
-    let comments = []
+exports.getCommentsByService = async function(req){ // only use proffesor 
+    let serviceId = req.query.id;
+    // let comments = []
     try{
         // Find the service 
-        console.log("service:",service_id); // 
-        let _service = await Service.findOne({_id : service_id});
-        console.log(_service)
+        console.log("service:",serviceId); // 
+        let service = await Service.findOne({_id : serviceId});
+        console.log(service);
         // Get the comment list 
-        comments = _service.comments;
-        // Return the comment list that was retured by the mongoose promise
-        return comments;
+        let comments = await Comment.find({_id : service.comments});
+        // Return the comment list that was retured by the mongoose promise 
+        return { title: service.name , comments : comments,
+        };;
     } catch(e){
         // return a Error message describing the reason
         console.log(e)     
@@ -64,6 +67,15 @@ exports.createComment = async function(comment){
             { $push: { comments: savedComment._id, ref: 'Comentarios' } },
             { new: true }
         );
+
+        // Update the user service
+        let updateUser = await User.findByIdAndUpdate(
+            {_id : updatedService.responsable},
+            { $set:{service:updatedService._id}},
+            { new: true }
+        )
+        // Return the saved comment
+
         console.log(updatedService);
         return savedComment;
     }catch(e){

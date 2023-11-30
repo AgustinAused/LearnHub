@@ -1,7 +1,7 @@
 const express = require('express');
 const commentController = require('../controllers/Comments-controller');
 const router = express.Router();
-const Authentication = require('../auth/authentication')
+const Authentication = require('../auth/authentication');
 
 
 
@@ -16,7 +16,7 @@ router.get('/all', commentController.getAllCommentsUser);
 // Create new comment
 router.post('/new', commentController.createComment);
 // Get all comment in the service
-router.get('/:id_service', commentController.getCommentByService);
+router.get('/allbyservice',Authentication, commentController.getCommentByService);
 // Update a comment
 router.put('/update/:id', Authentication, commentController.updateComment);
 // Delete a comment

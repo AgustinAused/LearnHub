@@ -1,5 +1,6 @@
 const Servicio = require('../database/models/Servicio');
 const comment = require('../services/Comment-service');
+const express = require('express');
 
 // Get all comments
 exports.getAllCommentsUser = async (req, res) => {
@@ -14,7 +15,10 @@ exports.getAllCommentsUser = async (req, res) => {
 // Get all comment in the service
 exports.getCommentByService = async (req, res) => {
   try {
-    const comments = await comment.getCommentByService(req.body); // de un servisio 
+    // console.log("llegue al back");
+    // console.log(req.query.id);
+    const comments = await comment.getCommentsByService(req);
+     // id de un servisio 
     res.status(200).json(comments);
   } catch (err) {
     res.status(500).json({ message: err.message });
