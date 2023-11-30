@@ -14,7 +14,7 @@ export default function FormsInscrip(price, serviceType, course) {
         price: price,
         serviceType: serviceType,
         // get the params from the url
-        serviceId: course.id
+        serviceId: course
     });
 
     const handleChange = (e) => {
