@@ -17,17 +17,16 @@ export default function UserProfileCard() {
       
       async function fetchData() {
         const data = await GetUserDetails();
-        // Convierte el Buffer a una cadena Base64
-        const base64Image = Buffer.from(data.image.data.data).toString("base64");
-  
-        // Construye la URL de la imagen
-        const imageUrl = `data:${data.image.contentType};base64,${base64Image}`;
-  
-        // Actualiza el estado con la URL de la imagen
-        setImageSrc(imageUrl);
+        if(data.image && data.image.data){
+            // Convierte el Buffer a una cadena Base64
+            const base64Image = Buffer.from(data.image.data.data).toString("base64");
+            // Construye la URL de la imagen
+            const imageUrl = `data:${data.image.contentType};base64,${base64Image}`;
+            // Actualiza el estado con la URL de la imagen
+            setImageSrc(imageUrl);
+        }
         setUser(data);
       }
-  
       fetchData();
     }, []);
 return (

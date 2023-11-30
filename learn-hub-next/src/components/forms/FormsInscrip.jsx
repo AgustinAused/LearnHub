@@ -3,7 +3,7 @@ import { useSearchParams } from 'next/navigation';
 import "tailwindcss/tailwind.css";
 import PostContraction from "@/actions/PostContraction";
 
-export default function FormsInscrip(/* price, serviceType, */ course) {
+export default function FormsInscrip(price, serviceType, course) {
     const [Contraction, setContraction] = useState({
         name: "",
         lastName: "",
@@ -11,6 +11,8 @@ export default function FormsInscrip(/* price, serviceType, */ course) {
         email: "",
         preferenceTimeforContact: "",
         message: "",
+        price: price,
+        serviceType: serviceType,
         // get the params from the url
         serviceId: course.id
     });

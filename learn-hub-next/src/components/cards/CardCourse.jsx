@@ -8,6 +8,7 @@ import {
 import Link from "next/link";
 
 export default function CardCourse({ course }) {
+    console.log("Course object:", course);
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
     }
@@ -30,7 +31,10 @@ export default function CardCourse({ course }) {
                     {course.duration}
                 </Typography>
                 <Typography>
-                    {course.categoria}
+                    {course.category}
+                </Typography>
+                <Typography>
+                    {course.classType}
                 </Typography>
             </CardBody>
             <CardFooter className="pt-0">

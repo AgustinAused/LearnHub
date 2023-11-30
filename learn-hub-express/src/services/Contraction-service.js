@@ -27,41 +27,45 @@ exports.getContractsByUser = async function (id) {
 
 
 // Async function to create contract 
-exports.createContraction = async function (contract) {
+exports.createContraction = async function (req) {
     //extrat de user id param
-    let serviceId = contract.serviceId;
+    let serviceId = req.body.serviceId;
+
     console.log("serviceId", serviceId);
-    console.log("contract", contract.body);
+    console.log("contract", req.body);
     
     // Creating a new Mongoose Object by using the new keyword
     
     var newContract = new contracts({
-        serviceType: contract.serviceType,
-        name: contract.name,
-        lastName: contract.lastName,
-        email: contract.email,
-        telephone: contract.telephone,
-        hour: contract.hour,
-        message: contract.message,
-        totalCost: contract.totalCost,
+        // serviceType: req.body.serviceType,
+        name: req.body.name,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        telephone: req.body.telephone,
+        hour: req.body.preferenceTimeforContact,
+        message: req.body.message,
+        totalCost: req.body.price,
+        serviceType: req.body.serviceType,
         state: "Requested",
     })
+    console.log(newContract);
     try {
         // Saving the contract 
         var savedContract = await newContract.save();
 
-        service.findByIdAndUpdate(
-           serviceId,
-            { $push: { contrataciones: savedContract._id, ref:'Contrataciones' } },
+        let updatedService = await Servicio.findByIdAndUpdate(
+            serviceId,
+            { $push: { hiring: savedContract._id, ref: 'Contrataciones' } },
             { new: true }
-          )
-            .then((updateS) => {
-                console.log(updateS);
-            })
-            .catch((err) => {
-              console.error(err);
-            });
-       
+        );
+        // Update user with the new service
+        let updatedUser = await user.findByIdAndUpdate(
+            { services: updatedService._id },
+            { $addToSet: { services: updatedService._id, ref: 'Servicios' } },
+            { new: true }
+        );
+        console.log(updatedService);
+        console.log(updatedUser);
         return savedContract;
     } catch (e) {
         // return a Error message describing the reason     

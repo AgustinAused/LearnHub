@@ -17,6 +17,7 @@ const MultiFilterSearch = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(filters);
+    window.location.reload();
   };
 
   return (
@@ -85,6 +86,7 @@ const MultiFilterSearch = ({ onSearch }) => {
     <button
       type="submit"
       className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 focus:outline-none"
+      onClick={handleSubmit}
     >
       Buscar
     </button>

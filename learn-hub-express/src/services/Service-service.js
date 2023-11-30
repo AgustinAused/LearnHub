@@ -16,23 +16,24 @@ exports.getService = async function (req) {
     populate: "responsable"
   };
 
-  const filters = {};
+  let filters = {};
+  
 
   // Agregar filtros adicionales basados en parámetros de solicitud
-  // Añadir filtros adicionales basados en parámetros de solicitud
-  if (req.query.category) {
+  console.log(filters)
+  if (req.query.category !== 'undefined') {
     filters.category = req.query.category;
   }
 
-  if (req.query.type) {
-    filters.type = req.query.type;
+  if (req.query.classType !== 'undefined') {
+    filters.classType = req.query.classType;
   }
 
-  if (req.query.frequency) {
+  if (req.query.frequency !== 'undefined') {
     filters.frequency = req.query.frequency;
   }
 
-  if (req.query.rating) {
+  if (req.query.rating !== 'undefined') {
     filters.rating = req.query.rating;
   }
   // Try Catch the awaited promise to handle the error

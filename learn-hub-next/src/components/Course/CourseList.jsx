@@ -11,10 +11,12 @@ export default function CourseList() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFilters({ ...filters, [name]: value });
+        
     };
     const onSearch = () => {
         console.log(filters);
         // fetchData();
+        // window.reload();
     }
 
 
@@ -33,7 +35,7 @@ export default function CourseList() {
                 }
             };
             fetchData();
-        }, [pages]);
+        }, [pages,filters]);
 
     const handleLoadMore = () => {
         // Incrementar la página para cargar más cursos

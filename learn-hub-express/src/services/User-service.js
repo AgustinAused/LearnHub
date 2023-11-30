@@ -3,6 +3,9 @@ let User = require('../database/models/Usuario');
 const nodemailer = require('nodemailer');
 let bcrypt = require('bcryptjs');
 let jwt = require('jsonwebtoken');
+const fs = require('fs');
+const path = require('path');
+
 
 
 
@@ -90,8 +93,8 @@ exports.createUser = async function (data) {
     } else {
         // Use a default image
         newUser.image = {
-            data: fs.readFileSync(path.join(__dirname, '../path/to/default/image.png')),
-            contentType: 'image/png'
+            // data: fs.readFileSync(path.join(__dirname, '../path/to/default/image.png')),
+            // contentType: 'image/png'
         };
     }
 

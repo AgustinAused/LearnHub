@@ -5,13 +5,19 @@ import MultiFilterSearch from '@/components/filter/FilterSearch';
 import React,{useState} from 'react'
 
 export default function page() {
-    const handleSearch = (filters) => {
-        // Aquí implementa la lógica de filtrado según los valores de los filtr
-        console.log('Filtros de búsqueda:', filters);
-      }
+    // const [filters, setFilters] = useState({
+    //     category: '',
+    //     classType: '',
+    //     frequency: '',
+    //     rating: '',
+    // });
+    // const handleSearch = (filters) => {
+    //     setFilters(filters);
+
+    // }
     return (
         <div>
-            <MultiFilterSearch onSearch={handleSearch}/>
+            {/* <MultiFilterSearch onSearch={handleSearch}/> */}
             {/* <FilterModal isOpen={isModalOpen} onClose={toggleModal} /> */}
             <CourseList />
 
