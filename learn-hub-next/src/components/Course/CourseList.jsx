@@ -1,124 +1,81 @@
-import React,{useState,useEffect} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import CardCourse from "@/components/cards/CardCourse";
-import  GetServices from '@/actions/GetServicios';
+import GetServices from "@/actions/GetServicios";
 import LoadMoreButton from "../Button";
-// import ListCourse from "@/data/coursesData"
+import MultiFilterSearch from "@/components/filter/FilterSearch";
+import { useRouter } from "next/navigation";
 
 export default function CourseList() {
-    const [listCourse, setListCourse] = useState([]);
-    const [filters, setFilters] = useState({});
-    const [pages, setPages] = useState(1);
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFilters({ ...filters, [name]: value });
-        
+  const router = useRouter();
+  const [listCourse, setListCourse] = useState([]);
+  const [filters, setFilters] = useState({});
+  const [pages, setPages] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const handleSearch = (filters) => {
+    setFilters(filters);
+    setPages(1); // Reset pages when filters change
+    router.refresh();
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const queryParams = new URLSearchParams({
+          pages,
+          limit: 8,
+          filters: JSON.stringify(filters),
+        });
+
+        const response = await fetch(
+          `http://localhost:4050/api/services/allServices?${queryParams}`
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // If it's the first page, set the new data directly
+        // Otherwise, concatenate the new data with the existing list
+        setListCourse((prevList) =>
+          pages === 1 ? data.docs : [...prevList, ...data.docs]
+        );
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     };
-    const onSearch = () => {
-        console.log(filters);
-        // fetchData();
-        // window.reload();
-    }
 
+    fetchData();
+  }, [pages, filters]);
 
-    useEffect(() => {
-            const fetchData = async () => {
-                let query = {
-                    pages: pages,
-                    limit: 8,
-                    filters:filters,
-                }
-                try {
-                    const data = await GetServices(query);
-                    setListCourse([...listCourse, ...data.docs]);
-                } catch (error) {
-                    console.error("Error:", error);
-                }
-            };
-            fetchData();
-        }, [pages,filters]);
+  const handleLoadMore = () => {
+    // Increment the page to load more courses
+    setPages((prevPage) => prevPage + 1);
+  };
 
-    const handleLoadMore = () => {
-        // Incrementar la página para cargar más cursos
-        setPages(prevPage => prevPage + 1);
-    };
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-    return (
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  return (
     <div>
-        <div className="flex flex-col space-x-12 md:flex-row space-y-4 md:space-y-0">
-    <div className="flex flex-col md:flex-row space-y-2 md:space-x-4 md:items-center">
-      <label htmlFor="category" className="text-gray-600">Categoría:</label>
-      <input
-        type="text"
-        id="category"
-        name="category"
-        value={filters.category}
-        onChange={handleInputChange}
-        className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
-        placeholder="Ejemplo: Fitness, Yoga, Cocina, etc."
-      />
+      <MultiFilterSearch onSearch={handleSearch} />
+      <div className="m-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+        {listCourse.map((course) => (
+          <CardCourse key={course._id} course={course} />
+        ))}
+      </div>
+      <LoadMoreButton loadMore={handleLoadMore} />
     </div>
-
-    <div className="flex flex-col md:flex-row space-y-2 md:space-x-4 md:items-center">
-      <label htmlFor="classType" className="text-gray-600">Tipo de Clase:</label>
-      <select
-        id="classType"
-        name="classType"
-        value={filters.classType}
-        onChange={handleInputChange}
-        className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
-      >
-        <option value="">Selecciona una opción</option>
-        <option value="grupal">Grupal</option>
-        <option value="individual">Individual</option>
-      </select>
-    </div>
-
-    <div className="flex flex-col md:flex-row space-y-2 md:space-x-4 md:items-center">
-      <label htmlFor="frequency" className="text-gray-600">Frecuencia:</label>
-      <select
-        id="frequency"
-        name="frequency"
-        value={filters.frequency}
-        onChange={handleInputChange}
-        className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
-      >
-        <option value="">Selecciona una opción</option>
-        <option value="unica">Única</option>
-        <option value="semanal">Semanal</option>
-        <option value="quincenal">Quincenal</option>
-        <option value="mensual">Mensual</option>
-      </select>
-    </div>
-
-    <div className="flex flex-col md:flex-row space-y-2 md:space-x-4 md:items-center">
-      <label htmlFor="rating" className="text-gray-600">Calificación:</label>
-      <input
-        type="number"
-        id="rating"
-        name="rating"
-        min="1"
-        max="5"
-        value={filters.rating}
-        onChange={handleInputChange}
-        className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
-        placeholder="1-5"
-      />
-    </div>
-
-    <button
-      type="submit"
-      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 focus:outline-none"
-        onClick={onSearch}
-    >
-      Buscar
-    </button>
-  </div>
-        <div className="m-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-            {listCourse.map((course) => (
-            <CardCourse key={course._id} course={course}  />
-            ))}
-        </div>
-        <LoadMoreButton loadMore={handleLoadMore} />
-    </div>
-    );
+  );
 }

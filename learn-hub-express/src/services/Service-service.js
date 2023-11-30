@@ -11,43 +11,38 @@ let _this = this;
 // Async function to get the service list
 exports.getService = async function (req) {
   const options = {
-    page: req.query.page || 1, // Número de página desde la solicitud
-    limit: req.query.limit || 10, // Cantidad de documentos por página desde la solicitud
-    populate: "responsable"
+    page: req.query.pages || 1,
+    limit: req.query.limit || 10,
+    populate: "responsable",
   };
 
-  let filters = {};
-  
+  const filters = {};
 
-  // Agregar filtros adicionales basados en parámetros de solicitud
-  console.log(filters)
-  if (req.query.category !== 'undefined') {
-    filters.category = req.query.category;
+  // Verificar si hay filtros y si la cadena JSON es válida
+  if (req.query.filters) {
+    try {
+      const parsedFilters = JSON.parse(req.query.filters);
+
+      // Fusionar los filtros en el objeto filters
+      Object.assign(filters, parsedFilters);
+    } catch (error) {
+      console.error("Error al parsear los filtros JSON:", error);
+      throw new Error("Filtros JSON no válidos");
+    }
   }
 
-  if (req.query.classType !== 'undefined') {
-    filters.classType = req.query.classType;
-  }
-
-  if (req.query.frequency !== 'undefined') {
-    filters.frequency = req.query.frequency;
-  }
-
-  if (req.query.rating !== 'undefined') {
-    filters.rating = req.query.rating;
-  }
-  // Try Catch the awaited promise to handle the error
   try {
     console.log("Query", filters);
+    // Asegúrate de que Service.paginate esté definido y haga lo que esperas
     let services = await Service.paginate(filters, options);
-    // Return the serviced list that was retured by the mongoose promise
+    console.log(services);
     return services;
   } catch (e) {
-    // return a Error message describing the reason
-    console.log(e);
-    throw Error("Error while getting service");
+    console.error(e);
+    throw new Error("Error al obtener el servicio");
   }
 };
+
 
 // Async function to get the service by user
 exports.getServiceByUser = async function (user) {
