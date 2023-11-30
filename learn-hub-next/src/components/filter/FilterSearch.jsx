@@ -16,9 +16,14 @@ const MultiFilterSearch = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(filters);
-    window.location.reload();
-  };
+
+    // Filtrar atributos no definidos
+    const definedFilters = Object.fromEntries(
+      Object.entries(filters).filter(([_, value]) => value !== '')
+    );
+
+    onSearch(definedFilters);
+  }	
 
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-6  md:flex md:space-x-4 m-5">
@@ -86,7 +91,6 @@ const MultiFilterSearch = ({ onSearch }) => {
     <button
       type="submit"
       className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 focus:outline-none"
-      onClick={handleSubmit}
     >
       Buscar
     </button>
