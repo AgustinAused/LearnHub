@@ -9,24 +9,16 @@ export default async function PostContraction(formData) {
   form.append("email", formData.email);
   form.append("preferenceTimeforContact", formData.preferenceTimeforContact);
   form.append("message", formData.message);
-
-  if (formData.image) {
-    form.append("image", formData.image);
-  }
+  form.append("serviceId", formData.serviceId);
+  console.log(form);
   try {
-    const tokenObject = cookies().get("token");
-    // Convert token to string
-    let tokenString = JSON.stringify(tokenObject);
-    const token = tokenString.split('"')[7];
+    
     // const token = cookies.token;
     const response = await fetch(
-      `http://localhost:4050/api/services/cambiarporlaruta?servideId=${formData.servideId}`,
+      "http://localhost:4050/api/contractions/new",
       {
-        headers: {
-          authorization: token
-        },
         method: "POST",
-        body: form,
+        body: form
       }
     );
     // if (!response.ok) {

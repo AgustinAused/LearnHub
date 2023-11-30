@@ -14,7 +14,7 @@ exports.getAllContractions = async (req, res) => {
 // Create new contraction
 exports.createContraction = async (req, res) => {
   try {
-    const newContraction = await contraction.createContraction(req.body); // cuerpo completo de 
+    const newContraction = await contraction.createContraction(req); // cuerpo completo de 
     res.status(201).json(newContraction);
   } catch (err) {
     res.status(400).json({ message: err.message });

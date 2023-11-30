@@ -28,7 +28,13 @@ exports.getContractsByUser = async function (id) {
 
 // Async function to create contract 
 exports.createContraction = async function (contract) {
+    //extrat de user id param
+    let serviceId = contract.serviceId;
+    console.log("serviceId", serviceId);
+    console.log("contract", contract.body);
+    
     // Creating a new Mongoose Object by using the new keyword
+    
     var newContract = new contracts({
         serviceType: contract.serviceType,
         name: contract.name,
@@ -43,10 +49,19 @@ exports.createContraction = async function (contract) {
     try {
         // Saving the contract 
         var savedContract = await newContract.save();
-        // Saving the contract in service
-        var serviceContract = await service.findById(contract.ServiceId);
-        serviceContract.hiring.push(savedContract);
-        await serviceContract.save();
+
+        service.findByIdAndUpdate(
+           serviceId,
+            { $push: { contrataciones: savedContract._id, ref:'Contrataciones' } },
+            { new: true }
+          )
+            .then((updateS) => {
+                console.log(updateS);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+       
         return savedContract;
     } catch (e) {
         // return a Error message describing the reason     

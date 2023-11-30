@@ -23,7 +23,7 @@ let ServicioSchema = new Schema({
     }],
     hiring: [{
         type: Schema.Types.ObjectId,
-        ref: 'Contratacion',
+        ref: 'Contrataciones',
     }],
 }) 
 ServicioSchema.plugin(mongoosePaginate)
