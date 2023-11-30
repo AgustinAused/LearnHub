@@ -15,8 +15,6 @@ export default function ArticulCourse({ course }) {
       const fetchCourse = async () => {
         const courseDA = await GetServiceById(course);
         setCourseDat(courseDA);
-        console.log(courseDA);
-        console.log(course);
       };
       fetchCourse();
     } catch (error) {
