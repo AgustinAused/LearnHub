@@ -6,7 +6,7 @@ export default async function PostServicios(formData) {
   const form = new FormData();
   form.append("title", formData.title);
   form.append("description", formData.description);
-  form.append("state", "active");
+  form.append("state", formData.state);
   form.append("frequency", formData.frequency);
   form.append("duration", formData.duration);
   form.append("classType", formData.classType);
