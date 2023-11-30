@@ -30,7 +30,7 @@ exports.getContractsByUser = async function (id) {
 exports.createContraction = async function (req) {
     //extrat de user id param
     let serviceId = req.body.serviceId;
-    
+    console.log(req.body);
     // Creating a new Mongoose Object by using the new keyword
     
     var newContract = new contracts({

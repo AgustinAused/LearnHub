@@ -1,12 +1,12 @@
 import React from "react";
 import { Rating, Typography } from "@material-tailwind/react";
 
-export function RatingWithItem() {
-    const [rated, setRated] = React.useState(5);
+export function RatingWithItem({handle,rated}) {
+    
 
     return (
         <div className="flex items-center gap-2">
-            <Rating value={4} onChange={(value) => setRated(value)} />
+            <Rating onChange={(value) => handle(value)} />
             <Typography color="blue-gray" className="font-medium">
                 {rated}.0 
             </Typography>

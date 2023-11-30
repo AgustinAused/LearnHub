@@ -9,10 +9,8 @@ export default async function GetServiceById(id) {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-        });
-        console.log("Full Response:", response); // Log the full response
+        }); // Log the full response
         const data = await response.json();
-        console.log("Parsed JSON Data:", data);
         return data;
     } catch (error) {
         console.error("Error:", error);

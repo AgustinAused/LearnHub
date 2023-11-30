@@ -41,21 +41,30 @@ exports.getCommentsByService = async function(service_id){ // only use proffesor
 // Async function create comment
 
 exports.createComment = async function(comment){
-    // Creating a new Mongoose Object by using the new keyword
-    var newComment = new Comment({
-        contenido: comment.comment,
-        date: new Date(),
-        calificacion: comment.rating,
-        email: comment.email,
-        state: false
-        });
     try{
+        // Extract the service id
+        console.log(comment);
+        let serviceId = comment.serviceId;
+        // Creating a new Mongoose Object by using the new keyword
+        var newComment = new Comment({
+            name: comment.name,
+            content: comment.opinion,
+            date: new Date(),
+            score: comment.rating,
+            email: comment.email,
+            state: false
+            });
         // Saving the comment 
+        console.log(newComment);
         var savedComment = await newComment.save();
         // Update the service comments
-        let _service = await Service.findOne({_id : comment.service});
-        _service.comments.push(savedComment);
-        await _service.save();
+        let updatedService = await Service.findByIdAndUpdate(
+            // Find the service by ID
+            {_id: serviceId},
+            { $push: { comments: savedComment._id, ref: 'Comentarios' } },
+            { new: true }
+        );
+        console.log(updatedService);
         return savedComment;
     }catch(e){
         // return a Error message describing the reason 
