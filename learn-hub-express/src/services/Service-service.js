@@ -233,6 +233,14 @@ exports.unpublishService = async function (id) {
     service.state = "Unpublish";
     // Save the updated service
     let savedService = await service.save();
+    console.log(savedService)
+   
+    let userId = savedService.responsable;
+    let user = await User.findById({_id : userId});
+    user.services.pull({_id : savedService._id});
+    user.services.push(savedService._id);
+    let savedUser = await user.save();
+    console.log(savedUser)
 
     return savedService;
   } catch (e) {
@@ -250,8 +258,16 @@ exports.publishService = async function (id) {
     }
     // Update the state to "Unpublish"
     service.state = "Publish";
-    // Save the updated service
+
     let savedService = await service.save();
+   
+    let userId = savedService.responsable;
+    let user = await User.findById({_id : userId});
+    user.services.pull({_id : savedService._id});
+    user.services.push(savedService._id);
+    let savedUser = await user.save();
+    
+
 
     return savedService;
   } catch (e) {
