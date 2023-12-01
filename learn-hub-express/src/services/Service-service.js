@@ -16,7 +16,9 @@ exports.getService = async function (req) {
     populate: "responsable",
   };
 
-  const filters = {};
+  const filters = {
+    state: "Publish",
+  };
 
   // Verificar si hay filtros y si la cadena JSON es válida
   if (req.query.filters) {
