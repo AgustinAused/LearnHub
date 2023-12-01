@@ -102,6 +102,7 @@ exports.deleteComment = async function(body){
         // update user
         let updatedUser = await User.findById(updatedService.responsable);
         updatedUser.services.pull(updatedService._id);
+        updatedUser.services.push(updatedService);
         await updatedUser.save();
         // Return the deleted comment
         return deleted

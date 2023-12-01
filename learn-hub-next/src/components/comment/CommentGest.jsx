@@ -10,7 +10,7 @@ export default function CommentGest({ com, serviceId}) {
         try {
             const response = await DeleteCommentCust(commentId,serviceId)
             console.log(response);
-            // window.location.reload();
+            window.location.reload();
 
         } catch (error) {
             console.error("Error:", error);

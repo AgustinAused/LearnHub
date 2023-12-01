@@ -8,8 +8,10 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 import UpdateExpirience from "@/actions/Updateexperience";
+import { useRouter } from "next/navigation";
 
 export default function FormDataTea() {
+  const router = useRouter();
 
   const [formulario, setFormulario] = useState({
     titulo: '',
@@ -32,7 +34,9 @@ export default function FormDataTea() {
     try{
         const update = await UpdateExpirience(formulario);
         console.log(update);
-
+        alert('Comment created successfully!');
+        router.refresh();
+        router.push("/provider/account");
     }catch(error){
       console.log('Error: ', error);
     }
