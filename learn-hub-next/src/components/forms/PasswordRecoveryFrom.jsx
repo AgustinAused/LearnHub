@@ -6,8 +6,10 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const PasswordRecoveryForm = () => {
+  const router = useRouter()
   const [email, setEmail] = useState('');
 
   const handleInputChange = (e) => {
@@ -17,7 +19,6 @@ const PasswordRecoveryForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     fetch('http://localhost:4050/api/users/sendResetEmail', {
       method: 'POST',
       headers: {
@@ -25,15 +26,21 @@ const PasswordRecoveryForm = () => {
       },
       body: JSON.stringify({ email }),
     })
-      .then((res) => res.json())
-      .then((data) => {
+    .then(async (res) => {
+      if (res.status === 200) {
+        const data = await res.json(); // Read the response data
         console.log(data);
-        alert("Password reset link has been sent");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Failed to send password reset link");
-      });
+        alert("Password reset link has been sent to your email");
+        router.push('/');
+      } else {
+        const errorMessage = await res.text(); // Read the error message from the response
+        alert(`Failed to reset password: ${errorMessage}`);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Failed to send password reset link");
+    });
   };
 
   return (
@@ -55,5 +62,6 @@ const PasswordRecoveryForm = () => {
     </Card>
   );
 }
+
 
 export default PasswordRecoveryForm;

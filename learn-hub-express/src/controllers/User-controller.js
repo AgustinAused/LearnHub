@@ -100,13 +100,10 @@ exports.sendEmail = async function (req, res, next) {
 
 exports.resetPassword = async function (req, res, next) {
     // Req.Body contains the form submit values.
-    console.log("body",req.body)
-    var User = {
-        email: req.body.email,
-    }
+    
     try {
         // Calling the Service function with the new object from the Request Body
-        var resetPassword = await UserService.resetPassword(User); 
+        var resetPassword = await UserService.resetPassword(req); 
         if (resetPassword===0)
             return res.status(400).json({message: "Error en la contraseña"})
         else
