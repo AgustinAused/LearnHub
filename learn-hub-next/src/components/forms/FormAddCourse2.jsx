@@ -131,7 +131,7 @@ return (
           <select
             id="frecuency"
             name="frecuency"
-            value={curso.frecuency}
+            value={curso.frequency}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
           >
