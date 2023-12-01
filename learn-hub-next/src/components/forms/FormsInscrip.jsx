@@ -34,7 +34,6 @@ export default function FormsInscrip({price, serviceType, id}) {
         }
     };
 
-    console.log(id);
     return (
         <div className="">
             <h4 className="text-xl font-bold mb-4">Inscripción</h4>

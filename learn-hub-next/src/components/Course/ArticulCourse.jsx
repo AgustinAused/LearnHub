@@ -9,64 +9,70 @@ import GetServiceById from "@/actions/GetServiceById";
 // import coursesData from "@/data/coursesData";
 
 export default function ArticulCourse({ course }) {
+  const [imageSrc, setImageSrc] = useState("");
   const [courseDat, setCourseDat] = useState({});
+
   useEffect(() => {
-    try {
-      const fetchCourse = async () => {
+    const fetchCourse = async () => {
+      try {
         const courseDA = await GetServiceById(course);
-        console.log(courseDat);
         setCourseDat(courseDA);
-      };
-      fetchCourse();
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+        if (courseDA.image && courseDA.image.data) {
+          const base64Image = Buffer.from(courseDA.image.data.data).toString("base64");
+          const imageUrl = `data:${courseDA.image.contentType};base64,${base64Image}`;
+          setImageSrc(imageUrl);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCourse();
+  }, [course]);
+
+  const responsable = courseDat.responsable;
+
   return (
     <div>
       <div className="flex justify-center m-10">
         <div className="flex flex-col justify-center items-center bg-gray-200 rounded-3xl space-y-4  p-7 md:flex-row md:space-x-5 md:space-y-0">
           <section className="carrouselImagen max-w-[59rem]">
-            <CarouselCustomNavigation />
+            <CarouselCustomNavigation imagen={imageSrc} />
           </section>
           <div className="w-full h-full rounded-3xl bg-white overflow-hidden shadow-lg ">
             <div className="px-6 py-4 ">
               <div className="font-bold text-xl mb-2">{courseDat.name}</div>
               <p className="text-gray-700 text-base">${courseDat.price}</p>
               <p className="text-gray-700 text-base">{courseDat.description}</p>
-              {/* deberiamos consigir el reponsable / profesor */}
               <p className="text-gray-700 text-base">
-                Impartido por: 
-                {courseDat.responsable}
+                Impartido por: {responsable ? responsable.name : ""}
               </p>
               <p className="text-gray-700 text-base">
-                Experiencia: 
-                {courseDat.responsable}
+                Experiencia: {responsable ? responsable.experience : "not defined"}
               </p>
             </div>
             <div className="px-6 py-4 ">
-              <FormsInscrip  price={courseDat.price} serviceType={courseDat.name} id={course}/>
+              <FormsInscrip price={courseDat.price} serviceType={courseDat.name} id={course} />
             </div>
           </div>
         </div>
       </div>
+
       <div className="md:m-32">
         <div className="p-4 bg-white rounded-lg">
-          {/* Aquí irían los comentarios */}
           <h2 className="text-xl font-bold mb-4">Comentarios</h2>
           <ul className="space-y-4">
-            {
-            courseDat.comments?.map((comentario) => (
-              <li>
+            {courseDat.comments?.map((comentario) => (
+              <li key={comentario._id}>
                 <CustomComment com={comentario} />
               </li>
-            ))
-            }
+            ))}
           </ul>
         </div>
       </div>
+
       <div className="md:mx-32">
-        <FormsComments idService={course}/>
+        <FormsComments idService={course} />
       </div>
     </div>
   );

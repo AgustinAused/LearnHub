@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 
-export default function CardCourse({ courseid, course }) {
+export default function CardCourse({ course }) {
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
     }
