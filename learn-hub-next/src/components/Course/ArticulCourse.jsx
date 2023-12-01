@@ -56,7 +56,7 @@ export default function ArticulCourse({ course }) {
                 Impartido por: {responsable ? responsable.name : ""}
               </p>
               <p className="text-gray-700 text-base">
-                Experiencia: {responsable ? responsable.experience : "not defined"}
+                Experiencia: {responsable ? responsable.expirience : "not defined"}
               </p>
             </div>
             <div className="px-6 py-4 ">

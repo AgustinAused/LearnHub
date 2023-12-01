@@ -34,7 +34,7 @@ export default function FormDataTea() {
     try{
         const update = await UpdateExpirience(formulario);
         console.log(update);
-        alert('Comment created successfully!');
+        alert('experience created successfully!');
         router.refresh();
         router.push("/provider/account");
     }catch(error){
