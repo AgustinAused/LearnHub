@@ -29,6 +29,7 @@ export default function FormsInscrip({price, serviceType, id}) {
         event.preventDefault();
         try {
             const data = PostContraction(Contraction);
+            alert()
         } catch (error) {
             console.error("Error:", error.message);
         }

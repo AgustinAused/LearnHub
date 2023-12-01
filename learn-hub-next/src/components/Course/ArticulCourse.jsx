@@ -11,11 +11,14 @@ import GetServiceById from "@/actions/GetServiceById";
 export default function ArticulCourse({ course }) {
   const [imageSrc, setImageSrc] = useState("");
   const [courseDat, setCourseDat] = useState({});
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
         const courseDA = await GetServiceById(course);
+        setLoading(false);
         setCourseDat(courseDA);
         if (courseDA.image && courseDA.image.data) {
           const base64Image = Buffer.from(courseDA.image.data.data).toString("base64");
@@ -23,6 +26,7 @@ export default function ArticulCourse({ course }) {
           setImageSrc(imageUrl);
         }
       } catch (error) {
+        setLoading(false);
         console.error(error);
       }
     };
@@ -32,6 +36,9 @@ export default function ArticulCourse({ course }) {
 
   const responsable = courseDat.responsable;
   const comments = courseDat.comments;
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
