@@ -2,24 +2,38 @@
 import React, { useState } from "react";
 
 export default function FormModifyCourse({ curso, onGuardarCambios }) {
-    const [cursoModificado, setCursoModificado] = useState({});
+  const [cursoModificado, setCursoModificado] = useState({
+    state : curso.state,
+    name: curso.name,
+    description: curso.description,
+    duration: curso.duration,
+    frequency: curso.frequency,
+    category: curso.category,
+    classType: curso.classType,
+    price: curso.price,
+    imageUrl: curso.imageUrl,
+    id: curso._id,
+  });
+  
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setCursoModificado({
-            ...cursoModificado,
-            [name]: value
-        });
-    };
+  const handleChange = (event) => {
+    console.log("cursoModificado before update:", cursoModificado);
+    console.log("Event name:", event.target.name);
+    console.log("Event value:", event.target.value);
+    setCursoModificado({
+      ...cursoModificado,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(cursoModificado);
-        onGuardarCambios(cursoModificado);
-    };
-    
-    return (
-        <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md mt-10">
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(cursoModificado);
+    onGuardarCambios(cursoModificado);
+  };
+
+  return (
+    <div className="max-w-md mx-auto bg-white p-8 shadow-md rounded-md mt-10">
       <h2 className="text-2xl font-semibold mb-4">Modificar Curso</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -30,7 +44,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="name"
             name="name"
-            value={curso.name}
+            value={cursoModificado.name}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -43,7 +57,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <textarea
             id="descripcion"
             name="description"
-            value={curso.description}
+            value={cursoModificado.description}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             rows="4"
@@ -58,7 +72,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="duration"
             name="duration"
-            value={curso.duration}
+            value={cursoModificado.duration}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -71,7 +85,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <select
             id="frecuencia"
             name="frequency"
-            value={curso.frequency}
+            value={cursoModificado.frequency}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -90,7 +104,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="categoria"
             name="category"
-            value={curso.category}
+            value={cursoModificado.category}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -103,7 +117,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
           <select
             id="tipoClase"
             name="classType"
-            value={curso.classType}
+            value={cursoModificado.classType}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -120,7 +134,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             type="text"
             id="costo"
             name="price"
-            value={curso.price}
+            value={cursoModificado.price}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -136,7 +150,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
         </div>
       </form>
     </div>
-    );
+  );
 };
 
 

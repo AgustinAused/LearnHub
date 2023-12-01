@@ -9,8 +9,10 @@ import {
   Button,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation"
 
 export default function CourseAccount({ course }) {
+  const router = useRouter();
   const deleteCourse = async (e) => {
     e.preventDefault();
     try {
@@ -18,6 +20,7 @@ export default function CourseAccount({ course }) {
           const courseDA = await DeleteService(course._id);
         };
         deleteFetch();
+        router.refresh();
     }
     catch (error) {
       console.error("Error:", error);
@@ -29,7 +32,7 @@ export default function CourseAccount({ course }) {
     try{
       const courseDA = await UnpublishService(course._id);
       console.log('service unpublish :' + courseDA); 
-      unpublishFetch();
+      router.refresh();
     }catch(error){
       console.error("Error:", error);
     }
@@ -40,7 +43,7 @@ export default function CourseAccount({ course }) {
     try{
       const courseDA = await PublishService(course._id);
       console.log('service publish :' + courseDA); 
-      unpublishFetch();
+      router.refresh();
     }catch(error){
       console.error("Error:", error);
     }

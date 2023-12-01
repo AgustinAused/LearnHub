@@ -3,18 +3,24 @@ import GetServiceById from "@/actions/GetServiceById";
 import FormModifyCourse from "@/components/forms/FormModifyCourse";
 // import coursesData from "@/data/coursesData";
 import { useEffect, useState } from "react";
+import EdittCourse from '@/actions/EdittCourse';
 
 export default function page({ params }) {
     const [course,setCourse] = useState({});
+    const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         const fetchData = async () => {
             let id = params.slug;
             try {
                 const response = await GetServiceById(id);
+                // const data = await response.json();
+                // Set the data in state
                 setCourse(response);
+                setLoading(false); // Set loading to false once data is available
             } catch (error) {
-                console.error(error);
+                console.error('Error fetching data:', error);
+                setLoading(false); // Set loading to false in case of an error
             }
         };
         fetchData(); // Llamar a la función asíncrona
@@ -23,7 +29,7 @@ export default function page({ params }) {
     const handleGuardarCambios = async (cursoModificado) => {
         // aqui se hacen los cambios/ update de los datos del curso 
         try{
-            const response = await EditCourse(cursoModificado);
+            const response = await EdittCourse(cursoModificado);
             console.log(response);
         }
         catch(error){
@@ -31,9 +37,14 @@ export default function page({ params }) {
         }
 
     };
+    if (loading) {
+        return <p>Loading...</p>;
+    }
     return(
         <div>
-            <FormModifyCourse curso={course} onGuardarCambios={handleGuardarCambios}/>
+            
+                <FormModifyCourse curso={course} onGuardarCambios={handleGuardarCambios}/>
+                // {/* Rest of your form */}
         </div>
     );
     

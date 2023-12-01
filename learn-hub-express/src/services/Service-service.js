@@ -161,42 +161,35 @@ exports.createService = async function (service) {
 // Async function to update a new service
 exports.updateService = async function (service) {
   var id = service.id;
-  try {
+  
     //Find the old service Object by the Id
-    var oldService = await Service.findById(id);
-  } catch (e) {
-    throw Error("Error occured while Finding the service");
-  }
+    let oldService = await Service.findById(id);
   // If no old service Object exists return false
   if (!oldService) {
-    return false;
+    return "Luegue aca";
   }
   console.log(oldService);
   //Edit the service Object
   oldService.name = service.name;
   oldService.description = service.description;
   oldService.price = service.price;
-  oldService.image = service.image;
+  // oldService.image = service.image;
   oldService.state = service.state;
   oldService.frecuency = service.frecuency;
   oldService.duration = service.duration;
   oldService.category = service.category;
+  oldService.classType = service.classType;
   console.log(oldService);
   try {
     var savedService = await oldService.save();
     console.log(savedService);
     let userId = savedService.responsable;
-    User.findByIdAndUpdate(
-      userId,
-      { $push: { services: savedService._id } },
-      { new: true }
-    )
-      .then((usuarioActualizado) => {
-        console.log('Usuario actualizado:', usuarioActualizado);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    // Find and Update the user with this service
+    let user = await User.findById({_id : userId});
+    user.services.pull({_id : savedService._id});
+    user.services.push(savedService._id);
+    let savedUser = await user.save();
+    console.log(savedUser)
     
     return savedService;
   } catch (e) {
