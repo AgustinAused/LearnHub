@@ -10,20 +10,13 @@ _this = this
 // Async function to get the contract list by user 
 exports.getContractsByUser = async function (id) {
     try {
-        const userContract = await user.findById(id).populate('services');
-        // console.log(userContract);
-        const serviceList = await Servicio.find({ _id: { $in: userContract.services } }).populate('hiring');
-        // console.log("serviceList", serviceList);
+        const serviceList = await Servicio.find({ _id: { $in: id } }).populate('hiring');
+        console.log("serviceList", serviceList);
         // Inicializar la lista de contratos
-        let contractsList = [];
-
-        // Iterar sobre cada servicio y agregar sus contratos a contractsList
-        serviceList.forEach(service => {
-            contractsList = [...contractsList, ...service.hiring];
-        });
+        let contractsList = serviceList.hiring;
 
         // Devolver la lista de contratos
-        return contractsList;
+        return serviceList;
     } catch (e) {
         console.error(e);
         throw Error("Error while Retrieving Contracts");
@@ -79,12 +72,11 @@ exports.changeStatus = async function (req) {
     const decoded = jwt.verify(token, process.env.SECRET);
     let userId = decoded.id;
     console.log(userId);
-
     // recuperamos el id del contrato 
     let contractId = req.query.id;
     try {
         // Find the contract by ID
-        let contract = await contracts.findById(id);
+        let contract = await contracts.findById(contractId);
         // Check if the contract exists
         if (!contract) {
             throw Error('Contract not found');
@@ -94,9 +86,8 @@ exports.changeStatus = async function (req) {
         // Save the updated contract
         let savedContract = await contract.save();
         
-        //update user 
-        
-
+        // console.log(updatedUser);
+        console.log("State change successfully");
         // Return the saved contract
         return savedContract;
     } catch (e) {

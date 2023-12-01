@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     res.send('Llegaste a la ruta de  api/contraction-router');
 });
 
-// Get all contractions
+// Get all contractions by service
 router.get('/all',Authentication, contractionController.getAllContractions);
 // Create new contraction
 router.post('/new', contractionController.createContraction);

@@ -4,7 +4,6 @@ export default function CardContraction({ contract }) {
   const [status, setStatus] = useState(contract.state);
 
   const handleStatusChange = async (newState) =>{
-    setStatus(newState);
     try{
       const token = cookies().get("token");
       const tokn = JSON.stringify(token);
@@ -48,7 +47,7 @@ export default function CardContraction({ contract }) {
             <strong>Client Email:</strong> {contract.email}
           </p>
           <p className="text-black-200">
-            <strong>Client Telephone:</strong> {contract.Telephone}
+            <strong>Client Telephone:</strong> {contract.telephone}
           </p>
           <p className="text-black-200">
             <strong>Hour:</strong> {contract.hour}

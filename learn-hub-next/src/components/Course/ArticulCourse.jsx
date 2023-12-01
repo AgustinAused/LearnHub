@@ -14,6 +14,7 @@ export default function ArticulCourse({ course }) {
     try {
       const fetchCourse = async () => {
         const courseDA = await GetServiceById(course);
+        console.log(courseDat);
         setCourseDat(courseDA);
       };
       fetchCourse();
@@ -30,18 +31,21 @@ export default function ArticulCourse({ course }) {
           </section>
           <div className="w-full h-full rounded-3xl bg-white overflow-hidden shadow-lg ">
             <div className="px-6 py-4 ">
-              <div className="font-bold text-xl mb-2">{courseDat.title}</div>
+              <div className="font-bold text-xl mb-2">{courseDat.name}</div>
               <p className="text-gray-700 text-base">${courseDat.price}</p>
               <p className="text-gray-700 text-base">{courseDat.description}</p>
+              {/* deberiamos consigir el reponsable / profesor */}
               <p className="text-gray-700 text-base">
-                Impartido por: {courseDat.responsable?.nombre}
+                Impartido por: 
+                {courseDat.responsable}
               </p>
               <p className="text-gray-700 text-base">
-                {courseDat.responsable?.experiencia}
+                Experiencia: 
+                {courseDat.responsable}
               </p>
             </div>
             <div className="px-6 py-4 ">
-              <FormsInscrip  price={courseDat.price} serviceType={courseDat.classType} id={course}/>
+              <FormsInscrip  price={courseDat.price} serviceType={courseDat.name} id={course}/>
             </div>
           </div>
         </div>
@@ -51,11 +55,13 @@ export default function ArticulCourse({ course }) {
           {/* Aquí irían los comentarios */}
           <h2 className="text-xl font-bold mb-4">Comentarios</h2>
           <ul className="space-y-4">
-            {courseDat.comments?.map((comentario) => (
+            {
+            courseDat.comments?.map((comentario) => (
               <li>
                 <CustomComment com={comentario} />
               </li>
-            ))}
+            ))
+            }
           </ul>
         </div>
       </div>

@@ -1,14 +1,11 @@
 const contraction = require('../services/Contraction-service');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 
-// Get all contractions
+// Get all contractions by service
 exports.getAllContractions = async (req, res) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1];
-
-    const decoded = jwt.verify(token, process.env.SECRET);
-    let id = decoded.id;
+    let id = req.query.serviceId;
     console.log(id);
     const contractions = await contraction.getContractsByUser(decoded.id); //id
     res.status(200).json(contractions);
