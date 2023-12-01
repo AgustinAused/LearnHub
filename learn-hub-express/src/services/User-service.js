@@ -194,8 +194,11 @@ exports.loginUser = async function (user) {
 
 
 
-exports.sendResetEmail = async function (email, resetToken) {
-    // Configurar el transporte de correo
+exports.sendResetEmail = async function (user) {
+   
+ 
+    // Crear un token de restablecimiento de contraseña para el usuario
+    const resetToken = jwt.sign({ id: user[0]._id }, process.env.SECRET);
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -205,18 +208,24 @@ exports.sendResetEmail = async function (email, resetToken) {
     });
 
     // Construir el enlace de restablecimiento
-    const resetLink = `http://localhost:4050/api/user/resetPassword?token=${resetToken}`;
+    const resetLink = `http://localhost:3000/recuperar/newpassword?token=${resetToken}`;
 
     // Configurar el correo electrónico
     const mailOptions = {
-        from: 'tuaplicacion@gmail.com',
-        to: email,
+        from: process.env.EMAIL_USER,
+        to: user[0].email,
         subject: 'Restablecimiento de Contraseña',
         text: `Para restablecer tu contraseña, haz clic en el siguiente enlace: ${resetLink}`,
     };
 
     // Enviar el correo electrónico
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error(error);
+        } else {
+          console.log('Correo enviado: ' + info.response);
+        }
+    });
 }
 
 

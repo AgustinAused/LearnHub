@@ -1,6 +1,7 @@
 // Import User service
 const generateResetToken = require("../auth/AccountReset");
 const UserService = require("../services/User-service");
+const User = require("../database/models/Usuario");
 
 // Create a new user
 exports.createUser = async (req, res) => {
@@ -84,23 +85,15 @@ exports.loginUser = async function (req, res, next) {
 // send emial for recovery account
 exports.sendEmail = async function (req, res, next) {
     // Req.Body contains the form submit values.
-    console.log("body",req.body)
-    var User = {
-        email: req.body.email
-    }
+    let email = req.body.email;
     try {
-        let oldUser = await UserService.getUsersByMail(User.email);
-        console.log(oldUser);
-
-        let newToken = generateResetToken(oldUser.id);
-        console.log(newToken);
-        await UserService.sendResetEmail(User.email,newToken);
-        return res.status(200).json({status: 200, message: "Recovery email sent successfully"})
-
+        let oldUser = await User.find({ email }).select('email');
+        await UserService.sendResetEmail(oldUser);
+        return res.status(200).json({ status: 200, message: "Recovery email sent successfully" });
     } catch (e) {
-        //Return an Error Response Message with Code and the Error Message.
-        return res.status(400).json({status: 400, message: "User not found"})
-    }
+        // Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json({ status: 400, message: "No se encuentra ningún usuario con ese email" });
+    }   
 } 
 
 //send email recovery account
@@ -110,7 +103,6 @@ exports.resetPassword = async function (req, res, next) {
     console.log("body",req.body)
     var User = {
         email: req.body.email,
-        password: req.body.password,
     }
     try {
         // Calling the Service function with the new object from the Request Body

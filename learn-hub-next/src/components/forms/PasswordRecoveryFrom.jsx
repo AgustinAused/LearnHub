@@ -9,54 +9,51 @@ import {
 
 const PasswordRecoveryForm = () => {
   const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { value } = e.target;
+    setEmail(value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //
-    fetch(`http//localhost:4050/api/users/sendResetEmail`,
-    {
+
+    fetch('http://localhost:4050/api/users/sendResetEmail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, name }),
+      body: JSON.stringify({ email }),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      alert("Se ha enviado el enlace de restablecimiento de contraseña");
-    })
-    .catch((err) => {
-      console.log(err)
-      alert("No se ha podido enviar el enlace de restablecimiento de contraseña");
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("Password reset link has been sent");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Failed to send password reset link");
+      });
   };
-    return (
-      <Card color="white" className='p-6 my-36' shadow={true}>
-        <Typography variant="h4" color="blue-gray">
-        account recovery
-        </Typography>
-        <Typography color="gray" className="mt-1 font-normal">
-          ingresar su correo electrónico y nombre 
-        </Typography>
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
-          <div className="mb-4 flex flex-col gap-6">
-            <Input size="lg" label="Name" />
-            <Input size="lg" label="Email" />
-          </div>
-          <Button className="mt-6" fullWidth>
-            Recovery
-          </Button>
-          
-        </form>
-      </Card>
-    );
-  }
+
+  return (
+    <Card color="white" className='p-6 my-36' shadow={true}>
+      <Typography variant="h4" color="blue-gray">
+        Account Recovery
+      </Typography>
+      <Typography color="gray" className="mt-1 font-normal">
+        Enter your email address
+      </Typography>
+      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
+        <div className="mb-4 flex flex-col gap-6">
+          <Input onChange={handleInputChange} size="lg" label="Email" value={email} />
+        </div>
+        <Button type="submit" className="mt-6" fullWidth>
+          Recovery
+        </Button>
+      </form>
+    </Card>
+  );
+}
 
 export default PasswordRecoveryForm;
