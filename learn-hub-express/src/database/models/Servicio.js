@@ -22,7 +22,7 @@ let ServicioSchema = new Schema({
     classType : String,
     comments: [{
         type: Schema.Types.ObjectId,
-        ref: 'Comentario',
+        ref: 'Comentarios',
     }],
     hiring: [{
         type: Schema.Types.ObjectId,

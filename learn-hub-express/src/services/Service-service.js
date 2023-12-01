@@ -74,7 +74,7 @@ exports.getServiceById = async function (id) {
   // Try Catch the awaited promise to handle the error
   try {
     // Find the service
-    let services = await Service.findById(id).populate("responsable");
+    let services = await Service.findById(id).populate([{path: 'responsable'}, {path: 'comments'}]);
     // Return the service list that was retured by the mongoose promise
     return services;
   } catch (e) {

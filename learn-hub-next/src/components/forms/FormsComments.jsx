@@ -1,10 +1,15 @@
+'use client';
 import React, { useState } from 'react';
 // Adjust the import path accordingly
 
 import Rating from '@/components/rating/Rating';
 import NewComment from '@/actions/NewCommet';
+import {useRouter} from 'next/navigation';
+
 
 export default function FormsComments({ idService }) {
+
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,6 +38,12 @@ export default function FormsComments({ idService }) {
     console.log(formData);
     try {
       await NewComment(formData);
+      alert('Comment created successfully!');
+      // si window existe, redirecciona a la misma página
+      if (typeof window !== 'undefined'){
+        window.location.reload();
+      }
+      router.refresh();
     } catch (err) {
       console.log(err);
     }
