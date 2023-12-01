@@ -10,8 +10,7 @@ export default function page({ params }) {
     useEffect(() => {
         const fetchData = async () => {
             const res = await GetContracts();
-            const json = res.json();
-            setData(json);
+            setData(res);
         }
         fetchData()
     },[]);

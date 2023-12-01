@@ -1,6 +1,7 @@
 const contracts = require('../database/models/Contrataciones');
 const user = require('../database/models/Usuario');
 const service = require('../database/models/Servicio');
+const Servicio = require('../database/models/Servicio');
 
 
 // Saving the context of this module inside the _the variable
@@ -10,14 +11,18 @@ _this = this
 exports.getContractsByUser = async function (id) {
     try {
         const userContract = await user.findById(id).populate('services');
-        
-        const contractsList = [];
+        // console.log(userContract);
+        const serviceList = await Servicio.find({ _id: { $in: userContract.services } }).populate('hiring');
+        // console.log("serviceList", serviceList);
+        // Inicializar la lista de contratos
+        let contractsList = [];
 
-        for (const serviceContract of userContract.services) {
-            const contractsOfService = await contracts.find({ _id: { $in: serviceContract.hiring } });
-            contractsList.push(...contractsOfService);
-        }
+        // Iterar sobre cada servicio y agregar sus contratos a contractsList
+        serviceList.forEach(service => {
+            contractsList = [...contractsList, ...service.hiring];
+        });
 
+        // Devolver la lista de contratos
         return contractsList;
     } catch (e) {
         console.error(e);
@@ -68,18 +73,29 @@ exports.createContraction = async function (req) {
 }
 
 // Async function to change status 
-exports.changeStatus = async function (body) {
+exports.changeStatus = async function (req) {
+    // recuperamos id de user
+    const token = req.headers.authorization?.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.SECRET);
+    let userId = decoded.id;
+    console.log(userId);
+
+    // recuperamos el id del contrato 
+    let contractId = req.query.id;
     try {
         // Find the contract by ID
-        var contract = await contracts.findById(body.id);
+        let contract = await contracts.findById(id);
         // Check if the contract exists
         if (!contract) {
             throw Error('Contract not found');
         }
         // Update the state of the contract
-        contract.state = body.status;
+        contract.state = body.state;
         // Save the updated contract
-        var savedContract = await contract.save();
+        let savedContract = await contract.save();
+        
+        //update user 
+        
 
         // Return the saved contract
         return savedContract;

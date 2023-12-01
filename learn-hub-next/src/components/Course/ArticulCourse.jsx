@@ -51,7 +51,7 @@ export default function ArticulCourse({ course }) {
           {/* Aquí irían los comentarios */}
           <h2 className="text-xl font-bold mb-4">Comentarios</h2>
           <ul className="space-y-4">
-            {courseDat.comentarios?.map((comentario) => (
+            {courseDat.comments?.map((comentario) => (
               <li>
                 <CustomComment com={comentario} />
               </li>

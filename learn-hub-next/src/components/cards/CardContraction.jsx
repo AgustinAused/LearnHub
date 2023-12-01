@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardHeader, Button } from "@material-tailwind/react";
 export default function CardContraction({ contract }) {
-  const [status, setStatus] = useState(contract.status);
+  const [status, setStatus] = useState(contract.state);
 
-  const handleStatusChange = (newStatus) => {
-    setStatus(newStatus);
-    // Aquí puedes hacer una solicitud a tu servidor para actualizar el estado en la base de datos
-  };
+  const handleStatusChange = async (newState) =>{
+    setStatus(newState);
+    try{
+      const token = cookies().get("token");
+      const tokn = JSON.stringify(token);
+      const extractedToken = tokn.split('"')[7];
+      console.log("Token", extractedToken);
+      const res = await fetch(`http://localhost:4050/api/contractions/changeStatus?id=${contract._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${extractedToken}`,
+        },
+        body: JSON.stringify({ state: newState }),
+      });
+      const data = await res.json();
+      console.log("Status", res.status);
+      console.log("Data", data);
+      setStatus(newState);
+    }catch(error){
+      console.log(error);
+      throw error;
+    }
+
+  }
 
   return (
     <Card className="p-6 rounded-lg shadow-lg m-4">
@@ -18,18 +39,19 @@ export default function CardContraction({ contract }) {
           <h2 className="text-xl font-semibold mb-2">Client Information</h2>
           <p className="text-black-200">
             <strong>Contract ID:</strong> 
+            {contract._id}
           </p>
           <p className="text-black-200">
-            <strong>Client Name:</strong> {contract.clientData.name}
+            <strong>Client Name:</strong> {contract.name}
           </p>
           <p className="text-black-200">
-            <strong>Client Email:</strong> {contract.clientData.email}
+            <strong>Client Email:</strong> {contract.email}
           </p>
           <p className="text-black-200">
-            <strong>Client Telephone:</strong> {contract.clientData.Telephone}
+            <strong>Client Telephone:</strong> {contract.Telephone}
           </p>
           <p className="text-black-200">
-            <strong>Hour:</strong> {contract.clientData.Horario}
+            <strong>Hour:</strong> {contract.hour}
           </p>
         </div>
         <div>
