@@ -8,7 +8,7 @@ import {
 import Link from "next/link";
 
 export default function CardCourse({ course }) {
-    console.log("Course object:", course);
+    console.log("Course object:", course.responsable);
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
     }
@@ -22,7 +22,7 @@ export default function CardCourse({ course }) {
                     {course.description}
                 </Typography>
                 <Typography>
-                    {course.responsable.name}
+                    {course.responsable?course.responsable.name:""}
                 </Typography>
                 <Typography>
                     {course.frequency}

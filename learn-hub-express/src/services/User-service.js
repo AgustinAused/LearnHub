@@ -185,9 +185,7 @@ exports.loginUser = async function (user) {
 
         let token = jwt.sign({
             id: _details._id
-        }, process.env.SECRET, {
-            expiresIn: 86400 // expires in 24 hours
-        });
+        }, process.env.SECRET);
         return token;
     } catch (e) {
         // return a Error message describing the reason   
