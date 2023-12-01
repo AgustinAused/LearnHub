@@ -2,8 +2,11 @@
 import postServicios from "@/actions/PostServicios";
 import React, { useState } from "react";
 import { Input } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
+
 
 export default function AgregarCursoForm() {
+  const router = useRouter();
   const [curso, setCurso] = useState({
     title: "",
     description: "",
@@ -52,6 +55,8 @@ export default function AgregarCursoForm() {
     try {
       const data = await postServicios(formData);
       console.log(data);
+      router.refresh();
+      router.push("/provider/account");
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -130,15 +135,15 @@ export default function AgregarCursoForm() {
           </div>
           <div>
             <label
-              htmlFor="frecuency"
+              htmlFor="frequency"
               className="block text-sm font-medium text-gray-600"
             >
               Frecuency
             </label>
             <select
-              id="frecuency"
-              name="frecuency"
-              value={curso.frecuency}
+              id="frequency"
+              name="frequency"
+              value={curso.frequency}
               onChange={handleChange}
               className="mt-1 p-2 w-full border rounded-md"
             >
@@ -168,7 +173,7 @@ export default function AgregarCursoForm() {
         </div>
         <div>
           <label
-            htmlFor="tipoClase"
+            htmlFor="classType"
             className="block text-sm font-medium text-gray-600"
           >
             Class Type
