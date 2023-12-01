@@ -23,7 +23,7 @@ export default function page({ params }) {
             <h2></h2>
             {/* aca irian todas las contrataciones */}
             {data && data.map((item) => (
-                <CardContraction contract={item} />
+                <CardContraction contract={item} serviceId={params.slug} />
             ))}
         </div>
     )

@@ -67,7 +67,7 @@ exports.createContraction = async function (req) {
 // Async function to change status 
 exports.changeStatus = async function (req) {
     //serviceId req inm query
-    // let contractId = req.query.Id;
+    let contractId = req.body.contractId;
     try {
         // Find the contract by ID
         let contract = await contracts.findById(contractId);
@@ -75,17 +75,32 @@ exports.changeStatus = async function (req) {
         if (!contract) {
             throw Error('Contract not found');
         }
-        // Update the state of the contract
-        contract.state = body.state;
-        // Save the updated contract
-        let savedContract = await contract.save();
+        contract.state = req.body.newState;
+        const savedContract = await contract.save();
 
-        
-        
-        // console.log(updatedUser);
-        console.log("State change successfully");
-        // Return the saved contract
+        const updatedService = await service.findByIdAndUpdate(
+            req.body.serviceId,
+            { $pull: { hiring: contractId } },
+            { new: true }
+        );
+
+        updatedService.hiring.push(savedContract._id);
+        const finalUpdatedService = await updatedService.save();
+
+        const userId = updatedService.responsable;
+        const updatedUser = await user.findByIdAndUpdate(
+            userId,
+            { $pull: { services: updatedService._id } },
+            { new: true }
+        );
+
+        updatedUser.services.push(finalUpdatedService._id);
+        await updatedUser.save();
+
+        console.log("Estado cambiado exitosamente");
+
         return savedContract;
+        
     } catch (e) {
         // Handle errors and throw an error message
         console.error(e);
