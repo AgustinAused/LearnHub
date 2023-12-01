@@ -24,6 +24,7 @@ export function FormSignUp() {
 
   const [isChecked, setIsChecked] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

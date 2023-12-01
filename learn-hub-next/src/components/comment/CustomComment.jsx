@@ -12,7 +12,7 @@ export default function CustomComment({ com }) {
           <RatingRead num={score} />
           <p className="text-gray-800">{com.content}</p>
         </div>
-      </div>w
+      </div>
     </div>
   );
 }

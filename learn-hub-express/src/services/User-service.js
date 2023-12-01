@@ -72,6 +72,9 @@ exports.createUser = async function (data) {
   const image = data.file;
   let hashedPassword = bcrypt.hashSync(user.password, 8);
 
+  //si el correo ya existe devuelvo false
+  if( User.findOne({email: user.email})) return false;
+
   let newUser = new User({
     name: user.name,
     email: user.email,
