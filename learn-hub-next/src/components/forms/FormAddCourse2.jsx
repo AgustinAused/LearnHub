@@ -55,6 +55,7 @@ export default function AgregarCursoForm() {
     try {
       const data = await postServicios(formData);
       console.log(data);
+      alert("Se ha creado el servicio correctamente");
       router.refresh();
       router.push("/provider/account");
     } catch (error) {
