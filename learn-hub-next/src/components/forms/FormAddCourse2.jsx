@@ -123,14 +123,14 @@ return (
         </div>
         <div>
           <label
-            htmlFor="frecuency"
+            htmlFor="frequency"
             className="block text-sm font-medium text-gray-600"
           >
             Frecuency
           </label>
           <select
-            id="frecuency"
-            name="frecuency"
+            id="frequency"
+            name="frequency"
             value={curso.frequency}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
