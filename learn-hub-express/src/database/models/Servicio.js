@@ -10,7 +10,10 @@ let ServicioSchema = new Schema({
         ref: 'usuarios', // Aquí debes especificar el nombre del modelo de Usuario
         required: true
     },
-    image : String,
+    image: {
+        data: Buffer,
+        contentType: String
+      },
     date : Date,
     state : String,
     frequency : String,

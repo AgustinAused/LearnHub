@@ -86,12 +86,14 @@ exports.getServiceById = async function (id) {
 exports.createService = async function (service) {
   //obtener el id del usuario
   const token = service.headers.authorization;
-//   console.log("token", token);
+  console.log(service.file);
   const decodedToken = jwt.verify(token, process.env.SECRET);
   const userId = decodedToken.id;
   const image = service.file;
+  console.log(image);
   const data = service.body;
   console.log(userId)
+  console.log(data)
 
   // Creating a new Mongoose Object by using the new keyword
   let newService = new Service({

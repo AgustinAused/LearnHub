@@ -7,11 +7,11 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 
-export default function CardCourse({ course }) {
-    console.log("Course object:", course.responsable);
+export default function CardCourse({ courseid, course }) {
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
     }
+    console.log("Course object:", course);
     return (
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
@@ -22,7 +22,7 @@ export default function CardCourse({ course }) {
                     {course.description}
                 </Typography>
                 <Typography>
-                    {course.responsable?course.responsable.name:""}
+                    {course.responsable?course.responsable.name:"user undefined"}
                 </Typography>
                 <Typography>
                     {course.frequency}

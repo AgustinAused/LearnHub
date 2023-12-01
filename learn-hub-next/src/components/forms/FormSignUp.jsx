@@ -37,9 +37,10 @@ export function FormSignUp() {
     form.append("terms", formData.terms);
     if (formData.image) {
         form.append("image", formData.image);
-    }
-
-    try {
+      }
+      console.log(formData);
+      
+      try {
         const response = await fetch("http://localhost:4050/api/users/registration", {
             method: "POST",
             body: form,

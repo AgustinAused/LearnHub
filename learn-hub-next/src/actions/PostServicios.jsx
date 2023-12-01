@@ -3,21 +3,11 @@
 import { cookies } from "next/headers";
 // import cookies from 'js-cookie';
 export default async function PostServicios(formData) {
-  const form = new FormData();
-  form.append("title", formData.title);
-  form.append("description", formData.description);
-  form.append("state", formData.state);
-  form.append("frequency", formData.frequency);
-  form.append("duration", formData.duration);
-  form.append("classType", formData.classType);
-  form.append("category", formData.category);
-  form.append("price", formData.price);
-
-  if (formData.image) {
-    form.append("image", formData.image);
-  }
+  
+  console.log(formData.image);
   try {
     const tokenObject = cookies().get("token");
+    console.log(formData);
     // Convert token to string
     let tokenString = JSON.stringify(tokenObject);
     const token = tokenString.split('"')[7];
@@ -29,12 +19,12 @@ export default async function PostServicios(formData) {
           authorization: token
         },
         method: "POST",
-        body: form,
+        body: formData,
       }
     );
-    // if (!response.ok) {
-    //   throw new Error(`HTTP error! Status: ${response.status}`);
-    // }
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
     const data = await response.json();
     console.log(data);
     return data;
