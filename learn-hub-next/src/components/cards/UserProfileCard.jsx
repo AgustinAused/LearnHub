@@ -17,6 +17,7 @@ export default function UserProfileCard() {
       
       async function fetchData() {
         const data = await GetUserDetails();
+        console.log(data)
         if(data.image && data.image.data){
             // Convierte el Buffer a una cadena Base64
             const base64Image = Buffer.from(data.image.data.data).toString("base64");
@@ -26,14 +27,15 @@ export default function UserProfileCard() {
             setImageSrc(imageUrl);
         }
         setUser(data);
-      }
-      fetchData();
-    }, []);
+    }
+    fetchData();
+}, []);
+
 return (
     <div className="flex flex-col justify-center">
         {/* hacemos una presentatacion de pagina aesthetic */}
         <div className="flex flex-col bg-[#f1f1f1] p-12 m-10 rounded-2xl">
-            <div className="flex justify-between font-regular items-center rounded-lg bg-black p-4 text-base leading-5 text-white opacity-100 m-10">
+            {!user.expirience?<div className="flex justify-between font-regular items-center rounded-lg bg-black p-4 text-base leading-5 text-white opacity-100 m-10">
                 <p>
                     No has completado tu perfil, por favor completa tu perfil para poder
                     registrar un curso
@@ -41,7 +43,7 @@ return (
                 <Link href="/provider/account/experience">
                     <Button color="white">Completar perfil</Button>
                 </Link>
-            </div>
+            </div>:''}
             <div className="flex justify-center items-center space-x-10">
                 {/* Aquí va la imagen de perfil del usuario */}
                 {imageSrc && (
@@ -52,6 +54,8 @@ return (
                 <div className="w-1/2">
                     <h1 className="text-4xl font-bold">{user.name}</h1>
                     <h2 className="text-2xl">{user.email}</h2>
+                    {user.degree? <h2 className="text-2xl">{user.degree}</h2>:''}
+                    {user.expirience? <h2 className="text-2xl">{user.expirience}</h2>:''}
                 </div>
                 {/* boton de agregar nuevo servicio */}
                 <div className="flex justify-center items-center">

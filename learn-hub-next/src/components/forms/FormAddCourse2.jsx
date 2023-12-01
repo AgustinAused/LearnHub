@@ -147,6 +147,8 @@ export default function AgregarCursoForm() {
               onChange={handleChange}
               className="mt-1 p-2 w-full border rounded-md"
             >
+              <option value="Selecciona">Select Freq</option>
+              <option value="diaria">Diaria</option>
               <option value="única">Única</option>
               <option value="semanal">Semanal</option>
               <option value="quincenal">Quincenal</option>
@@ -186,6 +188,7 @@ export default function AgregarCursoForm() {
             className="mt-1 p-2 w-full border rounded-md"
             required
           >
+            <option value="Selecciona">Select Type</option>
             <option value="individual">Individual</option>
             <option value="grupal">Grupal</option>
           </select>

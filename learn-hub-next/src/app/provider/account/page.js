@@ -19,7 +19,7 @@ useEffect(() => {
 
   return (
     <div>
-    <UserProfileCard/>
+    <UserProfileCard />
       <div className="flex justify-end">
         {/* Lista de servicios ofrecidos por la cuenta que los da*/}
         <CourseListAccount courses={services} />

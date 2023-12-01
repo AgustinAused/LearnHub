@@ -55,6 +55,8 @@ exports.getUsersByToken = async function (req) {
       phono: user.phono,
       image: user.image,
       creationDate: user.creationDate,
+      degree: user.degree,
+      expirience: user.expirience,
     };
 
     return userResponse;
@@ -175,7 +177,10 @@ exports.loginUser = async function (user) {
       {
         id: _details._id,
       },
-      process.env.SECRET
+      process.env.SECRET,
+      {
+        expiresIn: 864000, // expires in 24 hours
+      }
     );
     return token;
   } catch (e) {
