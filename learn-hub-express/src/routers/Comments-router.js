@@ -20,7 +20,7 @@ router.get('/allbyservice',Authentication, commentController.getCommentByService
 // Update a comment
 router.put('/update/:id', Authentication, commentController.updateComment);
 // Delete a comment
-router.delete('/delete/:id', Authentication, commentController.deleteComment);
+router.delete('/delete', Authentication, commentController.deleteComment);
 // Change State
 router.put('/changeState/:id', Authentication, commentController.changeState);
 
