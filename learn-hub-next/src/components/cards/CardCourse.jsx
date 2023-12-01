@@ -22,7 +22,7 @@ export default function CardCourse({ course }) {
                     {course.description}
                 </Typography>
                 <Typography>
-                    {course.responsable?course.responsable.name:""}
+                    {course.responsable}
                 </Typography>
                 <Typography>
                     {course.frequency}

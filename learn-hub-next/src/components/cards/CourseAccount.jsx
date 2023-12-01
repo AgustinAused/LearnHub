@@ -67,6 +67,11 @@ export default function CourseAccount({ course }) {
             </Button>
           )
         }
+
+        <Link href={`contraction/${course._id}`}>
+          <Button className="">Contracts</Button>
+          {/*pagina de gestion de contratos*/}
+        </Link>
         
         {/*tinee que eliminar el conmentario */}
         <Link href={`commets/${course._id}`}>
