@@ -10,13 +10,14 @@ _this = this
 // Async function to get the contract list by user 
 exports.getContractsByUser = async function (id) {
     try {
-        const serviceList = await Servicio.find({ _id: { $in: id } }).populate('hiring');
+        const serviceList = await Servicio.find({ _id: id }).populate('hiring');
         console.log("serviceList", serviceList);
         // Inicializar la lista de contratos
-        let contractsList = serviceList.hiring;
+        let contractsList = serviceList[0].hiring;
+        console.log("contractsList", contractsList);
 
         // Devolver la lista de contratos
-        return serviceList;
+        return contractsList;
     } catch (e) {
         console.error(e);
         throw Error("Error while Retrieving Contracts");
@@ -50,9 +51,7 @@ exports.createContraction = async function (req) {
         let updatedService = await service.findByIdAndUpdate(
             // Find the service by ID
             {_id: serviceId},
-            { $push: { hiring: savedContract._id, ref: 'Contrataciones' } },
-            { new: true }
-        );
+            { $push: { hiring: savedContract._id, ref: 'Contrataciones' } });
        
         // Update user with the new service
         // console.log(updatedService);
@@ -67,13 +66,8 @@ exports.createContraction = async function (req) {
 
 // Async function to change status 
 exports.changeStatus = async function (req) {
-    // recuperamos id de user
-    const token = req.headers.authorization?.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.SECRET);
-    let userId = decoded.id;
-    console.log(userId);
-    // recuperamos el id del contrato 
-    let contractId = req.query.id;
+    //serviceId req inm query
+    // let contractId = req.query.Id;
     try {
         // Find the contract by ID
         let contract = await contracts.findById(contractId);
@@ -85,6 +79,8 @@ exports.changeStatus = async function (req) {
         contract.state = body.state;
         // Save the updated contract
         let savedContract = await contract.save();
+
+        
         
         // console.log(updatedUser);
         console.log("State change successfully");
