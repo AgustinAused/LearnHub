@@ -15,23 +15,42 @@ export default function CardCourse({ course }) {
     return (
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
-                <Typography variant="h5" color="blue-gray" className="mb-2">
+            
+                <Typography variant="h4" color="blue-gray" className="mb-2">
                     {course.name}
+                </Typography>
+                <Typography variant="h6">
+                    Descripcion
                 </Typography>
                 <Typography>
                     {course.description}
                 </Typography>
-                <Typography>
+                <Typography variant="h6">
+                Responsible
+                </Typography>
+                <Typography  >
                     {course.responsable?course.responsable.name:"user undefined"}
+                </Typography>
+                <Typography variant="h6">
+                    Frecuency
                 </Typography>
                 <Typography>
                     {course.frequency}
                 </Typography>
+                <Typography variant="h6">
+                    Duration
+                </Typography>
                 <Typography>
                     {course.duration}
                 </Typography>
+                <Typography variant="h6">
+                    Category
+                </Typography>
                 <Typography>
                     {course.category}
+                </Typography>
+                <Typography variant="h6">
+                    Class Type
                 </Typography>
                 <Typography>
                     {course.classType}

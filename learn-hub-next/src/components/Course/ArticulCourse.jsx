@@ -5,6 +5,7 @@ import FormsComments from "../forms/FormsComments";
 import CustomComment from "../comment/CustomComment";
 import FormsInscrip from "../forms/FormsInscrip";
 import GetServiceById from "@/actions/GetServiceById";
+import { Typography } from "@material-tailwind/react";
 
 // import coursesData from "@/data/coursesData";
 
@@ -49,15 +50,47 @@ export default function ArticulCourse({ course }) {
           </section>
           <div className="w-full h-full rounded-3xl bg-white overflow-hidden shadow-lg ">
             <div className="px-6 py-4 ">
-              <div className="font-bold text-xl mb-2">{courseDat.name}</div>
-              <p className="text-gray-700 text-base">${courseDat.price}</p>
-              <p className="text-gray-700 text-base">{courseDat.description}</p>
-              <p className="text-gray-700 text-base">
-                Impartido por: {responsable ? responsable.name : ""}
-              </p>
-              <p className="text-gray-700 text-base">
-                Experiencia: {responsable ? responsable.expirience : "not defined"}
-              </p>
+              <Typography variant="h4" color="blue-gray" className="mb-2">
+                    {courseDat.name}
+                </Typography>
+                <Typography variant="h6">
+                    Descripcion
+                </Typography>
+                <Typography>
+                    {courseDat.description}
+                </Typography>
+                <Typography variant="h6">
+                Responsible
+                </Typography>
+                <Typography  >
+                    {courseDat.responsable?courseDat.responsable.name:"user undefined"}
+                </Typography>
+                <Typography variant="h6">
+                    Frecuency
+                </Typography>
+                <Typography>
+                    {courseDat.frequency}
+                </Typography>
+                <Typography variant="h6">
+                    Duration
+                </Typography>
+                <Typography>
+                    {courseDat.duration}
+                </Typography>
+                <Typography variant="h6">
+                    Category
+                </Typography>
+                <Typography>
+                    {courseDat.category}
+                </Typography>
+                <Typography variant="h6">
+                    Class Type
+                </Typography>
+                <Typography>
+                    {courseDat.classType}
+                </Typography>
+              
+               
             </div>
             <div className="px-6 py-4 ">
               <FormsInscrip price={courseDat.price} serviceType={courseDat.name} id={course} />
