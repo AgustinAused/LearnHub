@@ -3,13 +3,12 @@ let Schema = mongoose.Schema;
 let mongoosePaginate = require("mongoose-paginate");
 let UsuarioSchema = new Schema({
   name: String,
-  lastName: String,
   email: String,
   password: String,
   creationDate: Date,
   degree: String,
+  expirience : String, 
   phono: String,
-  birth: Date,
   services: [{ type: Schema.Types.ObjectId, ref: "servicios" }],
   image: {
     data: Buffer,

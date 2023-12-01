@@ -45,7 +45,7 @@ export default function FormDataTea() {
       shadow={true}
     >
       <h2 className="text-2xl font-semibold mb-4">Experiencia del Proveedor</h2>
-      <form className="mt-8 mb-2 w-80 " onClick={handlerSubmit}>
+      <form className="mt-8 mb-2 w-80 " >
         
     <div className="mb-4">
     <Input
@@ -68,7 +68,7 @@ export default function FormDataTea() {
 
 
         <Link href="/provider/account">
-          <Button className="mt-6" fullWidth type="submit">
+          <Button className="mt-6" fullWidth onClick={handlerSubmit}>
             Guardar Información
           </Button>
         </Link>
