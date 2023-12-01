@@ -33,7 +33,7 @@ export default function page({ params }) {
             {commentsArr.length > 0 ? (
     commentsArr.map((comment) => (
         <div key={comment.id}>
-            <CommentGest com={comment} />
+            <CommentGest com={comment}  serviceId={params.slug}/>
         </div>
     ))
 ) : (
