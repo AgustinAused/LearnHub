@@ -94,25 +94,15 @@ exports.deleteComment = async function(body){
         if(deleted.n === 0){
             throw Error("Comment Could not be deleted")
         }
-        // Update the service comments
-        let _service = await Service.findByIdAndDelete({_id : body.serviceId},
-            { $pull: { comments: body.commentId } },
-            { new: true });
-        let serviceUpdate = await _service.save();
-        console.log(serviceUpdate);
+        // update service 
+        let updatedService = await Service.findById(body.serviceId)
+        updatedService.comments.pull(body.commentId);
+        await updatedService.save();
 
-        let userId = _service.resposable;
-        console.log(userId)
-        // Update the user comments
-        let _user = await User.findById(userId);
-        if (!_user) {
-            throw Error("User not found");
-        }
-        _user.services.pull(_service._id);
-        _user.services.push(serviceUpdate);
-        let userUpdate = await _user.save();
-        console.log(userUpdate);
-
+        // update user
+        let updatedUser = await User.findById(updatedService.responsable);
+        updatedUser.services.pull(updatedService._id);
+        await updatedUser.save();
         // Return the deleted comment
         return deleted
     }catch(e){

@@ -209,13 +209,20 @@ exports.updateService = async function (service) {
 exports.deleteService = async function (req) {
   // Delete the service
   try {
-    
-    const deletedService = await Service.findOneAndDelete({ _id: req.params.id });
-    const user = await User.findById({_id : deletedService.responsable})
-    user.services.findOneAndDelete({_id : deletedService._id});
-    
-    console.log("eliminado")
-    return deletedService;
+        // Delete the service
+        const deletedService = await Service.findOneAndDelete({ _id: req.params.id }).populate('responsable');
+        
+        console.log(deletedService)
+        console.log(deletedService.responsable)
+        // Remove the service from the user's services array
+        const user = await User.findOne({ _id : deletedService.responsable});
+        console.log(user)
+        console.log(user.services)
+        user.services.pull({_id : deletedService._id});
+        // console.log(user)
+        await user.save();
+      console.log("Service deleted");
+      return deletedService;
   } catch (e) {
     console.log(e);
     throw Error("Error Occured while Deleting the service");

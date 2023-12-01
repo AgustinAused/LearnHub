@@ -31,6 +31,7 @@ export default function ArticulCourse({ course }) {
   }, [course]);
 
   const responsable = courseDat.responsable;
+  const comments = courseDat.comments;
 
   return (
     <div>
@@ -62,11 +63,15 @@ export default function ArticulCourse({ course }) {
         <div className="p-4 bg-white rounded-lg">
           <h2 className="text-xl font-bold mb-4">Comentarios</h2>
           <ul className="space-y-4">
-            {courseDat.comments?.map((comentario) => (
-              <li key={comentario._id}>
-                <CustomComment com={comentario} />
-              </li>
-            ))}
+            {courseDat.comments && courseDat.comments.length > 0 ? (
+    courseDat.comments.map((comentario) => (
+      <li key={comentario._id}>
+        <CustomComment com={comentario} />
+      </li>
+    ))
+  ) : (
+    <li>No hay comentarios aún</li>
+  )}
           </ul>
         </div>
       </div>
