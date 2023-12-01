@@ -14,8 +14,10 @@ let authorization = function (req, res, next) {
     console.log("secret",sec)
     jwt.verify(token, sec, function (err, decoded) {
         let msg = {auth: false, message: 'Failed to authenticate token.'};
-        if (err)
-        return res.status(500).send(msg);
+        if (err){
+            console.log(err)
+            return res.status(500).send(msg);
+        }
         req.userId = decoded.id;
         next();
     });

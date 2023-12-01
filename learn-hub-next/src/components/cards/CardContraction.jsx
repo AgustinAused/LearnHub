@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardBody, CardHeader, Button } from "@material-tailwind/react";
-export default function CardContraction({ contract }) {
+export default function CardContraction({ contract } ,idService ) {
   const [status, setStatus] = useState(contract.state);
 
   const handleStatusChange = async (newState) =>{
@@ -9,7 +9,7 @@ export default function CardContraction({ contract }) {
       const tokn = JSON.stringify(token);
       const extractedToken = tokn.split('"')[7];
       console.log("Token", extractedToken);
-      const res = await fetch(`http://localhost:4050/api/contractions/changeStatus?id=${contract._id}`, {
+      const res = await fetch(`http://localhost:4050/api/contractions/changeStatus?serviceId=${idService}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

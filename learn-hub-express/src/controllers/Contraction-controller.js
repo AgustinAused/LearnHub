@@ -7,7 +7,7 @@ exports.getAllContractions = async (req, res) => {
   try {
     let id = req.query.serviceId;
     console.log(id);
-    const contractions = await contraction.getContractsByUser(decoded.id); //id
+    const contractions = await contraction.getContractsByUser(id); //id
     res.status(200).json(contractions);
   } catch (err) {
     res.status(500).json({ message: err.message });

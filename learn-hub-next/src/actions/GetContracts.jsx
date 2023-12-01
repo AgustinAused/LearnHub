@@ -15,7 +15,7 @@ export default async function GetContracts(idService) {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${extractedToken}`,
             },
         });
         const data = await res.json();
