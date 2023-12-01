@@ -111,34 +111,31 @@ exports.createUser = async function (data) {
     }
 }
 
-exports.updateUser = async function (user) { 
-    
+exports.updateUser = async function (req) { 
     try {
         //Find the old User Object by the Id
-        console.log(user._id)
-        let oldUser = await User.findOne(user._id);
-        console.log (oldUser)
-    } catch (e) {
-        // return a Error message describing the reason
-        console.log(e)
-        throw Error("Error occured while Finding the User")
-    }
-    // If no old User Object exists return false
-    if (!oldUser) {
-        return false;
-    }
-    //rehacer logica
-    //Edit the User Object
-    let hashedPassword = bcrypt.hashSync(user.password, 8);
-    if (user.nombre) oldUser.nombre = user.nombre;
-    if (user.email) oldUser.email = user.email;
-    if (user.password) oldUser.password = bcrypt.hashSync(user.password, 8);
-    if (user.titulo) oldUser.titulo = user.titulo;
-    if (user.telefono) oldUser.telefono = user.telefono;
-    if (user.nacimiento) oldUser.nacimiento = user.nacimiento;
+        const token = req.headers.authorization?.split(" ")[1];
 
-    try {
+        // Declare decoded outside the jwt.verify callback
+        let decoded;
+        // Use async/await with jwt.verify
+        decoded = await jwt.verify(token, process.env.SECRET);
+        console.log(decoded)
+        let _id = decoded.id;
+        console.log(_id)
+        let newUser = req.body; //expirence titulo
+        let oldUser = await User.findById(_id);
+        // console.log (oldUser)
+        // If no old User Object exists return false
+        if (!oldUser) {
+            return false;
+        }
+        //Edit the User Object
+        if (newUser.titulo) oldUser.degree = newUser.titulo;
+        if (newUser.experiencia) oldUser.expirience = newUser.experiencia;
+
         let savedUser = await oldUser.save()
+        console.log(savedUser)
         return savedUser;
     } catch (e) {
         // return a Error message describing the reason

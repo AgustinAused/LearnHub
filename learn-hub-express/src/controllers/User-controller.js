@@ -41,8 +41,8 @@ exports.getUsersByToken = async (req, res) => {
 // Update a user 
 exports.updateUser = async (req, res) => {
     try {
-        
-        const user = await UserService.updateUser(req.body);
+        // let User = req.body;
+        const user = await UserService.updateUser(req);
         res.json(user);
     } catch (err) {
         res.status(400).json({ message: err.message });

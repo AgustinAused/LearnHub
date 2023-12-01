@@ -8,6 +8,7 @@ export default async function UpdateExperience(formulario) {
     // Convert token to string
     let tokenString = JSON.stringify(tokenN);
     const extractedToken = tokenString.split('"')[7];
+    console.log(formulario)
     try {
         const response =  await fetch(`http://localhost:4050/api/users/update`, {
             method: "PUT",
@@ -17,7 +18,7 @@ export default async function UpdateExperience(formulario) {
             },
             body: JSON.stringify(formulario), // Convert the form data to a JSON string
         });
-
+        
         const data = await response.json();
         return data;
     } catch (error) {
