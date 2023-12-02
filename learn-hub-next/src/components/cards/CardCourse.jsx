@@ -15,16 +15,21 @@ export default function CardCourse({ course }) {
     return (
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
             <CardBody>
-            
+                
                 <Typography variant="h4" color="blue-gray" className="mb-2">
                     {course.name}
                 </Typography>
+
                 <Typography variant="h6">
                     Descripcion
                 </Typography>
                 <Typography>
                     {course.description}
                 </Typography>
+
+                <div className="flex flex-row justify-between mt-4">
+
+                <div>
                 <Typography variant="h6">
                 Responsible
                 </Typography>
@@ -43,6 +48,9 @@ export default function CardCourse({ course }) {
                 <Typography>
                     {course.duration}
                 </Typography>
+                </div>
+                <div>
+
                 <Typography variant="h6">
                     Category
                 </Typography>
@@ -55,8 +63,10 @@ export default function CardCourse({ course }) {
                 <Typography>
                     {course.classType}
                 </Typography>
+                </div>
+                </div>
             </CardBody>
-            <CardFooter className="pt-0">
+            <CardFooter className="pt-0 flex justify-center">
                 <Link href= {`/course/${course._id}`}>
                     <Button>Leer mas</Button>
                 </Link>

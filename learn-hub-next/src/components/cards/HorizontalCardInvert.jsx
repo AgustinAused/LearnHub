@@ -17,7 +17,7 @@ export function HorizontalCardinvert({title,parah}) {
         <Typography variant="h4" color="blue-gray" className="mb-2">
           {title}
         </Typography>
-        <Typography color="gray" className="mb-8 font-normal">
+        <Typography color="gray" className="mb-8 text-2xl font-normal">
           {parah}
         </Typography>
       </CardBody>

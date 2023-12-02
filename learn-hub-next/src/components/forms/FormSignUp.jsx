@@ -19,13 +19,11 @@ export function FormSignUp() {
     celular: "",
     password_confirm: "",
     terms: false,
-    image: null,
+    image: null, // Add image property to formData state
   });
 
   const [isChecked, setIsChecked] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [celularError, setCelularError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,33 +36,26 @@ export function FormSignUp() {
     form.append("password_confirm", formData.password_confirm);
     form.append("terms", formData.terms);
     if (formData.image) {
-      form.append("image", formData.image);
-    }
-
-    try {
-      const response = await fetch("http://localhost:4050/api/users/registration", {
-        method: "POST",
-        body: form,
-      });
-
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) {
-        if (data.emailError) {
-          setEmailError(data.emailError);
-        }
-        if (data.celularError) {
-          setCelularError(data.celularError);
-        }
-        throw new Error("Error sending form data");
-      } else {
-        setEmailError("");
-        setCelularError("");
-        console.log("Registration successful");
-        router.push("/sign-in");
+        form.append("image", formData.image);
       }
+      console.log(formData);
+      
+      try {
+        const response = await fetch("http://localhost:4050/api/users/registration", {
+            method: "POST",
+            body: form,
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if (!response.ok) {
+            throw new Error("Error sending form data");
+        } else {
+            console.log("Registration successful");
+            router.push("/sign-in");
+        }
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
   };
 
@@ -75,16 +66,11 @@ export function FormSignUp() {
       [name]: value,
     });
 
+    // Validación de tipo de datos
     if (name === "email" && !/\S+@\S+\.\S+/.test(value)) {
-      setEmailError("Invalid email");
-    } else {
-      setEmailError("");
-    }
-
-    if (name === "celular" && !/^\d{10}$/.test(value)) {
-      setCelularError("Invalid phone number");
-    } else {
-      setCelularError("");
+      console.log("Email inválido");
+    } else if (name === "celular" && !/^\d{10}$/.test(value)) {
+      console.log("Celular inválido");
     }
   };
 
@@ -135,7 +121,6 @@ export function FormSignUp() {
             onChange={handleChange}
             label="Email"
           />
-          {emailError && <div className="text-sm text-red-600 mt-1">{emailError}</div>}
         </div>
         <div className="mb-4">
           <Input
@@ -195,13 +180,12 @@ export function FormSignUp() {
             onChange={handleChange}
             label="Celular"
           />
-          {celularError && <div className="text-sm text-red-600 mt-1">{celularError}</div>}
         </div>
         <div className="mb-4">
           <Input
-            type="file"
+            type="file" // Add file input type
             name="image"
-            onChange={handleImageChange}
+            onChange={handleImageChange} // Handle image change
             label="User Image"
           />
         </div>
@@ -243,5 +227,4 @@ export function FormSignUp() {
       </p>
     </Card>
   );
-          
-        }
+}

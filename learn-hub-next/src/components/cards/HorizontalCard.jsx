@@ -18,17 +18,17 @@ import {
           <img
             src={image}
             alt="card-image"
-            className="h-full w-full object-cover"
+            className="max-h-96 w-full object-cover"
           />
         </CardHeader>
         <CardBody>
-          <Typography variant="h6" color="gray" className="mb-4 uppercase">
+          <Typography variant="h6" color="gray" className="mb-4  uppercase">
           Beneficio
           </Typography>
           <Typography variant="h4" color="blue-gray" className="mb-2">
             {title}
           </Typography>
-          <Typography color="gray" className="mb-8 font-normal">
+          <Typography color="gray" className="mb-8 text-2xl font-normal">
             {parah}
           </Typography>
         </CardBody>

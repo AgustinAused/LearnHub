@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 export default function LoadMoreButton({loadMore}) {
     const handleLoadMore = () => {
         loadMore();
@@ -6,7 +7,9 @@ export default function LoadMoreButton({loadMore}) {
     
       return (
         <Button onClick={handleLoadMore} variant="text" className="w-48 flex items-center gap-2">
+        <Typography variant="h6" >
         Load More{" "}
+        </Typography>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
