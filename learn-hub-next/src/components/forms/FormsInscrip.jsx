@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
 import "tailwindcss/tailwind.css";
 import PostContraction from "@/actions/PostContraction";
 

@@ -61,6 +61,7 @@ exports.deleteUserById = async (req, res) => {
 };
 exports.loginUser = async function (req, res, next) {
     // Req.Body contains the form submit values.
+    console.log('llegue aca');
 
     console.log("body: ",req.body)
     var User = {
@@ -71,10 +72,7 @@ exports.loginUser = async function (req, res, next) {
         // Calling the Service function with the new object from the Request Body
         let loginUser = await UserService.loginUser(User);
         console.log(loginUser);
-        if (loginUser==0)
-            return res.status(400).json({message: "Error en la contraseña"})
-        else
-            return res.status(200).json({ loginUser , message: "Succesfully login"})
+        return res.status(200).json({ loginUser , message: "Succesfully login"})
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
         return res.status(400).json({status: 400, message: "Invalid username or password"})

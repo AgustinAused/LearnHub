@@ -3,8 +3,9 @@ let User = require("../database/models/Usuario");
 const nodemailer = require("nodemailer");
 let bcrypt = require("bcryptjs");
 let jwt = require("jsonwebtoken");
-const fs = require("fs");
-const path = require("path");
+// const fs = require("fs");
+// const path = require("path");
+require('dotenv').config()
 
 // Saving the context of this module inside the _the letiable
 _this = this;
@@ -71,10 +72,18 @@ exports.createUser = async function (data) {
   const user = data.body;
   const image = data.file;
   let hashedPassword = bcrypt.hashSync(user.password, 8);
-
+  
   //si el correo ya existe devuelvo false
-  if( User.findOne({email: user.email})) return false;
+  const existingUser = await User.findOne({ email: user.email });
 
+  if (existingUser) {
+    // Si el correo ya existe, devolver false
+    return false;
+  }
+
+  console.log('Llegué aquí');
+  
+  // console.log('llegue aca')
   let newUser = new User({
     name: user.name,
     email: user.email,
@@ -103,7 +112,7 @@ exports.createUser = async function (data) {
       let ok = true;
       return ok;
     }
-
+    console.log(savedUser);
     return ok;
   } catch (e) {
     console.log("error services", e);
@@ -162,29 +171,27 @@ exports.deleteUser = async function (id) {
 };
 
 exports.loginUser = async function (user) {
-  // Creating a new Mongoose Object by using the new keyword
+  
   try {
     // Find the User
     console.log("login:", user);
     let _details = await User.findOne({
       email: user.email,
     });
-    if (!_details) {
-      throw Error("Error while Login User");
-    }
+    console.log(_details);
+
     let passwordIsValid = bcrypt.compareSync(user.password, _details.password);
+    console.log(passwordIsValid)
+    if (!_details || !passwordIsValid) {
+      throw Error("User or Password invalid");
+    }
+    // Create and Save JWT Token
+    const token = jwt.sign({ id: _details._id }, process.env.SECRET, {
+      expiresIn: 86400, // expires in 24 hours
+    });
 
-    if (!passwordIsValid) return 0;
+    // console.log("token", token);
 
-    let token = jwt.sign(
-      {
-        id: _details._id,
-      },
-      process.env.SECRET,
-      {
-        expiresIn: 864000, // expires in 24 hours
-      }
-    );
     return token;
   } catch (e) {
     // return a Error message describing the reason
