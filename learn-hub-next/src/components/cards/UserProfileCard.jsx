@@ -58,16 +58,29 @@ return (
                     {user.expirience? <h2 className="text-2xl">{user.expirience}</h2>:''}
                 </div>
                 {/* boton de agregar nuevo servicio */}
-                <div className="flex justify-center items-center">
-                    <Link href={"/provider/addCourse"}>
-                        <button
-                            className="bg-[#ff8a00] text-white rounded-lg px-4 py-2"
-                            href={"/provider/addCourse"}
-                        >
-                            Agregar Servicio
-                        </button>
-                    </Link>
-                </div>
+                <div className="flex flex-col items-center">
+    {/* Boton de agregar nuevo servicio */}
+    <div className="mb-4">
+        <Link href={"/provider/addCourse"}>
+            <button
+                className="bg-[#ff8a00] text-white rounded-lg px-4 py-2"
+            >
+                Agregar Servicio
+            </button>
+        </Link>
+    </div>
+
+    {/* Boton de modificar usuario */}
+    <div className="mb-4">
+        <Link href={"/provider/account/edit"}>
+            <button
+                className="bg-[#ff8a00] text-white rounded-lg px-4 py-2"
+            >
+                Modificar Usuario
+            </button>
+        </Link>
+    </div>
+</div>
             </div>
         </div>
         {/* div del titulo de la lsita de servicios */}
@@ -76,5 +89,4 @@ return (
         </div>
     </div>
 );
-   
 }
