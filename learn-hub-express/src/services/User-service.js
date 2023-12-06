@@ -178,7 +178,7 @@ exports.loginUser = async function (user) {
     let _details = await User.findOne({
       email: user.email,
     });
-    console.log(_details);
+    // console.log(_details);
 
     let passwordIsValid = bcrypt.compareSync(user.password, _details.password);
     console.log(passwordIsValid)
