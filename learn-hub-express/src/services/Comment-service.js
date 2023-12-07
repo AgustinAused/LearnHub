@@ -9,14 +9,22 @@ _this = this
 // Async function to get the comment list
 exports.getComments = async function(service_id){ //
     try {
-        let _service = Service.findById({_id : service_id}).populate('servicios');
-        let comments = _service.comments;
-        // Return the comment list that was retured by the mongoose promise
-        return comments;
+    // Chain populate with then to handle promise
+    let _service = await Service.findById({ _id: service_id }).populate('servicios');
+    // Access comments after population
+    let comments = _service.comments.filter(comment => comment.state === true);
+    // Return comments
+    return comments;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)
-        throw Error('Error while getting comment')
+        if (error.name === 'CastError') {
+            throw Error('Invalid service ID');
+        } else if (error.name === 'NotFoundError') {
+            throw Error('Service not found');
+        } else {
+            throw Error('Error retrieving comments');
+        }
     }  
 } // para usar en los post de los servicos
 
@@ -33,7 +41,7 @@ exports.getCommentsByService = async function(req){ // only use proffesor
         let comments = await Comment.find({_id : service.comments});
         // Return the comment list that was retured by the mongoose promise 
         return { title: service.name , comments : comments,
-        };;
+        };
     } catch(e){
         // return a Error message describing the reason
         console.log(e)     
@@ -49,7 +57,7 @@ exports.createComment = async function(comment){
         console.log(comment);
         let serviceId = comment.serviceId;
         // Creating a new Mongoose Object by using the new keyword
-        var newComment = new Comment({
+        const newComment = new Comment({
             name: comment.name,
             content: comment.opinion,
             date: new Date(),
@@ -57,11 +65,11 @@ exports.createComment = async function(comment){
             email: comment.email,
             state: false
             });
+            console.log(newComment);
         // Saving the comment 
-        console.log(newComment);
-        var savedComment = await newComment.save();
+        const savedComment = await newComment.save();
         // Update the service comments
-        let updatedService = await Service.findByIdAndUpdate(
+        const updatedService = await Service.findByIdAndUpdate(
             // Find the service by ID
             {_id: serviceId},
             { $push: { comments: savedComment._id, ref: 'Comentarios' } },
@@ -69,7 +77,7 @@ exports.createComment = async function(comment){
         );
 
         // Update the user service
-        let updateUser = await User.findByIdAndUpdate(
+        const updateUser = await User.findByIdAndUpdate(
             {_id : updatedService.responsable},
             { $set:{service:updatedService._id}},
             { new: true }

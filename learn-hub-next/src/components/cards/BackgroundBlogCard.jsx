@@ -24,14 +24,14 @@ export function BackgroundBlogCard({ parrafo, persona, avatar, background }) {
         style={backgroundStyle}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
-        <CardHeader
+        {/* <CardHeader
           floated={false}
           shadow={false}
           color="transparent"
           className="absolute inset-0 m-0 h-full w-full rounded-none"
-        >
+        > */}
           {/* Dark overlay to make the background darker */}
-        </CardHeader>
+        {/* </CardHeader> */}
         <CardBody className="relative py-14 px-6 md:px-12">
           <Typography
             variant="h3"
