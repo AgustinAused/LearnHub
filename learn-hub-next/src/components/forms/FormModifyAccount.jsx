@@ -5,7 +5,8 @@ export default function FormModifyAccount({account ,onGuardarCambios}) {
         name: account.name,
         email: account.email,
         degree: account.degree,
-        expirience: account.expirience,
+        experiencia: account.expirience,
+        // image : account.image,
     });
 
     const handleChange = (event) => {
@@ -73,10 +74,10 @@ export default function FormModifyAccount({account ,onGuardarCambios}) {
         </label>
         <textarea
             className="mt-1 p-2 w-full border rounded-md form-control"
-            id="experience"
-            name="expirience"
+            id="experiencia"
+            name="experiencia"
             rows="3"
-            value={formData.expirience}
+            value={formData.experiencia}
             onChange={handleChange}
             required
         ></textarea>

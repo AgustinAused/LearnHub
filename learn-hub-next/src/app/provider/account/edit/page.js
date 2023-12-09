@@ -1,5 +1,6 @@
 "use client";
 import GetUserDetails from "@/actions/GetUserDetails";
+import UpdateUser from "@/actions/UpdateUser";
 import FormModifyAccount from "@/components/forms/FormModifyAccount";
 import { useEffect, useState } from "react";
 // import Loading from "./loading";
@@ -25,8 +26,13 @@ export default function page(params) {
         fetchUserDetails();
         }, []);
 
-    const handlerSubmit = (newAccount) => {
+    const handlerSubmit = async (newAccount) => {
         console.log("New account: ", newAccount);
+        const respose = await UpdateUser(newAccount);
+        if(respose.status == 200 ){
+            console.log("Response: ", respose.data);
+            alert("Cuenta modificada correctamente");
+        }
     };
 
     return (

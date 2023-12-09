@@ -142,6 +142,21 @@ exports.updateUser = async function (req) {
     //Edit the User Object
     if (newUser.titulo) oldUser.degree = newUser.titulo;
     if (newUser.experiencia) oldUser.expirience = newUser.experiencia;
+    if (newUser.name) oldUser.name = newUser.name;
+    if (newUser.email) oldUser.email = newUser.email;
+    if (newUser.phono) oldUser.phono = newUser.phono;
+    if (newUser.password) {
+      let hashedPassword = bcrypt.hashSync(newUser.password, 8);
+      oldUser.password = hashedPassword;
+    }
+    if (req.file) {
+      oldUser.image = {
+        data: req.file.buffer,
+        contentType: req.file.mimetype,
+      };
+    }
+    // console.log(oldUser)
+    // Save the edited User Object
 
     let savedUser = await oldUser.save();
     console.log(savedUser);

@@ -8,25 +8,23 @@ export default async function UpdateUser(user){
 
     // get cookie
     const token = cookies().get("token");
-    // Convert token to string
-    let tokenString = JSON.stringify(token);
-    const extractedToken = tokenString.split('"')[7];
-
+        const tokn = JSON.stringify(token);
+        const extractedToken = tokn.split('"')[7];
+    console.log(extractedToken);
     //fetch
-    
     try{
-        const response = await fetch(`http://localhost:4050/api/users/updateUser`, {
+        const response = await fetch(`http://localhost:4050/api/users/update`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
                 "Content-Type": "application/json",
             },
             // user is a object
-            body: user,
+            body: JSON.stringify(user),
         });
         const data = await response.json();
         console.log("Parsed JSON Data:", data);
-        return data;
+        return {data: data, status: response.status};
     } catch(error){
         console.error("Error:", error);
     }
