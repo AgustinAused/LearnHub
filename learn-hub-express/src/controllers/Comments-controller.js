@@ -5,7 +5,8 @@ const express = require('express');
 // Get all comments
 exports.getAllCommentsUser = async (req, res) => {
   try {
-    const comments = await comment.getComments(req.body); // tienen que tener en el body un id de user
+    let serviceId = req.query.id;
+    const comments = await comment.getComments(serviceId); // tienen que tener en el body un id de user
     res.status(200).json(comments);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -6,12 +6,14 @@ import CustomComment from "../comment/CustomComment";
 import FormsInscrip from "../forms/FormsInscrip";
 import GetServiceById from "@/actions/GetServiceById";
 import { Typography } from "@material-tailwind/react";
+import GetCommentsCourse from "@/actions/GetCommentsCourse";
 
 // import coursesData from "@/data/coursesData";
 
 export default function ArticulCourse({ course }) {
   const [imageSrc, setImageSrc] = useState("");
   const [courseDat, setCourseDat] = useState({});
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
 
 
@@ -19,8 +21,11 @@ export default function ArticulCourse({ course }) {
     const fetchCourse = async () => {
       try {
         const courseDA = await GetServiceById(course);
-        setLoading(false);
+        const comments = await GetCommentsCourse(courseDA._id);
         setCourseDat(courseDA);
+        setComments(comments);
+        setLoading(false);
+      
         if (courseDA.image && courseDA.image.data) {
           const base64Image = Buffer.from(courseDA.image.data.data).toString("base64");
           const imageUrl = `data:${courseDA.image.contentType};base64,${base64Image}`;
@@ -36,7 +41,6 @@ export default function ArticulCourse({ course }) {
   }, [course]);
 
   const responsable = courseDat.responsable;
-  const comments = courseDat.comments;
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -89,8 +93,6 @@ export default function ArticulCourse({ course }) {
                 <Typography>
                     {courseDat.classType}
                 </Typography>
-              
-               
             </div>
             <div className="px-6 py-4 ">
               <FormsInscrip price={courseDat.price} serviceType={courseDat.name} id={course} />
@@ -103,8 +105,8 @@ export default function ArticulCourse({ course }) {
         <div className="p-4 bg-white rounded-lg">
           <h2 className="text-xl font-bold mb-4">Comentarios</h2>
           <ul className="space-y-4">
-            {courseDat.comments && courseDat.comments.length > 0 ? (
-    courseDat.comments.map((comentario) => (
+            {comments && comments.length > 0 ? (
+            comments.map((comentario) => (
       <li key={comentario._id}>
         <CustomComment com={comentario} />
       </li>

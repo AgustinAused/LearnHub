@@ -10,9 +10,12 @@ _this = this
 exports.getComments = async function(service_id){ //
     try {
     // Chain populate with then to handle promise
-    let _service = await Service.findById({ _id: service_id }).populate('servicios');
+    let service = await Service.findOne({_id : service_id});
+    console.log(service);
+    // Get the comment list 
+    let comments = await Comment.find({_id : service.comments});
     // Access comments after population
-    let comments = _service.comments.filter(comment => comment.state === true);
+    comments = service.comments.filter(comment => comment.state === true);
     // Return comments
     return comments;
     } catch (e) {
