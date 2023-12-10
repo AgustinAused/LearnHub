@@ -9,15 +9,18 @@ _this = this
 // Async function to get the comment list
 exports.getComments = async function(service_id){ //
     try {
-    // Chain populate with then to handle promise
-    let service = await Service.findOne({_id : service_id});
-    console.log(service);
-    // Get the comment list 
-    let comments = await Comment.find({_id : service.comments});
-    // Access comments after population
-    comments = service.comments.filter(comment => comment.state === true);
-    // Return comments
-    return comments;
+        // Encuentra el servicio por su ID
+        let service = await Service.findOne({ _id: service_id });
+        // Verifica si el servicio fue encontrado
+        if (!service) {
+            throw new Error('Service not found');
+        }
+        // Obtiene la lista de comentarios
+        let comments = await Comment.find({ _id: { $in: service.comments } });
+        // Filtra los comentarios por estado
+        comments = comments.filter(comment => comment.state == 'true');
+        // Retorna los comentarios
+        return comments;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)
@@ -134,7 +137,7 @@ exports.changeState = async function(body){
             throw Error('Comment not found');
         }
         // Update the state of the comment
-        if(comment.state === true){
+        if(comment.state == true){
             comment.state = false;
         }else{
             comment.state = true;
@@ -151,7 +154,7 @@ exports.changeState = async function(body){
         // update user
         let updatedUser = await User.findById(updatedService.responsable);
         updatedUser.services.pull(updatedService._id);
-        updatedUser.services.push(updatedService);
+        updatedUser.services.push(updatedService._id);
         await updatedUser.save();
         // Return the saved comment
         return savedComment;
