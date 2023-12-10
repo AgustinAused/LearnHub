@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-export default async function PublishComments({commentId, serviceId}) {
+export default async function PublishComments(commentId, serviceId) {
     const tokenN = cookies().get("token");
     // Convert token to string
     let tokenString = JSON.stringify(tokenN);
@@ -17,11 +17,7 @@ export default async function PublishComments({commentId, serviceId}) {
             },
             body: JSON.stringify({ commentId, serviceId }), // JSON.stringify
         });
-        console.log("Full Response:", response); 
         const data = await response.json();
-        console.log("Parsed JSON Data:", data);
-
-        // return null;
         return data;
     } catch (error) {
         console.error("Error:", error);
