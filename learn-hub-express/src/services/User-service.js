@@ -48,7 +48,7 @@ exports.getUsersByToken = async function (req) {
   // Use the user ID to retrieve the user from the database
   try {
     const user = await User.findById(userId);
-    console.log(user);
+    // console.log(user);
     //armo el objeto que voy a devolver
     let userResponse = {
       name: user.name,
