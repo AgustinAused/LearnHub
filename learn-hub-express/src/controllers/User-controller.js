@@ -85,7 +85,7 @@ exports.sendEmail = async function (req, res, next) {
     // Req.Body contains the form submit values.
     let email = req.body.email;
     try {
-        let oldUser = await User.find({ email }).select('email');
+        let oldUser = await User.find({ email }).select('email name');
         await UserService.sendResetEmail(oldUser);
         return res.status(200).json({ status: 200, message: "Recovery email sent successfully" });
     } catch (e) {

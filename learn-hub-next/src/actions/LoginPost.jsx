@@ -9,9 +9,9 @@ export default async function loginAction(formData) {
  
   const options = {
     method: 'POST',
+    cache: 'no-store', 
     headers: { 
     'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
     },
     body: JSON.stringify(formData),
     };

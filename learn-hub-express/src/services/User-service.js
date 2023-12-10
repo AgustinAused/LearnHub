@@ -48,7 +48,6 @@ exports.getUsersByToken = async function (req) {
   // Use the user ID to retrieve the user from the database
   try {
     const user = await User.findById(userId);
-    console.log(user);
     //armo el objeto que voy a devolver
     let userResponse = {
       name: user.name,
@@ -159,7 +158,6 @@ exports.updateUser = async function (req) {
     // Save the edited User Object
 
     let savedUser = await oldUser.save();
-    console.log(savedUser);
     return savedUser;
   } catch (e) {
     // return a Error message describing the reason
@@ -186,7 +184,7 @@ exports.deleteUser = async function (id) {
 };
 
 exports.loginUser = async function (user) {
-  
+  console.log('llegue aca')
   try {
     // Find the User
     console.log("login:", user);
@@ -235,7 +233,21 @@ exports.sendResetEmail = async function (user) {
     from: process.env.EMAIL_USER,
     to: user[0].email,
     subject: "Restablecimiento de Contraseña",
-    text: `Para restablecer tu contraseña, haz clic en el siguiente enlace: ${resetLink}`,
+
+    text: 
+    `Querido ${user[0].name}
+    
+    Esperamos que este mensaje te encuentre bien. Hemos recibido una solicitud para restablecer la contraseña de tu cuenta en [Nombre de tu Plataforma]. Entendemos lo importante que es para ti acceder a tu cuenta de manera segura y estamos aquí para ayudarte.
+    
+    Por favor, haz clic en el siguiente enlace para restablecer tu contraseña:
+    
+    ${resetLink}
+    
+    ¡Gracias por confiar en Learn Hub!
+    
+    Atentamente,
+    
+    El Equipo de Learn Hub'`
   };
 
   // Enviar el correo electrónico
@@ -249,35 +261,40 @@ exports.sendResetEmail = async function (user) {
 };
 
 // Reset Password
-exports.resetPassword = async ( data ) => {
-  const token = data.headers.authorization?.split(" ")[1];
-  const decodedToken = jwt.verify(token, process.env.SECRET);
-  const userId = decodedToken.id;
-  const newPassword = data.body.password;
-console.log("newPassword",newPassword)
-console.log("userId",userId)
-console.log("token",token)
+exports.resetPassword = async (data) => {
   try {
+    // Verificar si se proporciona un token de autorización
+    const token = data.headers.authorization?.split(" ")[1];
+    if (!token) {
+      throw new Error('Token de autorización no proporcionado');
+    }
+
+    // Decodificar el token para obtener el ID del usuario
+    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const userId = decodedToken.id;
+
+    // Obtener la nueva contraseña del cuerpo de la solicitud
+    const newPassword = data.body.password;
+
     // Hashear la nueva contraseña antes de almacenarla
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Utilizar findByIdAndUpdate para actualizar la contraseña directamente en la base de datos
+    // Utilizar findByIdAndUpdate para actualizar la contraseña en la base de datos
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      {$set: { password: hashedPassword }, // Agregar la nueva contraseña },
-     }
-       // Devolver el documento actualizado
+      { $set: { password: hashedPassword } },
+      { new: true } // Devolver el documento actualizado
     );
 
     // Verificar si el usuario fue encontrado y actualizado
     if (!updatedUser) {
-      throw new Error("Usuario no encontrado");
+      throw new Error('Usuario no encontrado');
     }
 
     // Retornar el usuario actualizado
     return updatedUser;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error('Error al restablecer la contraseña:', error.message);
+    throw new Error('Error al restablecer la contraseña');
   }
 };
