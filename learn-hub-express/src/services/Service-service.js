@@ -50,7 +50,6 @@ exports.getService = async function (req) {
 exports.getServiceByUser = async function (user) {
   // Get the token from the headers
   const token = user.headers.authorization;
-  console.log("token", token);
   // Verify and decode the token
   const decodedToken = jwt.verify(token, process.env.SECRET);
 
@@ -136,7 +135,6 @@ exports.createService = async function (service) {
     // Update the User with the new service
     // busco al usuario por id y le agrego el servicio
 
-    console.log(savedService.responsable)
 
     User.findByIdAndUpdate(
         userId,
@@ -179,7 +177,6 @@ exports.updateService = async function (service) {
   oldService.duration = service.duration;
   oldService.category = service.category;
   oldService.classType = service.classType;
-  console.log(oldService);
   try {
     var savedService = await oldService.save();
     console.log(savedService);
@@ -189,7 +186,6 @@ exports.updateService = async function (service) {
     user.services.pull({_id : savedService._id});
     user.services.push(savedService._id);
     let savedUser = await user.save();
-    console.log(savedUser)
     
     return savedService;
   } catch (e) {

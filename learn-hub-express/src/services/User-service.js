@@ -69,17 +69,16 @@ exports.getUsersByToken = async function (req) {
 exports.createUser = async function (data) {
   // Creating a new Mongoose Object by using the new keyword
   const user = data.body;
-  const image = data.file;
   let hashedPassword = bcrypt.hashSync(user.password, 8);
   
   //si el correo ya existe devuelvo false
   const existingUser = await User.findOne({ email: user.email });
-
+  
   if (existingUser) {
     // Si el correo ya existe, devolver false
     return false;
   }
-
+  
   console.log('Llegué aquí');
   
   // console.log('llegue aca')
@@ -90,28 +89,20 @@ exports.createUser = async function (data) {
     password: hashedPassword,
     phono: user.phono,
   });
-
+  
   // Check if the user has provided an image
-  if (image) {
-    newUser.image = {
-      data: image.buffer,
-      contentType: image.mimetype,
-    };
+  if (data.file && data.file.path) {
+    newUser.image = data.file.filename;
   } else {
-    // Use a default image
-    newUser.image = {
-      // data: fs.readFileSync(path.join(__dirname, '../path/to/default/image.png')),
-      // contentType: 'image/png'
-    };
+    // Use a default image in case the user has not provided one or if file.path is not available
+    newUser.image = "default-user-image.png";
   }
-
   try {
     let savedUser = await newUser.save();
     if (savedUser) {
       let ok = true;
       return ok;
     }
-    console.log(savedUser);
     return ok;
   } catch (e) {
     console.log("error services", e);
@@ -184,14 +175,12 @@ exports.deleteUser = async function (id) {
 };
 
 exports.loginUser = async function (user) {
-  console.log('llegue aca')
   try {
     // Find the User
     console.log("login:", user);
     let _details = await User.findOne({
       email: user.email,
     });
-    // console.log(_details);
 
     let passwordIsValid = bcrypt.compareSync(user.password, _details.password);
     console.log(passwordIsValid)
@@ -203,7 +192,6 @@ exports.loginUser = async function (user) {
       expiresIn: 86400, // expires in 24 hours
     });
 
-    // console.log("token", token);
 
     return token;
   } catch (e) {
@@ -235,19 +223,22 @@ exports.sendResetEmail = async function (user) {
     subject: "Restablecimiento de Contraseña",
 
     text: 
-    `Querido ${user[0].name}
+    //capitalizar el nombre
+    `Querido ${(user[0].name) }
     
-    Esperamos que este mensaje te encuentre bien. Hemos recibido una solicitud para restablecer la contraseña de tu cuenta en [Nombre de tu Plataforma]. Entendemos lo importante que es para ti acceder a tu cuenta de manera segura y estamos aquí para ayudarte.
+    Esperamos que este mensaje te encuentre bien. Hemos recibido una solicitud para restablecer la contraseña de tu cuenta. 
+    
+    Entendemos lo importante que es para ti acceder a tu cuenta de manera segura y estamos aquí para ayudarte.
     
     Por favor, haz clic en el siguiente enlace para restablecer tu contraseña:
     
     ${resetLink}
     
-    ¡Gracias por confiar en Learn Hub!
+    ¡Gracias por confiar en Nosotros!
     
     Atentamente,
     
-    El Equipo de Learn Hub'`
+    El Equipo de Learn Hub`
   };
 
   // Enviar el correo electrónico

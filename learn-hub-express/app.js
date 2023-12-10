@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-// const DBConnectionFactory = require('./src/databases/dbConnectionFactory');
+const path = require('path');
 
 let cookieParser = require('cookie-parser');
 app.use(express.json());
@@ -14,6 +14,12 @@ let cors = require('cors');
 
 //configuro el .env mas facil con ese modulo;
 require('dotenv').config();
+
+// configuro la carpeta public como estatica
+app.use(express.static('public'));
+//serivo imagenes de la carpeta public
+app.use('/uploads', express.static(path.join(__dirname, 'public/usersProfileImages')));
+
 
 
 

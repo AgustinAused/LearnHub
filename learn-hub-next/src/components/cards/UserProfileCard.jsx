@@ -18,13 +18,12 @@ export default function UserProfileCard() {
       async function fetchData() {
         const data = await GetUserDetails();
         console.log(data)
-        if(data.image && data.image.data){
-            // Convierte el Buffer a una cadena Base64
-            const base64Image = Buffer.from(data.image.data.data).toString("base64");
-            // Construye la URL de la imagen
-            const imageUrl = `data:${data.image.contentType};base64,${base64Image}`;
+        if(data && data.image){
+            //convierte el path del servidor a una URL
+            const fullURL = `http://localhost:4050/usersProfileImages/${data.image}`;;
+            
             // Actualiza el estado con la URL de la imagen
-            setImageSrc(imageUrl);
+            setImageSrc(fullURL);
         }
         setUser(data);
     }

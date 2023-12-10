@@ -10,10 +10,7 @@ let UsuarioSchema = new Schema({
   expirience : String, 
   phono: String,
   services: [{ type: Schema.Types.ObjectId, ref: "servicios" }],
-  image: {
-    data: Buffer,
-    contentType: String
-  }
+  image: String
 });
   
 
