@@ -22,7 +22,7 @@ router.put('/update/:id', Authentication, commentController.updateComment);
 // Delete a comment
 router.delete('/delete', Authentication, commentController.deleteComment);
 // Change State
-router.put('/changeState/:id', Authentication, commentController.changeState);
+router.put('/changeState', Authentication, commentController.changeState);
 
 
 module.exports = router;
