@@ -6,19 +6,20 @@ export default async function loginAction(formData) {
 
   console.log(JSON.stringify(formData));
   // Aqui se envian aca se hace la req
- 
   const options = {
     method: 'POST',
     cache: 'no-store', 
     headers: { 
     'Content-Type': 'application/json',
+    cache: "no-store",
+    "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify(formData),
     };
 
     let response = await fetch('http://localhost:4050/api/users/login', options);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     if (data.loginUser == undefined) {
       throw Error(data.message || "Login failed");
     } else {
