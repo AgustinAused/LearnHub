@@ -63,8 +63,8 @@ exports.deleteComment = async (req, res) => {
 // Change State
 exports.changeState = async (req, res) => {
   try {
-    const comment = await comment.changeState(req.body);
-    res.status(200).json(comment);
+    const comments = await comment.changeState(req.body);
+    res.status(200).json(comments);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

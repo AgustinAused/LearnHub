@@ -28,5 +28,4 @@ export default async function PublishService(id) {
     } catch (error) {
         console.error("Error:", error);
     }
-    }
-    
+}

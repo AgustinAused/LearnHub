@@ -36,7 +36,7 @@ const NewPasswordForm = () => {
             .then(async (res) => {
                 if (res.status === 200) {
                     alert("Password has been reset successfully");
-                    router.push('/sing-in');
+                    router.push('/sign-in');
                 } else {
                     const errorMessage = await res.text(); // Read the error message from the response
                     alert(`Failed to reset password: ${errorMessage}`);

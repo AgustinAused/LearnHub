@@ -9,15 +9,18 @@ _this = this
 // Async function to get the comment list
 exports.getComments = async function(service_id){ //
     try {
-    // Chain populate with then to handle promise
-    let service = await Service.findOne({_id : service_id});
-    console.log(service);
-    // Get the comment list 
-    let comments = await Comment.find({_id : service.comments});
-    // Access comments after population
-    comments = service.comments.filter(comment => comment.state === true);
-    // Return comments
-    return comments;
+        // Encuentra el servicio por su ID
+        let service = await Service.findOne({ _id: service_id });
+        // Verifica si el servicio fue encontrado
+        if (!service) {
+            throw new Error('Service not found');
+        }
+        // Obtiene la lista de comentarios
+        let comments = await Comment.find({ _id: { $in: service.comments } });
+        // Filtra los comentarios por estado
+        comments = comments.filter(comment => comment.state == 'true');
+        // Retorna los comentarios
+        return comments;
     } catch (e) {
         // return a Error message describing the reason
         console.log(e)
@@ -125,29 +128,34 @@ exports.deleteComment = async function(body){
 
 
 // Async function change state
-exports.changeState = async function(id){
+exports.changeState = async function(body){
     try {
         // Find the comment by ID
-        const comment = await Comment.findById(id);
+        const comment = await Comment.findById(body.commentId);
         // Check if the comment exists
         if (!comment) {
             throw Error('Comment not found');
         }
         // Update the state of the comment
-        comment.state = true; // Assuming 'true' is a boolean value
+        if(comment.state === 'true'){
+            comment.state = false;
+        }else{
+            comment.state = true;
+        }
         // Save the updated comment
         const savedComment = await comment.save();
 
-        // Updare the comment in service
-        let _service = await Service.findOne({comments : id});
-        _service.comments.pull(id);
-        _service.comments.push(savedComment);
-        await _service.save();
-        // Update the comment in user
-        let _user = await User.findOne({service:_service});
-        _user.comments.pull(_service._id);
-        _user.comments.push(savedComment);
-        await _user.save();
+        // update service 
+        let updatedService = await Service.findById(body.serviceId)
+        updatedService.comments.pull(body.commentId);
+        updatedService.comments.push(savedComment._id);
+        await updatedService.save();
+
+        // update user
+        let updatedUser = await User.findById(updatedService.responsable);
+        updatedUser.services.pull(updatedService._id);
+        updatedUser.services.push(updatedService._id);
+        await updatedUser.save();
         // Return the saved comment
         return savedComment;
     } catch (e) {
