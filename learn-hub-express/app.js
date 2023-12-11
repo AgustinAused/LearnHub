@@ -21,8 +21,6 @@ app.use(express.static('public'));
 app.use('/uploads', express.static(path.join(__dirname, 'public/usersProfileImages')));
 
 
-
-
 //aplico cors
 app.use(cors());
 app.use(cookieParser());

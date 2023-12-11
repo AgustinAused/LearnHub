@@ -11,7 +11,6 @@ export default async function loginAction(formData) {
     cache: 'no-store', 
     headers: { 
     'Content-Type': 'application/json',
-    cache: "no-store",
     "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify(formData),

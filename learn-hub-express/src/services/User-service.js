@@ -112,16 +112,14 @@ exports.createUser = async function (data) {
 
 exports.updateUser = async function (req) {
   try {
+    console.log("req.body", req.body);
     //Find the old User Object by the Id
     const token = req.headers.authorization?.split(" ")[1];
 
-    // Declare decoded outside the jwt.verify callback
-    let decoded;
+    
     // Use async/await with jwt.verify
-    decoded = await jwt.verify(token, process.env.SECRET);
-    console.log(decoded);
+    let decoded = await jwt.verify(token, process.env.SECRET);
     let _id = decoded.id;
-    console.log(_id);
     let newUser = req.body; //expirence titulo
     let oldUser = await User.findById(_id);
     // console.log (oldUser)
@@ -133,17 +131,16 @@ exports.updateUser = async function (req) {
     if (newUser.titulo) oldUser.degree = newUser.titulo;
     if (newUser.experiencia) oldUser.expirience = newUser.experiencia;
     if (newUser.name) oldUser.name = newUser.name;
+    if (newUser.degree) oldUser.degree = newUser.degree;
     if (newUser.email) oldUser.email = newUser.email;
     if (newUser.phono) oldUser.phono = newUser.phono;
     if (newUser.password) {
       let hashedPassword = bcrypt.hashSync(newUser.password, 8);
       oldUser.password = hashedPassword;
     }
+    console.log("req.file", req.file);
     if (req.file) {
-      oldUser.image = {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      };
+      oldUser.image = req.file.filename;
     }
     // console.log(oldUser)
     // Save the edited User Object

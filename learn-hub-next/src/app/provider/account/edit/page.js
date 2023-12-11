@@ -1,6 +1,5 @@
 "use client";
 import GetUserDetails from "@/actions/GetUserDetails";
-import UpdateUser from "@/actions/UpdateUser";
 import FormModifyAccount from "@/components/forms/FormModifyAccount";
 import { useEffect, useState } from "react";
 // import Loading from "./loading";
@@ -26,14 +25,7 @@ export default function page(params) {
         fetchUserDetails();
         }, []);
 
-    const handlerSubmit = async (newAccount) => {
-        console.log("New account: ", newAccount);
-        const respose = await UpdateUser(newAccount);
-        if(respose.status == 200 ){
-            console.log("Response: ", respose.data);
-            alert("Cuenta modificada correctamente");
-        }
-    };
+  
 
     return (
     <div className="max-w-md mx-auto mt-10 p-4">
@@ -42,7 +34,7 @@ export default function page(params) {
         {loading ? (
                 <p className="text-center">Cargando...</p>
             ) : (
-                <FormModifyAccount onGuardarCambios={handlerSubmit} account={user} />
+                <FormModifyAccount  account={user} />
             )
             }
     </div>
