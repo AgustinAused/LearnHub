@@ -112,7 +112,6 @@ exports.createUser = async function (data) {
 
 exports.updateUser = async function (req) {
   try {
-    console.log("req.body", req.body);
     //Find the old User Object by the Id
     const token = req.headers.authorization?.split(" ")[1];
 
@@ -138,7 +137,6 @@ exports.updateUser = async function (req) {
       let hashedPassword = bcrypt.hashSync(newUser.password, 8);
       oldUser.password = hashedPassword;
     }
-    console.log("req.file", req.file);
     if (req.file) {
       oldUser.image = req.file.filename;
     }

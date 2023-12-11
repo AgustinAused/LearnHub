@@ -62,10 +62,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
 
     if (selectedFile) {
       formDataToSend.append("image", selectedFile);
-    } else {
-      console.error("Debes seleccionar una imagen.");
-      return;
-    }
+    } 
 
     try {
       const response = await UpdateUser(formDataToSend);
