@@ -13,9 +13,9 @@ export default async function GetUserDetails() {
             "http://localhost:4050/api/users/userByToken",
             {
                 headers: {
-                    'authorization': extractedToken, // Agregar el token al encabezado Authorization
+                    Authorization: `Bearer ${extractedToken}`, // Agregar el token al encabezado Authorization
                     'Content-Type': 'application/json', // Puedes ajustar esto según las necesidades de tu API
-                  }
+                }
             }
         );
         const data = await response.json();

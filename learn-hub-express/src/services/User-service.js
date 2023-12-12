@@ -38,7 +38,7 @@ exports.getUsers = async function (req) {
 };
 exports.getUsersByToken = async function (req) {
   // Get the token from the headers
-  const token = req.headers.authorization;
+  const token = req.headers.authorization?.split(" ")[1];
   // Verify and decode the token
   const decodedToken = jwt.verify(token, process.env.SECRET);
 
