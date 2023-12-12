@@ -16,7 +16,7 @@ export default async function PostServicios(formData) {
       "http://localhost:4050/api/services/createService",
       {
         headers: {
-          authorization: token
+          Authorization: `Bearer ${token}`
         },
         method: "POST",
         body: formData,

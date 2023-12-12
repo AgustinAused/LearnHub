@@ -137,7 +137,7 @@ exports.changeState = async function(body){
             throw Error('Comment not found');
         }
         // Update the state of the comment
-        if(comment.state === 'true'){
+        if(comment.state == true){
             comment.state = false;
         }else{
             comment.state = true;

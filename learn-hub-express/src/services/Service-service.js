@@ -86,7 +86,7 @@ exports.getServiceById = async function (id) {
 // Async function to add a new service
 exports.createService = async function (service) {
   //obtener el id del usuario
-  const token = service.headers.authorization;
+  const token = service.headers.authorization?.split(" ")[1];
   console.log(service.file);
   const decodedToken = jwt.verify(token, process.env.SECRET);
   const userId = decodedToken.id;
