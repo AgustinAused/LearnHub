@@ -13,7 +13,7 @@ export default async function getServicesByUser(req) {
             "http://localhost:4050/api/services/serviceUser",
             {
                 headers: {
-                    'authorization': extractedToken,
+                    Authorization: `Bearer ${extractedToken}`,
                     'Content-Type': 'application/json',
                 }
             }

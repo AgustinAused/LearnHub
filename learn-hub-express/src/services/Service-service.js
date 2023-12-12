@@ -49,7 +49,7 @@ exports.getService = async function (req) {
 // Async function to get the service by user
 exports.getServiceByUser = async function (user) {
   // Get the token from the headers
-  const token = user.headers.authorization;
+  const token = user.headers.authorization?.split(" ")[1];
   // Verify and decode the token
   const decodedToken = jwt.verify(token, process.env.SECRET);
 
