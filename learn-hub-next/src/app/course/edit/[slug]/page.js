@@ -4,10 +4,12 @@ import FormModifyCourse from "@/components/forms/FormModifyCourse";
 // import coursesData from "@/data/coursesData";
 import { useEffect, useState } from "react";
 import EdittCourse from '@/actions/EdittCourse';
+import { useRouter } from "next/navigation";
 
 export default function page({ params }) {
     const [course,setCourse] = useState({});
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
     
     useEffect(() => {
         const fetchData = async () => {
@@ -31,6 +33,8 @@ export default function page({ params }) {
         try{
             const response = await EdittCourse(cursoModificado);
             console.log(response);
+            alert("Course data has been successfully updated!");
+            router.push("/provider/account");
         }
         catch(error){
             console.log(error);
