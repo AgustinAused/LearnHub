@@ -7,7 +7,7 @@ import Encabezado from "@/components/Encabezado";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center justify-items-center">
+    <main className="flex flex-col m-6 items-center justify-center justify-items-center">
       <Encabezado />
       
       <section className="flex grid justify-center max-w-[89rem] grid-cols-1 lg:grid-cols-3  gap-4 my-4 md:my-8 ">
