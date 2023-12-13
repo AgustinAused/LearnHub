@@ -7,7 +7,7 @@ export default function Encabezado({titulo='¡Aprende de la manera mas facil con
           <div className="text-center text-black">
             <h1 className="text-6xl font-extrabold mb-6">{titulo}</h1>
             <h2 className="text-3xl font-semibold mb-8">{subtitulo}</h2>
-            <Link href="/sign-up"
+            <Link href="/services"
               className="bg-black  text-white font-semibold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
             >
               ¡Empieza Ahora!

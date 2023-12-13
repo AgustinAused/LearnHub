@@ -7,10 +7,10 @@ import Encabezado from "@/components/Encabezado";
 
 export default function Home() {
   return (
-    <main className="p-8">
+    <main className="flex flex-col items-center justify-center justify-items-center">
       <Encabezado />
       
-      <section className="flex  flex-col my-4 justify-center items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+      <section className="flex grid justify-center max-w-[89rem] grid-cols-1 lg:grid-cols-3  gap-4 my-4 md:my-8 ">
         <BackgroundBlogCard
           parrafo={
             "LearnHub es brillante. Clases variadas, profesores apasionados y una experiencia fácil. Mi opción para aprender."
@@ -37,7 +37,7 @@ export default function Home() {
         />
       </section>
 
-      <section className="my-8 flex flex-col items-center space-y-4">
+      <section className="my-4 max-w-[89rem] justify-center md:my-8 flex flex-col items-center space-y-4">
         <HorizontalCard
           variant="gradient"
           title={"Variedad y Acceso a Expertos"}

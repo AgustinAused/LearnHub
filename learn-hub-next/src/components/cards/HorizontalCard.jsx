@@ -9,18 +9,19 @@ import {
    
   export function HorizontalCard({title,parah,image}) {
     return (
-      <Card className="w-full max-w-[98rem] flex-row">
+      <Card className="w-full max-w-[98rem] flex-col lg:flex-row ">
+        
         <CardHeader
-          shadow={false}
-          floated={false}
-          className="m-0 w-2/5 shrink-0 rounded-r-none"
-        >
-          <img
-            src={image}
-            alt="card-image"
-            className="max-h-96 w-full object-cover"
-          />
-        </CardHeader>
+        shadow={false}
+        floated={false}
+        className="m-0 p-4 shrink-0   lg:w-2/5 lg:rounded-r-none lg:p-0"
+      >
+        <img
+          src={image}
+          alt="card-image"
+          className="h-full rounded-xl  w-full object-cover lg:rounded-r-none "
+        />
+      </CardHeader>
         <CardBody>
           <Typography variant="h6" color="gray" className="mb-4  uppercase">
           Beneficio

@@ -29,7 +29,6 @@ export function FormSignIn() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Pepe 1");
     // Check if email and password are provided
     if (!formData.email || !formData.password) {
       setErrorMessage("Please enter a valid email and password");
@@ -39,8 +38,6 @@ export function FormSignIn() {
     try {
       console.log(formData);
       const loginOk = await loginAction(formData);
-      // console.log("holka",loginOk);
-      // console.log(`Pepe 2: ${loginOk.loginUser}`);
       if (loginOk.status !== 400) {
         console.log("Token guardado en localStorage:", loginOk);
         router.refresh();
@@ -78,8 +75,7 @@ export function FormSignIn() {
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>} {/* Show error message if exists */}
 
         <Button
-          color="white"
-          // buttonType="filled"
+          color="black"
           size="lg"
           className="mt-6"
           fullWidth

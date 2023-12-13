@@ -168,7 +168,7 @@ export default function NavbarAutenticado() {
           <a className="p-0 m-0" href="/">
             <Button
               onClick={() => {
-                setIsAuthenticated("false");
+                logout
               }}
               variant="outlined"
               size="sm"

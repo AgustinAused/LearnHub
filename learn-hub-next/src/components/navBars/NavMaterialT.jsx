@@ -41,21 +41,7 @@ function NavList() {
           </ListItem>
         </Typography>
       </Link>
-      {/* <Link href="/account">
-
-        <Typography
-          as="div"
-          href="/account"
-          variant="small"
-          color="black"
-          className="font-normal"
-        >
-          <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
-            <UserCircleIcon className="h-[2rem] w-[2rem]" />
-            Account
-          </ListItem>
-        </Typography>
-      </Link> */}
+      
       <Link href="/contact">
         <Typography
           as="div"
