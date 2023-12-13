@@ -69,9 +69,9 @@ export default function CourseList() {
 
   return (
     <div>
-      <div className="flex flex-col lg:flex-row justify-center ">
+      <div className="flex flex-col lg:flex-row justify-center lg:items-start ">
         <MultiFilterSearch onSearch={handleSearch} />
-        <div className="m-12 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+        <div className="m-6 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
           {listCourse.map((course) => (
             <CardCourse key={course._id} course={course} />
           ))}

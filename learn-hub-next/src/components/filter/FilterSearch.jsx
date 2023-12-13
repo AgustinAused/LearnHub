@@ -28,7 +28,7 @@ const MultiFilterSearch = ({ onSearch }) => {
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-6 mb-6 md:flex md:space-x-4 m-5">
+    <div className="bg-white shadow-lg rounded-lg p-6 mb-6 md:flex md:space-x-4 ml-5 mt-6">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col space-y-4 max-w-sm mx-auto "
