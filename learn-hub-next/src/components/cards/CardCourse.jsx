@@ -6,17 +6,50 @@ import {
     Button,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function CardCourse({ course }) {
+    const [imageSrc, setImageSrc] = useState("");
+
+
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      try {
+        
+      
+        if (course.image && course.image.data) {
+          const base64Image = Buffer.from(course.image.data.data).toString("base64");
+          const imageUrl = `data:${course.image.contentType};base64,${base64Image}`;
+          setImageSrc(imageUrl);
+        }
+      } catch (error) {
+        setLoading(false);
+        console.error(error);
+      }
+    }
+
+    fetchCourse();
+    }, [course]);
+
+
+
     if (!course) {
         return null; // Manejo de casos en que course sea undefined
     }
-    console.log("Course object:", course);
+
     return (
         <Card className=" shadow p-4 max-h-68 overflow-hidden">
+            <div className="relative h-56 ">
+                <img
+                    className="absolute h-full w-full object-cover rounded-xl"
+                    src={imageSrc}
+                    alt="course"
+                />
+            </div>
             <CardBody>
                 
-                <Typography variant="h4" color="blue-gray" className="mb-2">
+                <Typography variant="h4" color="blue-gray" className="mb-3">
                     {course.name}
                 </Typography>
 

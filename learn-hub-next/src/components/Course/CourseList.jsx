@@ -68,14 +68,16 @@ export default function CourseList() {
   }
 
   return (
-    <div className="flex flex-col justify-center justify-items-center">
-      <MultiFilterSearch onSearch={handleSearch} />
-      <div className="m-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
-        {listCourse.map((course) => (
-          <CardCourse key={course._id} course={course} />
-        ))}
+    <div>
+      <div className="flex flex-col lg:flex-row justify-center ">
+        <MultiFilterSearch onSearch={handleSearch} />
+        <div className="m-12 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+          {listCourse.map((course) => (
+            <CardCourse key={course._id} course={course} />
+          ))}
+        <LoadMoreButton loadMore={handleLoadMore} />
+        </div>
       </div>
-      <LoadMoreButton loadMore={handleLoadMore} />
     </div>
   );
 }
