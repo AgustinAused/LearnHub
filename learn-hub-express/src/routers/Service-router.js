@@ -4,6 +4,7 @@ const Service_controller = require('../controllers/Service-controller');
 const Authentication = require('../auth/authentication')
 const multer = require('multer');
 
+
 const upload = multer({ storage: multer.memoryStorage() });
 
 
@@ -13,7 +14,7 @@ router.get('/', function(req, res, next) {
     res.send('Llegaste a la ruta de  api/service/');
 });
 router.get('/allServices',  Service_controller.getAllServices); //Get all the services
-router.get('/serviceUser',  Service_controller.getServiceByUser); //Get a single service
+router.get('/serviceUser',Authentication,  Service_controller.getServiceByUser); //Get a single service
 router.get('/serviceById/:id',  Service_controller.getServiceById); //Get a single service
 router.post('/createService', upload.single("image"),Authentication, Service_controller.createService); //Create a new service
 router.put('/updateService',Authentication,  Service_controller.updateService); //Update a service
