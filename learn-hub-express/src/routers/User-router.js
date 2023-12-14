@@ -38,14 +38,12 @@ router.get("/", function (req, res) {
 });
 
 router.post("/registration", upload.single("image"), UserController.createUser); // Create user
-
 router.post("/login", UserController.loginUser); // Login user
-
-router.get("/users", UserController.getUsers); // Get all the user
+// router.get("/users", UserController.getUsers); // Get all the user
 router.get("/userByToken", UserController.getUsersByToken); // Get user by mail
 router.put("/update", upload.single("image"), Authorization, UserController.updateUser); // Update user
 router.delete("/delete/:id", Authorization, UserController.deleteUserById); // Delete User
-router.post("/resetPassword", UserController.resetPassword); // Reset password
+router.post("/resetPassword",Authorization, UserController.resetPassword); // Reset password
 router.post("/sendResetEmail", UserController.sendEmail); // Send reset email
 
 module.exports = router;
