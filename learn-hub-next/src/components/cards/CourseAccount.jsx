@@ -10,9 +10,13 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import React from "react";
+import { FaTimes } from "react-icons/fa";
 
 export default function CourseAccount({ course }) {
     const router = useRouter();
+
+    const [showButtons, setShowButtons] = React.useState(false);
     const deleteCourse = async (e) => {
         e.preventDefault();
         try {
@@ -62,39 +66,67 @@ export default function CourseAccount({ course }) {
 
                 <div className="flex flex-row space-x-2 mt-2">
                     <Link href={`contraction/${course._id}`}>
-                        <Button color="light-green" className="w-28">
+                        <Button color="light-green" className="w-28 p-3">
                             Contracts
                         </Button>
                         {/*pagina de gestion de contratos*/}
                     </Link>
 
                     <Link href={`commets/${course._id}`}>
-                        <Button color="light-blue" className="w-28">
+                        <Button color="light-blue" className="w-28 p-3">
                             Comments
                         </Button>
                         {/*pagina de gestion de comentarios*/}
                     </Link>
                 </div>
             </CardBody>
-            <CardFooter className="space-y-2 items-center flex flex-col">
-                {course.state === "Publish" ? (
-                  <Button color="" className="w-28" onClick={unpublishCourse}>
-                        Unpublish
+            <CardFooter className=" flex flex-col items-center lg:flex-row">
+                {showButtons ? (
+                    <>
+                   
+
+                    <Button
+                        color="black"
+                        className="m-2 h-9 w-9 p-3 "
+                        onClick={() => setShowButtons(false)}>
+                        <FaTimes  />
+                        
                     </Button>
+                    <div  className="space-y-2  flex flex-col">
+
+                        {course.state === "Publish" ? (
+                            <Button
+                                color=""
+                                className="w-28"
+                                onClick={unpublishCourse}>
+                                Unpublish
+                            </Button>
+                        ) : (
+                            <Button className="w-28" onClick={PublishCourse}>
+                                Publish
+                            </Button>
+                        )}
+
+                        <Link href={`/course/edit/${course._id}`}>
+                            <Button className="w-28">Modify</Button>
+                        </Link>
+
+                        <Button
+                            color="red"
+                            className="w-28"
+                            onClick={deleteCourse}>
+                            Delete
+                        </Button>
+
+                    </div>
+                    </>
                 ) : (
-                  <Button className="w-28" onClick={PublishCourse}>
-                        Publish
+                    <Button
+                        className="w-28"
+                        onClick={() => setShowButtons(true)}>
+                        Options
                     </Button>
                 )}
-
-                <Link href={`/course/edit/${course._id}`}>
-                    <Button className="w-28">Modify</Button>
-                    {/*abre el formulario y modifica los campos necesarios */}
-                </Link>
-                {/*tinee que eliminar el conmentario */}
-                <Button color="red" className="w-28" onClick={deleteCourse}>
-                    Delete
-                </Button>
             </CardFooter>
         </Card>
     );

@@ -35,11 +35,13 @@ export default function UserProfileCard() {
                 {!user.expirience ? (
                     <div className="flex flex-col md:flex-row justify-between font-regular items-center rounded-lg bg-black p-4 text-base leading-5 text-white opacity-100 md:m-10">
                         <p className="md:w-2/3">
-                            No has completado tu perfil, por favor completa tu
-                            perfil para poder registrar un curso
+                            You have not completed your profile yet. Please
+                            complete your profile to be able to create services.
                         </p>
                         <Link href="/provider/account/experience">
-                            <Button color="white">Completar perfil</Button>
+                            <Button color="white">
+                                Complete Profile
+                            </Button>
                         </Link>
                     </div>
                 ) : (
@@ -93,16 +95,16 @@ export default function UserProfileCard() {
                     <div className="flex flex-col items-center md:items-start mt-4 md:mt-0">
                         <div className="mb-2">
                             <Link href={"/provider/addCourse"}>
-                                <button className="bg-[#ff8a00] text-white rounded-lg px-4 py-2">
-                                    Agregar Servicio
+                                <button className="bg-[#ff8a00] text-white rounded-lg w-32 py-2">
+                                    Create Service
                                 </button>
                             </Link>
                         </div>
 
                         <div className="mb-2">
                             <Link href={"/provider/account/edit"}>
-                                <button className="bg-[#ff8a00] text-white rounded-lg px-4 py-2">
-                                    Modificar Usuario
+                                <button className="bg-[#ff8a00] text-white rounded-lg w-32 py-2">
+                                    Modify User
                                 </button>
                             </Link>
                         </div>

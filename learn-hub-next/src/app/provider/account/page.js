@@ -22,7 +22,7 @@ export default function page() {
             <UserProfileCard />
             {/* div del titulo de la lsita de servicios */}
             <div className="flex justify-center">
-                <h1 className="text-4xl font-bold">Servicios Ofrecidos </h1>
+                <h1 className="text-4xl font-bold">Services Offered </h1>
             </div>
             <div className="flex justify-end">
                 {/* Lista de servicios ofrecidos por la cuenta que los da*/}
