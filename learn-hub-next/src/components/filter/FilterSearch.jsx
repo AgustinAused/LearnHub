@@ -61,7 +61,7 @@ const MultiFilterSearch = ({ onSearch }) => {
             onChange={handleInputChange}
             className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
           >
-            <option value="">Selec</option>
+            <option value="">Select</option>
             <option value="grupal">Group</option>
             <option value="individual">Individual</option>
           </select>
@@ -79,7 +79,7 @@ const MultiFilterSearch = ({ onSearch }) => {
             onChange={handleInputChange}
             className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
           >
-            <option value="">Selec</option>
+            <option value="">Select</option>
             <option value="Unique">Unique</option>
             <option value="Weekly">Weekly</option>
             <option value="Biweely">Biweely</option>
