@@ -69,6 +69,12 @@ MIT License
 ### Estado del proyecto
 El proyecto se encuentra en diseño y desarrollo.
 
+### Link a Figma:
+Este figma no se terminó por completo pero nos sirvió para guiarnos en el flujo de funcionamiento de la pagina
+
+https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&node-id=0%3A1&mode=design&t=UFpjwCXLXKHAaSq8-1
+
+
 ### Capturas de pantalla Services Page
 
 ### Desktop 
