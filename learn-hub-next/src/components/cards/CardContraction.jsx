@@ -60,32 +60,32 @@ export default function CardContraction({ contract, serviceId } ) {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <Button
             color="blue"
-            buttonType="filled"
-            size="regular"
+            variant = "filled"
+            size="md"
             onClick={() => handleStatusChange("Requested")}
           >
             Requested
           </Button>
           <Button
             color="green"
-            buttonType="filled"
-            size="regular"
+            variant = "filled"
+            size="md"
             onClick={() => handleStatusChange("Accepted")}
           >
             Accepted
           </Button>
           <Button
             color="red"
-            buttonType="filled"
-            size="regular"
+            variant = "filled"
+            size="md"
             onClick={() => handleStatusChange("Canceled")}
           >
             Canceled
           </Button>
           <Button
-            color="black"
-            buttonType="filled"
-            size="regular"
+            color="gray"
+            variant = "filled"
+            size="md"
             onClick={() => handleStatusChange("Finalized")}
           >
             Finalized
