@@ -71,7 +71,8 @@ El proyecto se encuentra en diseño y desarrollo.
 
 ### Capturas de pantalla
 
-![image](https://github.com/AgustinAused/LearnHub/assets/103573136/34953c09-2d2b-47b4-b172-1a2b095d8276)
+![image](https://github.com/AgustinAused/LearnHub/assets/103573136/9f3e8e6a-921c-46e4-92f9-8d52b1cd09d5)
+
 
 
 ### Diagrama de clases
