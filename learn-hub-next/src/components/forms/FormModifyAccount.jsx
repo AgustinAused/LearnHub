@@ -1,6 +1,7 @@
 // Importa las bibliotecas necesarias
 import React, { useState, useEffect } from "react";
 import UpdateUser from "@/actions/UpdateUser";
+import { useRouter } from "next/navigation";
 
 // Componente del formulario
 export default function FormModifyAccount({ account, onGuardarCambios }) {
@@ -12,6 +13,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
     experiencia: account.expirience,
     image: account.image,
   });
+  const router = useRouter();
 
   const [imageSrc, setImageSrc] = useState("");
 
@@ -70,6 +72,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
       if (response.status === 200) {
         console.log("Response:", response.data);
         alert("Cuenta modificada correctamente");
+        router.push("/provider/account");
       } else {
         console.error("Error en la actualización:", response.statusText);
         console.error("Respuesta del servidor:", response.data);
