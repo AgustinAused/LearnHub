@@ -14,6 +14,7 @@ export default async function DeleteCommentCust(commentId,serviceId) {
     try {
         const response =  await fetch(`http://localhost:4050/api/comments/delete?commentId=${commentId}&serviceId=${serviceId}`, {
             method: "DELETE",
+            cache: "no-store",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
                 "Content-Type": "application/json", // Specify the content type

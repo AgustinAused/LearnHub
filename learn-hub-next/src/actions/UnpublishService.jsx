@@ -10,6 +10,7 @@ export default async function UnpublishService(id) {
         console.log(id + "y "+ token);
         const response = await fetch(`http://localhost:4050/api/services/unpublishService`, {
             method: "PUT",
+            cache: "no-store",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
                 "Content-Type": "application/json",

@@ -12,6 +12,7 @@ export default async function getServicesByUser(req) {
         const response = await fetch(
             "http://localhost:4050/api/services/serviceUser",
             {
+                cache: "no-store",
                 headers: {
                     Authorization: `Bearer ${extractedToken}`,
                     'Content-Type': 'application/json',

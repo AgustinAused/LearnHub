@@ -12,6 +12,7 @@ export default async function UpdateExperience(formulario) {
     try {
         const response =  await fetch(`http://localhost:4050/api/users/update`, {
             method: "PUT",
+            cache: "no-store",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
                 "Content-Type": "application/json", // Specify the content type

@@ -13,6 +13,7 @@ export default async function GetContracts(idService) {
 
         const res = await fetch(`http://localhost:4050/api/contractions/all?serviceId=${idService}`, {
             method: "GET",
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${extractedToken}`,

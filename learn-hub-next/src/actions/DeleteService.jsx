@@ -11,6 +11,7 @@ export default async function DeleteService(id) {
         const extractedToken = tokenString.split('"')[7];
         const response = await fetch(`http://localhost:4050/api/services/deleteService/${id}`, {
         method: "DELETE",
+        cache: "no-store",
         headers: {
             Authorization: `Bearer ${extractedToken}`,
         },

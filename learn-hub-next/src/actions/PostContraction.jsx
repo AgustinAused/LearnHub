@@ -19,6 +19,7 @@ export default async function PostContraction(formData) {
       "http://localhost:4050/api/contractions/new",
       {
         method: "POST",
+        cache: "no-store",
         headers: {
           "Content-Type": "application/json",
           // Authorization: `Bearer ${token}`,

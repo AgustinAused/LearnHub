@@ -12,6 +12,7 @@ export default async function GetUserDetails() {
         const response = await fetch(
             "http://localhost:4050/api/users/userByToken",
             {
+                cache: "no-store",
                 headers: {
                     Authorization: `Bearer ${extractedToken}`, // Agregar el token al encabezado Authorization
                     'Content-Type': 'application/json', // Puedes ajustar esto según las necesidades de tu API

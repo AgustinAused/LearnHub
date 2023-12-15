@@ -14,6 +14,7 @@ export const putContraction = async (newState,serviceId,contractId) => {
     
         const response = await fetch(`http://localhost:4050/api/contractions/changeStatus`, {
             method: 'PUT',
+            cache: "no-store",
             headers: {
             Authorization: `Bearer ${extractedToken}`,
             'Content-Type': 'application/json',

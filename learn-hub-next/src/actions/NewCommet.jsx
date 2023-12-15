@@ -7,6 +7,7 @@ export default async function NewComment(formData) {
     try {// Convert token to string
         const response = await fetch(`http://localhost:4050/api/comments/new`, {
             method: "POST",
+            cache: "no-store",
             body: JSON.stringify(formData),
             headers: {
                 "Content-Type": "application/json"

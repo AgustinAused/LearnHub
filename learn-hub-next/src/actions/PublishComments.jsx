@@ -11,6 +11,7 @@ export default async function PublishComments(commentId, serviceId) {
     try {
         const response =  await fetch(`http://localhost:4050/api/comments/changeState`, {
             method: "PUT",
+            cache: "no-store",
             headers: {
                 Authorization: `Bearer ${extractedToken}`,
                 "Content-Type": "application/json", // Specify the content type

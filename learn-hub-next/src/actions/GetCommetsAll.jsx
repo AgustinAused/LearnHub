@@ -14,6 +14,7 @@ export default async function GetCommetsAll(id) {
         // console.log(token);
         const res = await fetch(`http://localhost:4050/api/comments/allbyservice?id=${id}`, {
             method: "GET",
+            cache: "no-store",
             headers: {
                 'Content-Type' : 'application/json',
                 'authorization': `Bearer ${extractedToken}`,

@@ -19,6 +19,7 @@ export default async function PostServicios(formData) {
           Authorization: `Bearer ${token}`
         },
         method: "POST",
+        cache: "no-store",
         body: formData,
       }
     );

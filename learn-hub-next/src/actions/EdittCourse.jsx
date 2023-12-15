@@ -9,6 +9,7 @@ export default async function EditCourse(courseModify) {
         const extractedToken = tokenString.split('"')[7];
         const response = await fetch(`http://localhost:4050/api/services/updateService`, {
             method: "PUT",
+            cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${extractedToken}`,

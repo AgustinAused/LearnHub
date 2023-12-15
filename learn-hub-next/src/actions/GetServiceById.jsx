@@ -6,6 +6,7 @@ export default async function GetServiceById(id) {
     try {
         const token = cookies().get("token"); // Convert token to string
         const response = await fetch(`http://localhost:4050/api/services/serviceById/${id}`, {
+            cache: "no-store",
             headers: {
                 Authorization: `Bearer ${token}`,
             },
