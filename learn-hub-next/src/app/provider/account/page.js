@@ -7,12 +7,14 @@ import React, { useState, useEffect } from "react";
 
 export default function page() {
     const [services, setServices] = useState([]); // Lista de servicios que ofrece el usuario
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getServices = async () => {
             const servicesFromServer = await getServicesByUser();
             console.log("servicesFromServer", servicesFromServer);
             setServices(servicesFromServer);
+            setLoading(false);
         };
         getServices();
     }, []);

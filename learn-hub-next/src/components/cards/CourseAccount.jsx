@@ -86,7 +86,7 @@ export default function CourseAccount({ course }) {
                    
 
                     <Button
-                        color="black"
+                        color="amber"
                         className="m-2 h-9 w-9 p-3 "
                         onClick={() => setShowButtons(false)}>
                         <FaTimes  />
