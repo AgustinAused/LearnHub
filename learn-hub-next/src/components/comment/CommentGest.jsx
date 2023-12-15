@@ -3,6 +3,7 @@ import { Button } from "@material-tailwind/react";
 import DeleteCommentCust from "@/actions/DeleteComment";
 import { useRouter } from "next/navigation"
 import PublishComments from "@/actions/PublishComments";
+import UnpublishComments from "@/actions/UnpublishComments";
 
 export default function CommentGest({ com, serviceId }) {
     const router = useRouter();

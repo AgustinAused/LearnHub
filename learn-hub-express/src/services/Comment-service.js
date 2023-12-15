@@ -137,10 +137,10 @@ exports.changeState = async function(body){
             throw Error('Comment not found');
         }
         // Update the state of the comment
-        if(comment.state == true){
-            comment.state = false;
+        if(comment.state == 'true'){
+            comment.state = "false";
         }else{
-            comment.state = true;
+            comment.state = 'true';
         }
         // Save the updated comment
         const savedComment = await comment.save();

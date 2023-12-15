@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     res.send('Llegaste a la ruta de  api/comments-router');
 });
 
-// Get all comments
+// Get all comments by service in acepted
 router.get('/all', commentController.getAllCommentsUser);
 // Create new comment
 router.post('/new', commentController.createComment);

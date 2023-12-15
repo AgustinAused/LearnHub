@@ -19,6 +19,7 @@ export default async function UnpublishComments(commentId, serviceId) {
             body: JSON.stringify({ commentId, serviceId }), // JSON.stringify
         });
         const data = await response.json();
+        console.log(data);
         return data;
     } catch (error) {
         console.error("Error:", error);
