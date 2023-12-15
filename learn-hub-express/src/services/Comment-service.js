@@ -10,7 +10,7 @@ _this = this
 exports.getComments = async function(service_id){ //
     try {
         // Encuentra el servicio por su ID
-        let service = await Service.findOne({ _id: service_id });
+        let service = await Service.findById({ _id: service_id });
         // Verifica si el servicio fue encontrado
         if (!service) {
             throw new Error('Service not found');
@@ -150,10 +150,9 @@ exports.changeState = async function(body){
         updatedService.comments.pull(body.commentId);
         updatedService.comments.push(savedComment._id);
         await updatedService.save();
-
         // update user
         let updatedUser = await User.findById(updatedService.responsable);
-        updatedUser.services.pull(updatedService._id);
+        updatedUser.services.pull(body.serviceId);
         updatedUser.services.push(updatedService._id);
         await updatedUser.save();
         // Return the saved comment

@@ -14,7 +14,7 @@ export default function CommentGest({ com, serviceId }) {
         try {
             const response = await DeleteCommentCust(commentId, serviceId);
             console.log(response);
-            window.location.reload();
+            location.reload();
         } catch (error) {
             console.error("Error:", error);
             throw error;
@@ -29,7 +29,7 @@ export default function CommentGest({ com, serviceId }) {
             let commentId = com._id;
             const commest = await UnpublishComments(commentId, serviceId);
             console.log("Comments unpublish ",commest);
-            router.refresh();
+            location.reload();
         } catch (error) {
             console.error("Error:", error);
         }
@@ -42,7 +42,7 @@ export default function CommentGest({ com, serviceId }) {
             let commentId = com._id;
             const commest = await PublishComments(commentId, serviceId);
             console.log("Comments publish ",commest);
-            router.refresh();
+            location.reload();
         } catch (error) {
             console.error("Error:", error);
         }

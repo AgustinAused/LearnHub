@@ -7,7 +7,7 @@ export default async function PublishComments(commentId, serviceId) {
     // Convert token to string
     let tokenString = JSON.stringify(tokenN);
     const extractedToken = tokenString.split('"')[7];
-    console.log(commentId)
+    // console.log(commentId)
     try {
         const response =  await fetch(`http://localhost:4050/api/comments/changeState`, {
             method: "PUT",

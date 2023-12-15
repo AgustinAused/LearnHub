@@ -9,6 +9,7 @@ export default async function GetCommentsCourse(id) {
         
         const res = await fetch(`http://localhost:4050/api/comments/all?id=${id}`, {
             method: "GET",
+            cache : "no-store",
             headers: {
                 'Content-Type' : 'application/json',
             }
