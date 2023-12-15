@@ -54,7 +54,7 @@ export default function CardCourse({ course }) {
                 </Typography>
 
                 <Typography variant="h6">
-                    Descripcion
+                    Description
                 </Typography>
                 <Typography>
                     {course.description}

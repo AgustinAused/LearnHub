@@ -36,7 +36,7 @@ const MultiFilterSearch = ({ onSearch }) => {
         {/* Categoría */}
         <div className="flex flex-col space-y-2">
           <label htmlFor="category" className="text-gray-600">
-            Categoría:
+            Category:
           </label>
           <input
             type="text"
@@ -52,7 +52,7 @@ const MultiFilterSearch = ({ onSearch }) => {
         {/* Tipo de Clase */}
         <div className="flex flex-col space-y-2">
           <label htmlFor="classType" className="text-gray-600">
-            Tipo de Clase:
+            Class Type:
           </label>
           <select
             id="classType"
@@ -61,8 +61,8 @@ const MultiFilterSearch = ({ onSearch }) => {
             onChange={handleInputChange}
             className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
           >
-            <option value="">Selecciona una opción</option>
-            <option value="grupal">Grupal</option>
+            <option value="">Selec</option>
+            <option value="grupal">Group</option>
             <option value="individual">Individual</option>
           </select>
         </div>
@@ -70,7 +70,7 @@ const MultiFilterSearch = ({ onSearch }) => {
         {/* Frecuencia */}
         <div className="flex flex-col space-y-2">
           <label htmlFor="frequency" className="text-gray-600">
-            Frecuencia:
+            Frecuency:
           </label>
           <select
             id="frequency"
@@ -79,18 +79,18 @@ const MultiFilterSearch = ({ onSearch }) => {
             onChange={handleInputChange}
             className="border rounded p-2 focus:outline-none focus:ring focus:border-blue-300"
           >
-            <option value="">Selecciona una opción</option>
-            <option value="unica">Única</option>
-            <option value="semanal">Semanal</option>
-            <option value="quincenal">Quincenal</option>
-            <option value="mensual">Mensual</option>
+            <option value="">Selec</option>
+            <option value="Unique">Unique</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Biweely">Biweely</option>
+            <option value="Montly">Montly</option>
           </select>
         </div>
 
         {/* Calificación */}
         <div className="flex flex-col space-y-2">
           <label htmlFor="rating" className="text-gray-600">
-            Calificación:
+            Calification:
           </label>
           <input
             type="number"
@@ -113,7 +113,7 @@ const MultiFilterSearch = ({ onSearch }) => {
           type="submit"
           className="col-span-2 md:col-span-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 focus:outline-none w-full"
         >
-          Buscar
+          Apply
         </button>
         </div>
       </form>
