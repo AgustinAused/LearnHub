@@ -53,8 +53,8 @@ Para poder correr el proyecto, es necesario tener instalado Node.js y npm. Una v
 ``` npm install ```
 
 ### Ejecución   
-Para ejecutar el proyecto, se debe ejecutar el siguiente comando en la carpeta raíz del proyecto:
-``` npm start ```  *En el Back Express*
+Para ejecutar el proyecto, se debe ejecutar el siguiente comando en la carpeta raíz del proyecto:  
+``` npm start ```  *En el Back Express*  
 ``` npm run dev ```*En el Front Next JS*
 
 ### Uso
@@ -84,13 +84,6 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
 ### Mobile
 
 ![image](https://github.com/AgustinAused/LearnHub/assets/103573136/5d775b7a-2650-4269-8fe6-c97bd87f7caf)
-
-
-
-### Diagrama de clases
-![Diagrama de clases](
-    
-)
 
 ## Diagrama de base de datos
 ### Colecciones
