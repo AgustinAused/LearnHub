@@ -69,9 +69,11 @@ MIT License
 ### Estado del proyecto
 El proyecto se encuentra en diseño y desarrollo.
 
-### Capturas de pantalla
-
+### Capturas de pantalla Services Page
+####Desktop 
 ![image](https://github.com/AgustinAused/LearnHub/assets/103573136/9f3e8e6a-921c-46e4-92f9-8d52b1cd09d5)
+####Mobile
+![image](https://github.com/AgustinAused/LearnHub/assets/103573136/5d775b7a-2650-4269-8fe6-c97bd87f7caf)
 
 
 
