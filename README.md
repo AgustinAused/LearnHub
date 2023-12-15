@@ -92,8 +92,64 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
     
 )
 
-### Diagrama de base de datos
-![Diagrama de base de datos](
-)
+## Diagrama de base de datos
+### Colecciones
+```json
+{
+  "Comentarios": {
+    "name": "String",
+    "content": "String",
+    "email": "String",
+    "score": "String",
+    "date": "Date",
+    "state": "String"
+  },
+  "Contrataciones": {
+    "serviceType": "String",
+    "name": "String",
+    "lastName": "String",
+    "email": "String",
+    "telephone": "String",
+    "hour": "String",
+    "message": "String",
+    "totalCost": "String",
+    "state": "String"
+  },
+  "Servicios": {
+    "name": "String",
+    "description": "String",
+    "price": "String",
+    "responsable": "ObjectId",
+    "image": {
+      "data": "Buffer",
+      "contentType": "String"
+    },
+    "date": "Date",
+    "state": "String",
+    "frequency": "String",
+    "duration": "String",
+    "category": "String",
+    "classType": "String",
+    "comments": ["ObjectId"],
+    "hiring": ["ObjectId"]
+  },
+  "Usuarios": {
+    "name": "String",
+    "email": "String",
+    "password": "String",
+    "creationDate": "Date",
+    "degree": "String",
+    "expirience": "String",
+    "phono": "String",
+    "services": ["ObjectId"],
+    "image": "String"
+  }
+}
+```
+### Relaciones
+    "Servicios -> Comentarios": true,
+    "Servicios -> Contrataciones": true,
+    "Servicios -> Usuario": true,
+    "Usuario -> Servicios": true
 
 
