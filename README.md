@@ -147,9 +147,17 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
 }
 ```
 ### Relaciones
-    "Servicios -> Comentarios": true,
-    "Servicios -> Contrataciones": true,
-    "Servicios -> Usuario": true,
-    "Usuario -> Servicios": true
+    {
+  "Relaciones": {
+    "Servicios": {
+      "Comentarios": true,
+      "Contrataciones": true,
+      "Usuario": true
+    },
+    "Usuario": {
+      "Servicios": true
+    }
+  }
+}
 
 
