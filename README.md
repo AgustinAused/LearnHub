@@ -154,7 +154,7 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
 ```
 
 ### Documentacion de la Api Y test
+https://documenter.getpostman.com/view/30953058/2s9Ykn7gsA
 
-https://interstellar-firefly-489252.postman.co/workspace/My-Workspace~dfee5b2a-9f3c-47b5-8a61-e4858a3c8cdf/collection/30953058-5e2c3c01-4f83-47ec-b04e-9ecc33bafcb6?action=share&creator=30953058
 
 
