@@ -216,13 +216,13 @@ export function FormSignUp() {
           fullWidth
           disabled={!isChecked}
         >
-          Registrarse
+          register
         </Button>
       </form>
       <p className="mt-4 text-center text-gray-600">
-        ¿Ya tienes una cuenta?{" "}
+        you already have an account?{" "}
         <a href="/sign-in" className="font-medium text-gray-900">
-          Ingresar
+          Sign in
         </a>
       </p>
     </Card>
