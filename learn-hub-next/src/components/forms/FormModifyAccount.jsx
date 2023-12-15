@@ -113,7 +113,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
       </div>
       <div className="form-group">
         <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-          Nombre
+          Name
         </label>
         <input
           type="text"
@@ -127,7 +127,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
       </div>
       <div className="form-group">
         <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-          Correo electrónico
+          Email
         </label>
         <input
           type="email"
@@ -141,7 +141,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
       </div>
       <div className="form-group">
         <label htmlFor="degree" className="block text-sm font-medium text-gray-600">
-          Grado académico
+          Degree
         </label>
         <input
           type="text"
@@ -155,7 +155,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
       </div>
       <div className="form-group">
         <label htmlFor="experience" className="block text-sm font-medium text-gray-600">
-          Experiencia
+          Experience
         </label>
         <textarea
           className="mt-1 p-2 w-full border rounded-md form-control"
@@ -172,7 +172,7 @@ export default function FormModifyAccount({ account, onGuardarCambios }) {
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue btn btn-primary"
         >
-          Guardar Cambios
+          save changes
         </button>
       </div>
     </form>

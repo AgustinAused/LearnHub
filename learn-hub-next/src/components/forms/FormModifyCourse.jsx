@@ -38,7 +38,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-            Título
+            Tittle
           </label>
           <input
             type="text"
@@ -52,7 +52,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
         </div>
         <div>
           <label htmlFor="descripcion" className="block text-sm font-medium text-gray-600">
-            Descripción
+            Description
           </label>
           <textarea
             id="descripcion"
@@ -66,7 +66,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
         </div>
         <div>
           <label htmlFor="duration" className="block text-sm font-medium text-gray-600">
-            Duración
+            Duration
           </label>
           <input
             type="text"
@@ -80,7 +80,7 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
         </div>
         <div>
           <label htmlFor="frecuencia" className="block text-sm font-medium text-gray-600">
-            Frecuencia
+            Frecuency
           </label>
           <select
             id="frecuencia"
@@ -90,15 +90,16 @@ export default function FormModifyCourse({ curso, onGuardarCambios }) {
             className="mt-1 p-2 w-full border rounded-md"
             required
           >
-            <option value="única">Única</option>
-            <option value="semanal">Semanal</option>
-            <option value="quincenal">Quincenal</option>
-            <option value="mensual">Mensual</option>
+            <option value="">Select</option>
+            <option value="Unique">Unique</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Biweely">Biweely</option>
+            <option value="Montly">Montly</option>
           </select>
         </div>
         <div>
           <label htmlFor="categoria" className="block text-sm font-medium text-gray-600">
-            Categoría
+            Category
           </label>
           <input
             type="text"

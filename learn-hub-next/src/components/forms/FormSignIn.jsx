@@ -51,7 +51,7 @@ export function FormSignIn() {
 
   return (
     <Card color="white" className="p-6 my-36 max-w-screen-lg sm:w-96" shadow={true}>
-      <h2 className="text-2xl font-semibold mb-4">Inicio de Sesión</h2>
+      <h2 className="text-2xl font-semibold mb-4">Sign In</h2>
       <form className="mt-8 mb-2 w-80">
         <div className="mb-4">
           <Input
@@ -68,7 +68,7 @@ export function FormSignIn() {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            label="Contraseña"
+            label="password"
             />
         </div>
         
@@ -81,18 +81,18 @@ export function FormSignIn() {
           fullWidth
           onClick={handleSubmit}
         >
-          Ingresar
+          login
         </Button>
       </form>
       <p className="mt-4 text-center text-gray-600">
-        ¿No tienes una cuenta?{" "}
+      You don't have an account yet?{" "}
         <a href="/sign-up" className="font-medium text-gray-900">
-          Registrase
+          Sign in
         </a>
       </p>
       <p className="mt-4 text-center text-gray-600">
         <a href="/recuperar" className="font-medium text-gray-900">
-          Recuperar contraseña
+          Recover password
         </a>
       </p>
     </Card>
