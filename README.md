@@ -95,7 +95,6 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
 ## Diagrama de base de datos
 ### Colecciones
 ```json
-{
   "Comentarios": {
     "name": "String",
     "content": "String",
@@ -144,7 +143,6 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
     "services": ["ObjectId"],
     "image": "String"
   }
-}
 ```
 ### Relaciones
 ```json
