@@ -6,11 +6,11 @@
 - [x] 2. Alejandro Biarrieta 
 
 ### Descripción del proyecto
-El proyecto consiste en un marketplace de servicios de todo tipo, en el cual los usuarios pueden registrarse y ofrecer sus servicios, así como también pueden contratar los servicios de otros usuarios. El proyecto está desarrollado en el framework de React, utilizando el lenguaje de programación JavaScript, y la base de datos utilizada es mongoDB.
+El proyecto consiste en un marketplace de servicios de todo tipo, en el cual los usuarios pueden registrarse y ofrecer sus servicios, así como también pueden contratar los servicios de otros usuarios. El proyecto está desarrollado en con la libreria React complementado con el framework Next JS, utilizando el lenguaje de programación JavaScript, y la base de datos utilizada es mongoDB.
 
-el backend esta hecho en node js con las librerias de mongoo para la base de datos.
+El backend esta hecho en Node JS con las librerias de mongoose para administrar la base de datos.
 El frontend se hizo en react, y el frontend es una pagina web que permite a los usuarios registrarse o logue
-arse, y una vez logueado, puede ver los servicios que ofrece, contratarlos, y calificarlos.
+arse, y una vez logueado, puede ver los servicios que ofrece administrarlos, modificarlos.
 
 
 ### Funcionalidades
@@ -26,16 +26,16 @@ arse, y una vez logueado, puede ver los servicios que ofrece, contratarlos, y ca
 - [x] 10. Visualización de calificaciones
 - [x] 11. Visualización de perfil de profesor
 - [x] 12. Visualización de perfil de servicio
+- [x] 13. Verifición de comentarios coherentes
 
-
-### Funcionalidades a desarrollar
 
 
 ### Tecnologías utilizadas
 - [x] 1. React
-- [x] 2. JavaScript 
+- [x] 2. JavaScript
 - [x] 3. Node JS
 - [x] 4. Express
+- [x] 5. Next JS
 
 ### Paleta de colores
 - https://coolors.co/070c0d-5c9ead-ffffff-326273-90a8b1-eeeeee-e39774
@@ -44,13 +44,18 @@ arse, y una vez logueado, puede ver los servicios que ofrece, contratarlos, y ca
 - [x] 1. Node.js
 - [x] 2. npm
 
+### Carpetas:
+- learn-hub-express (Back)
+- learn-hub-next (Front)
+  
 ### Instalación
-Para poder correr el proyecto, es necesario tener instalado Node.js y npm. Una vez instalados, se debe clonar el repositorio y ejecutar el siguiente comando en la carpeta raíz del proyecto:
+Para poder correr el proyecto, es necesario tener instalado Node.js y npm. Una vez instalados, se debe clonar el repositorio y ejecutar el siguiente comando en la carpeta raíz del proyecto en ambas carpetas (Express y Next JS)(Back-Front):
 ``` npm install ```
 
 ### Ejecución   
 Para ejecutar el proyecto, se debe ejecutar el siguiente comando en la carpeta raíz del proyecto:
-``` npm start ```
+``` npm start ```  *En el Back Express*
+``` npm run dev ```*En el Front Next JS*
 
 ### Uso
 Para poder utilizar el proyecto, se debe acceder a la siguiente URL: http://localhost:3000/
@@ -65,6 +70,9 @@ MIT License
 El proyecto se encuentra en diseño y desarrollo.
 
 ### Capturas de pantalla
+
+![image](https://github.com/AgustinAused/LearnHub/assets/103573136/34953c09-2d2b-47b4-b172-1a2b095d8276)
+
 
 ### Diagrama de clases
 ![Diagrama de clases](
