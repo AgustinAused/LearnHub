@@ -147,6 +147,7 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
 }
 ```
 ### Relaciones
+```json
     {
   "Relaciones": {
     "Servicios": {
@@ -159,5 +160,6 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
     }
   }
 }
+```
 
 
