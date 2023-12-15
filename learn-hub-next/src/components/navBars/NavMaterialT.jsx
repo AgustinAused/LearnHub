@@ -37,7 +37,7 @@ function NavList() {
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <BuildingStorefrontIcon className="h-[2rem] w-[2rem] " />
-            Servicios
+            Services
           </ListItem>
         </Typography>
       </Link>
@@ -52,7 +52,7 @@ function NavList() {
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <MegaphoneIcon className="h-[2rem] w-[2rem]" />
-            Contáctanos
+            Contact us
           </ListItem>
         </Typography>
       </Link>
@@ -66,7 +66,7 @@ function NavList() {
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <ChatBubbleLeftRightIcon className="h-[2rem] w-[2rem]" />
-            Sobre Nosotros
+            About Us
           </ListItem>
         </Typography>
       </Link>

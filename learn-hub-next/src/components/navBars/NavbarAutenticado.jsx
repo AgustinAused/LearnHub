@@ -37,7 +37,7 @@ function NavList() {
         >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <BuildingStorefrontIcon className="h-[2rem] w-[2rem] " />
-            Servicios
+            Services
           </ListItem>
         </Typography>
       </Link>
@@ -51,7 +51,7 @@ function NavList() {
           >
           <ListItem className="flex items-center gap-2 py-2 pr-4 text-base">
             <PlusCircleIcon className="h-[2rem] w-[2rem] " />
-            Agrega un Servicio
+            Add Service
           </ListItem>
         </Typography>
       </Link>
