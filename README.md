@@ -138,18 +138,10 @@ https://www.figma.com/file/sHrLSHBfSbZZN1novycjGd/Flujo-Learn-hub?type=design&no
   }
 ```
 ### Relaciones
-```json
-    {
-    "Servicios": {
-      "Comentarios": true,
-      "Contrataciones": true,
-      "Usuario": true
-    },
-    "Usuario": {
-      "Servicios": true
-    }
-  }
-```
+      Servicios -> Comentarios
+      Servicios -> Contrataciones
+      Servicios -> Usuario
+      Usuario -> Servicios
 
 ### Documentacion de la Api Y test
 https://documenter.getpostman.com/view/30953058/2s9Ykn7gsA
