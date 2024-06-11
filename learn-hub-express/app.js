@@ -9,8 +9,6 @@ app.use(express.json());
 const indexRouter = require('./src/routers/index');
 const apiRouter = require('./src/routers/api');
 
-//incorporo cors
-let cors = require('cors');
 
 //configuro el .env mas facil con ese modulo;
 require('dotenv').config();
@@ -20,6 +18,8 @@ app.use(express.static('public'));
 //serivo imagenes de la carpeta public
 app.use('/uploads', express.static(path.join(__dirname, 'public/usersProfileImages')));
 
+//incorporo cors
+let cors = require('cors');
 
 //aplico cors
 app.use(cors());
